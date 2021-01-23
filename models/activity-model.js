@@ -1,16 +1,20 @@
 const mongoose = require('mongoose');
-const Schema   = mongoose.Schema;
+
+// eslint-disable-next-line prefer-destructuring
+const Schema = mongoose.Schema;
 
 const activitySchema = new Schema({
   name: String,
+  description: String,
+  url: [String],
   minDuration: Number,
-  creator:{type: Schema.Types.ObjectId, ref: 'User'},
+  creator: { type: Schema.Types.ObjectId, ref: 'User' },
   categories: [String],
-  timeWindowStart: Date,
-  timeWindowEnd: Date,
+  timeWindowStart: Number,
+  timeWindowEnd: Number,
   hasCost: Boolean,
   seasonStart: Date,
-  seasonEnd: Date
+  seasonEnd: Date,
 });
 
 const Activity = mongoose.model('Activity', activitySchema);
