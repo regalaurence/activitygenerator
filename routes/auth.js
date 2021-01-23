@@ -60,4 +60,11 @@ router.post('/login', (req, res, next) => {
 
 });
 
+//logout
+router.post('/logout', (req, res, next) => {
+  //console.log("Session: ", req.session)
+  req.session.destroy();
+  res.json(null);
+});
+
 module.exports = router;

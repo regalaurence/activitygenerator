@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import axios from 'axios'
 import './App.css';
 
 //Components
@@ -18,11 +19,23 @@ class App extends Component {
     })
   }
 
+  logoutUser = () =>{
+    axios.post("/api/logout", {})
+      .then((resp) => {
+        this.setState({
+          currentUser: null
+        });
+      })
+  }
 
   render() {
     return (
       <div className="App">
-        {this.state.currentUser ? <h1>Welcome, {this.state.currentUser.username}</h1> : (
+        {this.state.currentUser ? (
+          <div>
+          <h1>Welcome, {this.state.currentUser.username}</h1>
+          <button onClick={this.logoutUser}>Logout</button>
+          </div>) : (
           <div>
             <h3>Signup</h3>
             <Signup></Signup>
