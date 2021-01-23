@@ -10,6 +10,7 @@
   "dependencies": {
     "body-parser": "^1.18.3",
     "cookie-parser": "^1.4.3",
+    "debug": "^4.3.1",
     "dotenv": "^6.0.0",
     "express": "^4.16.3",
     "hbs": "^4.0.1",
@@ -19,6 +20,13 @@
     "serve-favicon": "^2.5.0"
   },
   "devDependencies": {
-    "nodemon": "^1.12.1"
+    "eslint": "^7.18.0",
+    "eslint-config-airbnb": "^18.2.1",
+    "eslint-plugin-import": "^2.22.1",
+    "eslint-plugin-jsx-a11y": "^6.4.1",
+    "eslint-plugin-react": "^7.22.0",
+    "eslint-plugin-react-hooks": "^4.2.0",
+    "nodemon": "^1.12.1",
+    "prettier": "2.2.1"
   }
 }
