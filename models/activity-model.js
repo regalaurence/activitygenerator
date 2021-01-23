@@ -5,11 +5,12 @@ const activitySchema = new Schema({
   name: String,
   minDuration: Number,
   creator:{type: Schema.Types.ObjectId, ref: 'User'},
-  categories: [],
-  startTime: [Date],
-  endTime: [Date],
-  cost: Boolean,
-  weather: [Date]
+  categories: [String],
+  timeWindowStart: Date,
+  timeWindowEnd: Date,
+  hasCost: Boolean,
+  seasonStart: Date,
+  seasonEnd: Date
 });
 
 const Activity = mongoose.model('Activity', activitySchema);
