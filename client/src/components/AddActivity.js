@@ -51,6 +51,7 @@ class AddActivity extends Component {
   render() {
     return (
       <div>
+      <h3>Create a new activity</h3>
         <form onSubmit={this.handleFormSubmit}>
           <label>Name:</label>
           <input type="text" name="name" value={this.state.name} onChange={e => this.handleChange(e)} /><br></br>
