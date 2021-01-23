@@ -1,0 +1,20 @@
+
+[{ 
+  "name": "Running",
+  "minDuration": 30,
+  "type": "active",
+  "category": ["outside", "sport"]
+},
+{
+  "name": "Spinning",
+  "minDuration": 20,
+  "type": "active",
+  "category": ["outside", "sport"]
+},
+{
+  "name": "Riding a bike",
+  "minDuration": 20,
+  "type": "active",
+  "category": ["inside", "sport"]
+}
+]
