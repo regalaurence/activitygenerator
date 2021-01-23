@@ -2,10 +2,10 @@ const mongoose = require('mongoose');
 const Schema   = mongoose.Schema;
 
 const userSchema = new Schema({
-  name: String,
+  username: String,
   password: String,
-  preferences: [],
-  bookmarkedActivities:[],
+  preferences: [String],
+  bookmarkedActivities:[{type: Schema.Types.ObjectId, ref: 'Activity'}],
   activityCounter: Number
 });
 

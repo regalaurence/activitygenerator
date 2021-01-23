@@ -12,12 +12,13 @@ router.post('/activities', (req, res, next) => {
   Activity.create({
     name: req.body.name,
     minDuration: req.body.minDuration,
-    creator: req.body.creator, ////////!!!!!!????????????????!!!!!!!!!!!!! return User.findByIdAndUpdate(user, { $push: { bookmarkedActivities: dbActivity._id } });
+    creator: req.body.creator, //decide ? return User.findByIdAndUpdate(user, { $push: { bookmarkedActivities: dbActivity._id } });
     categories: req.body.categories,
-    startTime: req.body.startTime,
-    endTime: req.body.endTime,
-    cost: false,
-    weather: req.body.weather
+    timeWindowStart: req.body.timeWindowStart,
+    timeWindowEnd: req.body.timeWindowEnd,
+    hasCost: false,
+    seasonStart: req.body.seasonStart,
+    seasonEnd: req.body.seasonEnd
   })
     .then(response => {
       res.json(response);
@@ -34,7 +35,7 @@ router.post('/activities', (req, res, next) => {
 
 // GET route => to get all the activities
 router.get('/activities', (req, res, next) => {
-  Activity.find().populate('user') /////!!!!!!!!!!!??????????????
+  Activity.find().populate('user') //decide?
     .then(allTheActivities => {
       res.json(allTheActivities);
     })
