@@ -1,12 +1,13 @@
 import React, { Component } from 'react';
-//import axios from 'axios';
+import axios from 'axios';
+import Activity from './Activity.js'
 
 class MyActivities extends Component {
 
   render() {
     return (
       <div>
-        My Activities will go here
+        My activities go here
       </div>
     )
   }

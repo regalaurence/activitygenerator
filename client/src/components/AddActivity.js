@@ -6,21 +6,23 @@ class AddActivity extends Component {
     super(props);
     this.state = {
       name: "",
-      minDuration: "",
+      description: "",
+      url: [],
+      minDuration: 20,
       // creator:{type: Schema.Types.ObjectId, ref: 'User'},
       categories: [],
-      startTime: "",
-      endTime: "",
+      startTime: 7,
+      endTime: 22,
       cost: false,
-      weather: ""
+      seasonStart: new Date('2020-01'),
+      seasonEnd: new Date('2020-12')
     };
   }
 
   handleFormSubmit = (event) => {
     event.preventDefault();
-    let { name, minDuration, categories, startTime, endTime, cost, weather } = this.state;
-
-    axios.post("/api/activities", { name, minDuration, categories, startTime, endTime, cost, weather })
+    let { name, minDuration, categories, startTime, endTime, cost, seasonStart, seasonEnd } = this.state;
+    axios.post("/api/activities", { name, minDuration, categories, startTime, endTime, cost, seasonStart, seasonEnd })
       .then(() => {
         // this.props.getData();
         this.setState({
@@ -31,40 +33,82 @@ class AddActivity extends Component {
           startTime: "",
           endTime: "",
           cost: false,
-          weather: ""
+          seasonStart: new Date('2020-01'),
+          seasonEnd: new Date('2020-12')
         });
       })
       .catch(error => console.log(error))
   }
 
   handleChange = (event) => {
-    const { name, value, type} = event.target;
+    let { name, value, id } = event.target;
+    // let x = {
+      // name = event.target.name
+      // name = event.target.value
+      // name = event.target.type
+    // }
 
-    if (type === 'checkbox') {
-      value = event.target.checked;
+    if (id === "categories") {
+      if (!this.state.categories.includes(name)) {
+        this.setState({
+          categories: [...this.state.categories, name]
+        })
+      }
+      else {
+        let filteredDeletion = this.state.categories.filter(c => c !== name)
+        this.setState({
+          categories: filteredDeletion
+        })
+      }
     }
-
-    this.setState({ [name]: value });
+    else if (name === 'cost') {
+      this.setState({
+        cost : !this.state.cost
+      })
+    }
+    else {
+      this.setState({
+        [name] : value
+      })
+    }
   }
 
 
   render() {
     return (
       <div>
-      <h3>Create a new activity</h3>
+        <h3>Create a new activity</h3>
         <form onSubmit={this.handleFormSubmit}>
           <label>Name:</label>
-          <input type="text" name="name" value={this.state.name} onChange={e => this.handleChange(e)} /><br></br>
+          <input type="text" name="name" value={this.state.name} onChange={this.handleChange} /><br></br>
+         
           <label>Duration in minutes:</label>
-          <input type="number" name="minDuration" value={this.state.minDuration} onChange={e => this.handleChange(e)} /><br></br>
-          {/* <label>Categories:</label>
-          <input type="checkbox" name="categories" checked={this.state.categories} onChange={e => this.handleChange(e)} /><br></br> */}
+          <input type="number" name="minDuration" value={this.state.minDuration} onChange={this.handleChange} /><br></br>
+         
+          <label>Categories:</label><br />
+          <label for="indoors">Indoors: </label>
+          <input type="checkbox" id="categories" name="indoors" value={this.state.categories} onChange={this.handleChange} /><br></br>
+          <label for="outdoors">Outdoors: </label>
+          <input type="checkbox" id="categories" name="outdoors" value={this.state.categories} onChange={this.handleChange} /><br></br>
+          <label for="sports">Sports: </label>
+          <input type="checkbox" id="categories" name="sports" value={this.state.categories} onChange={this.handleChange} /><br></br>
+          <label for="aventures">Adventures: </label>
+          <input type="checkbox" id="categories" name="aventures" value={this.state.categories} onChange={this.handleChange} /><br></br>
+          <label for="housework">Housework: </label>
+          <input type="checkbox" id="categories" name="housework" value={this.state.categories} onChange={this.handleChange} /><br></br>
+          <label for="socializing">Socializing: </label>
+          <input type="checkbox" id="categories" name="socializing" value={this.state.categories} onChange={this.handleChange} /><br></br>
+          <label for="relaxing">Relaxing: </label>
+          <input type="checkbox" id="categories" name="relaxing" value={this.state.categories} onChange={this.handleChange} /><br></br>
+          <label for="online">Online: </label>
+          <input type="checkbox" id="categories" name="online" value={this.state.categories} onChange={this.handleChange} /><br></br>
+          
           <label>Possible from:</label>
-          <input type="time" name="startTime" value={this.state.startTime} onChange={e => this.handleChange(e)} /><br></br>
-          <label>Possible untill:</label>
-          <input type="time" name="endTime" value={this.state.endTime} onChange={e => this.handleChange(e)} /><br></br>
-          {/* <label>Is the activity for free?</label>
-          <input type="checkbox" name="cost" checked={this.state.cost} onChange={e => this.handleChange(e)} /><br></br> */}
+          <input type="number" name="startTime" value={this.state.startTime} onChange={this.handleChange} />h<br></br>
+          <label>Possible until:</label>
+          <input type="number" name="endTime" value={this.state.endTime} onChange={this.handleChange} />h<br></br>
+          <label>Is the activity for free?</label>
+          <input type="checkbox" name="cost" value={!this.state.cost} onChange={this.handleChange} /><br></br>
 
           {/* <label>Term of year:</label>
           <input type="checkbox" id="spring" name="weather" checked={this.state.weather} />
@@ -75,8 +119,6 @@ class AddActivity extends Component {
           <label for="autumn">Autumn</label><br></br>
           <input type="checkbox" id="Winter" name="weather" checked={this.state.weather} />
           <label for="winter">Winter</label> */}
-
-
 
           <input type="submit" value="Submit" />
         </form>
