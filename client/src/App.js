@@ -1,12 +1,40 @@
 import React, { Component } from 'react';
 import './App.css';
+
+//Components
+import Signup from './components/auth/Signup';
+import Login from './components/auth/Login';
 import AddActivity from './components/AddActivity';
 
 class App extends Component {
+
+  state = {
+    currentUser: this.props.user.userDoc
+  }
+
+  updateCurrentUser = (userObjFromBackend) => {
+    this.setState({
+      currentUser: userObjFromBackend
+    })
+  }
+
+
   render() {
     return (
       <div className="App">
-       <AddActivity />
+        {this.state.currentUser ? <h1>Welcome, {this.state.currentUser.username}</h1> : (
+          <div>
+            <h3>Signup</h3>
+            <Signup></Signup>
+            <hr></hr>
+            <h3>Login</h3>
+            <Login updateCurrentUser={this.updateCurrentUser}></Login>
+          </div>
+        )}
+        <hr></hr>
+        <h1>Make Me Do</h1>
+        <h2>The things I said I'd do tomorrow</h2>
+        <AddActivity />
       </div>
     );
   }

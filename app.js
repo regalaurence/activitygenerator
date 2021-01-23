@@ -24,6 +24,20 @@ const debug = require('debug')(`${app_name}:${path.basename(__filename).split('.
 
 const app = express();
 
+// Session Management
+
+const session = require("express-session");
+const MongoStore = require("connect-mongo")(session);
+
+app.use(session({
+  secret: "Darth Vader is Luke's father",
+  cookie: { maxAge: 60 * 60 * 1000 * 24 }, // 1 day
+  store: new MongoStore({ // this is going to create the `sessions` collection in the db
+    mongooseConnection: mongoose.connection,
+    ttl: 24 * 60 * 60 // 1 day
+  })
+}));
+
 // Middleware Setup
 app.use(logger('dev'));
 app.use(bodyParser.json());
@@ -54,6 +68,7 @@ app.locals.title = 'Express - Generated with IronGenerator';
 const index = require('./routes/index');
 app.use('/', index);
 app.use('/api', require('./routes/activity-routes'));
+app.use('/api', require('./routes/auth'));
 
 
 module.exports = app;
