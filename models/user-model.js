@@ -7,8 +7,10 @@ const userSchema = new Schema({
   username: String,
   password: String,
   preferences: [String],
-  bookmarkedActivities: [{ type: Schema.Types.ObjectId, ref: 'Activity' }],
-  activityCounter: Number,
+  bookmarkedActivities:[{type: Schema.Types.ObjectId, ref: 'Activity'}],
+  activityCounter: Number
+}, {
+  timestamps: true
 });
 
 const User = mongoose.model('User', userSchema);
