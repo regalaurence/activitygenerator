@@ -6,7 +6,7 @@ import { Link, Route } from 'react-router-dom';
 //Components
 import Signup from './components/auth/Signup';
 import Login from './components/auth/Login';
-import AddActivity from './components/AddActivity';
+import AddActivity from './components/createactivities/NewActivityForm';
 import CreateTodoList from './components/CreateTodoList';
 import AllActivities from './components/AllActivities';
 import MyActivities from './components/MyActivities';
