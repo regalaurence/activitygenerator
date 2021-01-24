@@ -50,7 +50,7 @@ class App extends Component {
         )}
         <hr></hr>
         <h1>Make Me Do</h1>
-        <h2>The things I said I'd do tomorrow</h2>
+        <h2>A list of things we said we'd do tomorrow</h2>
         <div>
         <Link to="/make-me-do">Make me DO something</Link><br></br>
         <Link to="/activities">Browse activities</Link><br></br>
