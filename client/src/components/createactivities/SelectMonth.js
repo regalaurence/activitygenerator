@@ -3,7 +3,7 @@ import React from 'react';
 const SelectMonth = (props) => {
 
   return (
-    <div>
+    <span>
       <label for="seasons">{props.label}</label>
       <select id="startmonth" name="cars">
         <option value="01">January</option>
@@ -19,7 +19,7 @@ const SelectMonth = (props) => {
         <option value="11">November</option>
         <option value="12">December</option>
       </select>
-    </div>
+    </span>
   )
 }
 

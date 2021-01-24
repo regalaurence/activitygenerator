@@ -105,9 +105,9 @@ class AddActivity extends Component {
             onChange={this.handleChange}
           />
          
-          <label>Possible from:</label>
+          <label>Possible roughly from:</label>
           <input type="number" name="startTime" value={this.state.startTime} onChange={this.handleChange} />h<br></br>
-          <label>Possible until:</label>
+          <label>And roughly until:</label>
           <input type="number" name="endTime" value={this.state.endTime} onChange={this.handleChange} />h<br></br>
           <label>Is the activity for free?</label>
           <input type="checkbox" name="cost" value={!this.state.cost} onChange={this.handleChange} /><br></br>
