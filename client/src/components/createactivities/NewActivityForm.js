@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 import axios from 'axios';
+import SelectMonth from './SelectMonth'
+import CategoriesCheckboxes from './CategoriesCheckboxes';
 
 class AddActivity extends Component {
   constructor(props) {
@@ -68,12 +70,12 @@ class AddActivity extends Component {
     }
     else if (id === 'startmonth') {
       this.setState({
-        seasonStart : new Date('2020-' + value)
+        seasonStart: new Date('2020-' + value)
       })
     }
     else if (id === 'startmonth') {
       this.setState({
-        seasonEnd : new Date('2020-' + value)
+        seasonEnd: new Date('2020-' + value)
       })
     }
     else {
@@ -85,6 +87,8 @@ class AddActivity extends Component {
 
 
   render() {
+
+
     return (
       <div>
         <h3>Create a new activity</h3>
@@ -95,24 +99,12 @@ class AddActivity extends Component {
           <label>Duration in minutes:</label>
           <input type="number" name="minDuration" value={this.state.minDuration} onChange={this.handleChange} /><br></br>
 
-          <label>Categories:</label><br />
-          <label for="indoors">Indoors: </label>
-          <input type="checkbox" id="categories" name="indoors" value={this.state.categories} onChange={this.handleChange} /><br></br>
-          <label for="outdoors">Outdoors: </label>
-          <input type="checkbox" id="categories" name="outdoors" value={this.state.categories} onChange={this.handleChange} /><br></br>
-          <label for="sports">Sports: </label>
-          <input type="checkbox" id="categories" name="sports" value={this.state.categories} onChange={this.handleChange} /><br></br>
-          <label for="aventures">Adventures: </label>
-          <input type="checkbox" id="categories" name="aventures" value={this.state.categories} onChange={this.handleChange} /><br></br>
-          <label for="housework">Housework: </label>
-          <input type="checkbox" id="categories" name="housework" value={this.state.categories} onChange={this.handleChange} /><br></br>
-          <label for="socializing">Socializing: </label>
-          <input type="checkbox" id="categories" name="socializing" value={this.state.categories} onChange={this.handleChange} /><br></br>
-          <label for="relaxing">Relaxing: </label>
-          <input type="checkbox" id="categories" name="relaxing" value={this.state.categories} onChange={this.handleChange} /><br></br>
-          <label for="online">Online: </label>
-          <input type="checkbox" id="categories" name="online" value={this.state.categories} onChange={this.handleChange} /><br></br>
-
+          <CategoriesCheckboxes
+            label="Categories"
+            value={this.state.categories}
+            onChange={this.handleChange}
+          />
+         
           <label>Possible from:</label>
           <input type="number" name="startTime" value={this.state.startTime} onChange={this.handleChange} />h<br></br>
           <label>Possible until:</label>
@@ -120,37 +112,9 @@ class AddActivity extends Component {
           <label>Is the activity for free?</label>
           <input type="checkbox" name="cost" value={!this.state.cost} onChange={this.handleChange} /><br></br>
 
-          <label>Time of year:</label>
-          <label for="seasons">Between</label>
-          <select id="startmonth" name="cars">
-            <option value="01">January</option>
-            <option value="02">February</option>
-            <option value="03">March</option>
-            <option value="04">April</option>
-            <option value="05">May</option>
-            <option value="06">June</option>
-            <option value="07">July</option>
-            <option value="08">August</option>
-            <option value="09">September</option>
-            <option value="10">October</option>
-            <option value="11">November</option>
-            <option value="12">December</option>
-          </select>
-          <label for="seasons">And...</label>
-          <select id="startmonth" name="cars">
-            <option value="01">January</option>
-            <option value="02">February</option>
-            <option value="03">March</option>
-            <option value="04">April</option>
-            <option value="05">May</option>
-            <option value="06">June</option>
-            <option value="07">July</option>
-            <option value="08">August</option>
-            <option value="09">September</option>
-            <option value="10">October</option>
-            <option value="11">November</option>
-            <option value="12">December</option>
-          </select>
+          <label>I'd rather do this </label>
+          <SelectMonth label={"between"} />
+          <SelectMonth label={"and"} />
           <button onClick={this.handleFormSubmit}>Ok, let's add!</button>
         </form>
       </div>

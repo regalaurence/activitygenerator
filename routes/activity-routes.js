@@ -29,10 +29,10 @@ router.post('/activities', (req, res) => {
 });
 // GET route => to get all the activities
 router.get('/activities', (req, res) => {
-  console.log("Looking for activities...")
+  console.log('Looking for activities...');
   Activity.find()
     .then((allTheActivities) => {
-      console.log("Found activities, send to frontend")
+      console.log('Found activities, send to frontend');
       res.json(allTheActivities);
     })
     .catch((err) => {
