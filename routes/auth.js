@@ -10,8 +10,11 @@ const bcryptSalt = 10;
 // GET /api/checkuser
 
 router.get("/checkuser", (req, res, next) => {
-  if (req.session.currentUser) {
-    res.json({ userDoc: req.session.currentUser });
+  if (req.session.currentUserId) {
+    User.findById(req.session.currentUserId).then((user)=> {
+      res.json({ userDoc: user });
+    })
+    
   } else {
     res.json({ userDoc: null });
   }
@@ -65,7 +68,7 @@ router.post('/login', (req, res, next) => {
 
   User.findOne({ username: req.body.username }).then((user) => {
     if (bcrypt.compareSync(req.body.password, user.password)) {
-      req.session.currentUser = user;
+      req.session.currentUserId = user._id;
       res.json(user)
     }
   })
