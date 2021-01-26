@@ -6,10 +6,11 @@ import { Link, Route } from 'react-router-dom';
 //Components
 import Signup from './components/auth/Signup';
 import Login from './components/auth/Login';
-import AddActivity from './components/AddActivity';
+import AddActivity from './components/createactivities/NewActivityForm';
 import CreateTodoList from './components/CreateTodoList';
 import AllActivities from './components/AllActivities';
 import MyActivities from './components/MyActivities';
+import StartGame from './components/StartGame'
 
 class App extends Component {
 
@@ -49,8 +50,10 @@ class App extends Component {
           </div>
         )}
         <hr></hr>
+        <StartGame user={this.state.currentUser} />
+        
         <h1>Make Me Do</h1>
-        <h2>The things I said I'd do tomorrow</h2>
+        <h2>A list of things we said we'd do tomorrow</h2>
         <div>
         <Link to="/make-me-do">Make me DO something</Link><br></br>
         <Link to="/activities">Browse activities</Link><br></br>
