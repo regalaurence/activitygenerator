@@ -50,7 +50,7 @@ class App extends Component {
           </div>
         )}
         <hr></hr>
-        <StartGame user={this.state.currentUser} {...this.props}/>
+        <StartGame user={this.state.currentUser} />
         
         <h1>Make Me Do</h1>
         <h2>A list of things we said we'd do tomorrow</h2>

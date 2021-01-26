@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 import axios from 'axios';
 // import { Redirect } from 'react-router-dom'
 
+import { withRouter } from 'react-router-dom'
+
 class StartGame extends Component {
   constructor(props) {
     super(props); /////??????
@@ -122,4 +124,4 @@ class StartGame extends Component {
   }
 }
 
-export default StartGame;
+export default withRouter(StartGame);
