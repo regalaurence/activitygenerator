@@ -10,6 +10,7 @@ import AddActivity from './components/createactivities/NewActivityForm';
 import CreateTodoList from './components/CreateTodoList';
 import AllActivities from './components/AllActivities';
 import MyActivities from './components/MyActivities';
+import StartGame from './components/StartGame'
 
 class App extends Component {
 
@@ -49,6 +50,8 @@ class App extends Component {
           </div>
         )}
         <hr></hr>
+        <StartGame user={this.state.currentUser} {...this.props}/>
+        
         <h1>Make Me Do</h1>
         <h2>A list of things we said we'd do tomorrow</h2>
         <div>
