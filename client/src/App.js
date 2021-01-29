@@ -6,7 +6,7 @@ import { Link, Route } from 'react-router-dom';
 //Components
 import Signup from './components/auth/Signup';
 import Login from './components/auth/Login';
-import AddActivity from './components/createactivities/NewActivityForm';
+import NewActivityForm from './components/createactivities/NewActivityForm';
 import CreateTodoList from './components/CreateTodoList';
 import AllActivities from './components/AllActivities';
 import MyActivities from './components/MyActivities';
@@ -16,7 +16,8 @@ import Home from './components/Home'
 class App extends Component {
 
   state = {
-    currentUser: this.props.user.userDoc
+    currentUser: this.props.user.userDoc,
+    currentFavorites: []
   }
 
   updateCurrentUser = (userObjFromBackend) => {
@@ -34,6 +35,39 @@ class App extends Component {
       })
   }
 
+  componentDidMount = () => {
+    if (this.state.currentUser) {
+      console.log(this.state.currentUser)
+      axios.put(`/api/user/${this.state.currentUser._id}`)
+      .then((response) => {
+        console.log("THIS IS THE EEEEE" + response.data.bookmarkedActivities)
+        this.setState({
+          currentFavorites : response.data.bookmarkedActivities
+        })
+      })
+    }
+  }
+
+  componentDidUpdate = () => {
+    axios.put(`/api/user/${this.state.currentUser._id}`, {bookmarkedActivities: this.state.currentFavorites})
+    .then((response) => {
+      console.log(response)
+    })
+  }
+
+  addToFavorite = (activityIDtoAdd) => {
+    let newFavorites = this.state.currentFavorites.concat(activityIDtoAdd)
+    this.setState({
+      currentFavorites: newFavorites
+    })
+  }
+
+  removeFromFavorite = (activityIDToRemove) => {
+    let filteredDeletionFavorites = this.state.currentFavorites.filter(activity => activity !== activityIDToRemove)
+    this.setState({
+      currentFavorites: filteredDeletionFavorites
+    })
+  }
 
   showStartGame = () => {
     if (this.state.currentUser) {
@@ -69,9 +103,9 @@ class App extends Component {
             </div>
           )}
         <hr></hr>
+
         {this.showStartGame()}
         {/* <StartGame user={this.state.currentUser} /> */}
-
 
         <h1>Make Me Do</h1>
         <h2>A list of things we said we'd do tomorrow</h2>

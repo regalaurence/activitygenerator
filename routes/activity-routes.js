@@ -29,16 +29,20 @@ router.post('/activities', (req, res) => {
 });
 // GET route => to get all the activities
 router.get('/activities', (req, res) => {
-  console.log('Looking for activities...');
+  // console.log('Looking for activities...');
   Activity.find()
     .then((allTheActivities) => {
-      console.log('Found activities, send to frontend');
+      // console.log('Found activities, send to frontend');
       res.json(allTheActivities);
     })
     .catch((err) => {
       res.json(err);
     });
 });
+
+// router.post('/add-activity', () => {
+//   console.log('lets add activities');
+// });
 
 // GET route => to get a specific activity/detailed view
 router.get('/activities/:id', (req, res) => {
