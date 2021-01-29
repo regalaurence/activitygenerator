@@ -13,6 +13,7 @@ const activitySchema = new Schema({
   timeWindowStart: Number,
   timeWindowEnd: Number,
   hasCost: Boolean,
+  isHighPriority: Boolean,
   seasonStart: Date,
   seasonEnd: Date,
 });
