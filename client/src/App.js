@@ -40,7 +40,6 @@ class App extends Component {
       console.log(this.state.currentUser)
       axios.put(`/api/user/${this.state.currentUser._id}`)
       .then((response) => {
-        console.log("THIS IS THE EEEEE" + response.data.bookmarkedActivities)
         this.setState({
           currentFavorites : response.data.bookmarkedActivities
         })
