@@ -7,7 +7,7 @@ import { Link, Route } from 'react-router-dom';
 import Signup from './components/auth/Signup';
 import Login from './components/auth/Login';
 import NewActivityForm from './components/createactivities/NewActivityForm';
-import CreateTodoList from './components/CreateTodoList';
+//import CreateTodoList from './components/todolist/CreateTodoList';
 import AllActivities from './components/AllActivities';
 import MyActivities from './components/MyActivities';
 import StartGame from './components/StartGame'
@@ -99,7 +99,7 @@ class App extends Component {
           <Link to="/my-activities">My activities</Link><br></br>
           <Link to="/my-todo-list">My ToDo List (just for testing purpose)</Link>
         </div>
-        <Route path="/make-me-do" component={CreateTodoList}></Route>
+        <Route path="/make-me-do" component={ToDoListInput}></Route>
         <Route path="/activities" render={(props) => <AllActivities
           {...props} user={this.state.currentUser}
           addToFavorite={this.addToFavorite}
@@ -114,7 +114,7 @@ class App extends Component {
           removeFromFavorite={this.removeFromFavorite} 
           currentFavorites={this.state.currentFavorites}
           />}/>
-           <Route path="/my-todo-list"> <CreateToDoList availableTime={120} possibleCategories={["Relaxing", "Housework"]} /></Route>
+           <Route path="/my-todo-list"> <CreateToDoList availableTime={120} possibleCategories={["Relaxing", "Housework"]} user={this.state.currentUser} /></Route>
       </div>
     );
   }
