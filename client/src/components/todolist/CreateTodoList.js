@@ -24,7 +24,7 @@ class CreateToDoList extends Component {
   }
 
   // Functions that generate todo list as Class Methods for CreateToDoList
-
+/*
   generateToDoList = (time, categories) => {
     let toDoList = [];
     let timeLeft = time;
@@ -130,7 +130,7 @@ class CreateToDoList extends Component {
       return activities
     }
   }
-
+*/
 
   render() {
 
