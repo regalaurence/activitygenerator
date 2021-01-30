@@ -3,41 +3,55 @@ import axios from 'axios';
 
 class Activity extends Component {
 
-  state={
+  state = {
     isFavorite: false,
+    isHighPriority: false,
     currentFavorites: this.props.currentFavorites
   }
 
   componentDidMount = () => {
-    if (this.state.currentFavorites.includes(this.props.idToPush)) {
+    let isFavorite = !!this.state.currentFavorites.some(item => item.activityID === this.props.idToPush)
+    if (isFavorite) {
       this.setState({
         isFavorite: true
       })
     }
   }
 
-  toggleFavoritesHandler = () => {
+  toggleFavoritesHandler = (event) => {
     if (this.state.isFavorite === false) {
-      this.props.addToFavorite(this.props.idToPush)
+      this.props.addToFavorite(this.props.idToPush, this.state.isHighPriority)
       this.setState({
-        isFavorite : true
+        isFavorite: true
       })
     }
     else if (this.state.isFavorite === true) {
       this.props.removeFromFavorite(this.props.idToPush)
       this.setState({
-        isFavorite : false
+        isFavorite: false
       })
     }
+  }
+
+  handleChange = (event) => {
+    this.setState({
+      isHighPriority : event.target.value
+    })
   }
 
   render() {
     return (
       <div>
         <h4>{this.props.activity.name}</h4>
-        {this.state.isFavorite ? 
+        {this.state.isFavorite ?
           <button onClick={this.toggleFavoritesHandler}>Remove from My Activties</button> :
-          <button onClick={this.toggleFavoritesHandler}>Save to My Activities</button>
+          <form onSubmit={this.toggleFavoritesHandler}>
+            <select id="priority" name="priority" onChange={this.handleChange}>
+              <option value="false">Low priority</option>
+              <option value="true">High priority</option>
+            </select>
+            <button type="submit">Save to My Activities</button>
+          </form>
         }
       </div>
     )
