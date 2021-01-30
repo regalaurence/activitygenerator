@@ -30,11 +30,11 @@ class AllActivities extends Component {
 
 
   render() {
+    console.log(this.props.user)
 
-    let activitiesFromDb = [...this.state.activitiesFromDb].filter(activity => {
+    let filteredActivities = [...this.state.activitiesFromDb].filter(activity => {
       return activity.name.toLowerCase().includes(this.state.search.toLowerCase());
     });
-    console.log(this.state.activitiesFromDb)
 
     return (
       <div className="all-activities">
@@ -51,17 +51,15 @@ class AllActivities extends Component {
 
 
         <h3>All Activities</h3>
-
-        {activitiesFromDb.map(activity => {
-          return (
-            <div key={activity._id}>
-              <Activity activity={activity} />
-            </div>
-          )
-        })
-        }
-
-
+        {filteredActivities
+          .map(activity => <Activity
+            key={activity._id}
+            idToPush={activity._id}
+            activity={activity}
+            currentFavorites={this.props.currentFavorites} 
+            addToFavorite={this.props.addToFavorite}
+            removeFromFavorite={this.props.removeFromFavorite}
+            />)}
       </div>
     )
   }

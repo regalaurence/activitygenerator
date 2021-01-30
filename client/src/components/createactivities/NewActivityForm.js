@@ -11,11 +11,12 @@ class AddActivity extends Component {
       description: "",
       url: [],
       minDuration: 20,
-      // creator:{type: Schema.Types.ObjectId, ref: 'User'},
+      creator : this.props.user._id,
       categories: [],
       startTime: 7,
       endTime: 22,
       cost: false,
+      isHighPriority: false,
       seasonStart: new Date('2020-01'),
       seasonEnd: new Date('2020-12')
     };
@@ -23,18 +24,20 @@ class AddActivity extends Component {
 
   handleFormSubmit = (event) => {
     event.preventDefault();
-    let { name, minDuration, categories, startTime, endTime, cost, seasonStart, seasonEnd } = this.state;
-    axios.post("/api/activities", { name, minDuration, categories, startTime, endTime, cost, seasonStart, seasonEnd })
-      .then(() => {
-        // this.props.getData();
+    let { name, minDuration, creator, categories, startTime, endTime, cost, isHighPriority, seasonStart, seasonEnd } = this.state;
+    axios.post("/api/activities", { name, minDuration, creator, categories, startTime, endTime, cost,isHighPriority, seasonStart, seasonEnd })
+    // .then(() => axios.get("/api/activities"))
+    // .then((response) => console.log(response))
+    .then(() => {
         this.setState({
           name: "",
           minDuration: 0,
-          // creator:{type: Schema.Types.ObjectId, ref: 'User'},
+          creator : "",
           categories: "",
           startTime: "",
           endTime: "",
           cost: false,
+          isHighPriority: false,
           seasonStart: new Date('2020-01'),
           seasonEnd: new Date('2020-12')
         });
@@ -63,17 +66,24 @@ class AddActivity extends Component {
         })
       }
     }
-    else if (name === 'cost') {
+    else if (name === 'cost' ) {
       this.setState({
         cost: !this.state.cost
       })
     }
-    else if (id === 'startmonth') {
+    else if (name === 'isHighPriority' ) {
+      this.setState({
+        isHighPriority: !this.state.isHighPriority
+      })
+    }
+    else if (id === 'seasonStart') {
+      console.log(event.target.value)
       this.setState({
         seasonStart: new Date('2020-' + value)
       })
     }
-    else if (id === 'startmonth') {
+    else if (id === 'seasonEnd') {
+      console.log(id)
       this.setState({
         seasonEnd: new Date('2020-' + value)
       })
@@ -88,11 +98,10 @@ class AddActivity extends Component {
 
   render() {
 
-
     return (
       <div>
         <h3>Create a new activity</h3>
-        <form onSubmit={this.handleFormSubmit}>
+        <form onSubmit={this.handleFormSubmit} id="addActivityForm">
           <label>Name:</label>
           <input type="text" name="name" value={this.state.name} onChange={this.handleChange} /><br></br>
 
@@ -111,10 +120,12 @@ class AddActivity extends Component {
           <input type="number" name="endTime" value={this.state.endTime} onChange={this.handleChange} />h<br></br>
           <label>Is the activity for free?</label>
           <input type="checkbox" name="cost" value={!this.state.cost} onChange={this.handleChange} /><br></br>
+          <label>Is it a high priority?</label>
+          <input type="checkbox" name="isHighPriority" value={!this.state.isHighPriority} onChange={this.handleChange} /><br></br>
 
           <label>I'd rather do this </label>
-          <SelectMonth label={"between"} />
-          <SelectMonth label={"and"} />
+          <SelectMonth label={"between"} agenda={"seasonStart"} onSelect={this.handleChange} />
+          <SelectMonth label={"and"} agenda={"seasonEnd"} onSelect={this.handleChange} />
           <button onClick={this.handleFormSubmit}>Ok, let's add!</button>
         </form>
       </div>

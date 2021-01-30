@@ -7,7 +7,7 @@ const userSchema = new Schema({
   username: String,
   password: String,
   preferences: [String],
-  bookmarkedActivities: [{ type: Schema.Types.ObjectId, ref: 'Activity' }],
+  bookmarkedActivities: [{ activityID: String, isHighPriority: Boolean }],
   activityCounter: Number,
 }, {
   timestamps: true,

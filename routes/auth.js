@@ -1,11 +1,11 @@
 const express = require('express');
+
 const router = express.Router();
 
-const User = require('../models/user-model')
+const bcrypt = require('bcryptjs');
+const User = require('../models/user-model');
 
-const bcrypt = require("bcryptjs");
 const bcryptSalt = 10;
-
 
 // GET /api/checkuser
 
@@ -22,29 +22,27 @@ router.get("/checkuser", (req, res, next) => {
 
 // /api/user-signup
 
-router.post('/signup', (req, res, next) => {
-
-  const password = req.body.password;
+router.post('/signup', (req, res) => {
+  const { password } = req.body;
   const salt = bcrypt.genSaltSync(bcryptSalt);
   const hashPassword = bcrypt.hashSync(password, salt);
 
   User.create({
     username: req.body.username,
-    password: hashPassword
+    password: hashPassword,
   }).then((createdUser) => {
-    res.json(createdUser) 
-  })
+    res.json(createdUser);
+  });
 });
 
-
 // // PUT route => to update a specific user
-router.put('/user/:id', (req, res, next) => {
+router.put('/user/:id', (req, res) => {
   console.log(req.body);
   User.findByIdAndUpdate(req.params.id, req.body).then((editedUser) => {
-    res.json(editedUser)
-  }).catch(err => {
-          res.json(err);
-        })
+    res.json(editedUser);
+  }).catch((err) => {
+    res.json(err);
+  });
 });
 
 router.post('/login', (req, res, next) => {
@@ -54,13 +52,12 @@ router.post('/login', (req, res, next) => {
       req.session.currentUserId = user._id;
       res.json(user)
     }
-  })
-
+  });
 });
 
-//logout
-router.post('/logout', (req, res, next) => {
-  //console.log("Session: ", req.session)
+// logout
+router.post('/logout', (req, res) => {
+  // console.log("Session: ", req.session)
   req.session.destroy();
   res.json(null);
 });

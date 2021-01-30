@@ -7,7 +7,8 @@ class MyActivities extends Component {
   render() {
     return (
       <div>
-        My activities go here
+       {this.props.currentFavorites && 
+       this.props.currentFavorites.map(activity => <li>{activity.activityID}</li>)}
       </div>
     )
   }
