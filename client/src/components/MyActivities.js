@@ -18,12 +18,14 @@ class MyActivities extends Component {
 
     for (let i = 0; i < activitiesToPopulate.length; i++) {
       promises.push(axios.get(`/api/activities/${activitiesToPopulate[i].activityID}`)
-      .then((response) => response.data))
+      .then(response => {
+        return {activity : response.data, isHighPriority: activitiesToPopulate[i].isHighPriority}
+      })
+      )
     }
 
     Promise.all(promises)
     .then((response) => {
-      console.log("CHECK THIS OUTTTTTTT: " + response)
       this.setState({
       favoriteActivities: response
     })
@@ -34,7 +36,7 @@ class MyActivities extends Component {
     return (
       <div>
         {this.state.favoriteActivities &&
-          this.state.favoriteActivities.map(activity => <li>{activity.name}</li>)}
+          this.state.favoriteActivities.map(activity => <li>{activity.activity.name}</li>)}
       </div>
     )
   }
