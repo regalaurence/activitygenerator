@@ -7,10 +7,12 @@ import { Link, Route } from 'react-router-dom';
 import Signup from './components/auth/Signup';
 import Login from './components/auth/Login';
 import AddActivity from './components/createactivities/NewActivityForm';
-import CreateTodoList from './components/CreateTodoList';
+//import CreateTodoList from './components/todolist/CreateTodoList';
 import AllActivities from './components/AllActivities';
 import MyActivities from './components/MyActivities';
 import StartGame from './components/StartGame'
+import ToDoListInput from './components/todolist/ToDoListInput';
+import CreateToDoList from './components/todolist/CreateTodoList';
 
 class App extends Component {
 
@@ -59,11 +61,13 @@ class App extends Component {
         <Link to="/activities">Browse activities</Link><br></br>
         <Link to="/add-activity">Create an Activity</Link><br></br>
         <Link to="/my-activities">My activities</Link><br></br>
+        <Link to="/my-todo-list">My ToDo List (just for testing purpose)</Link>
         </div>
-        <Route path="/make-me-do" component={CreateTodoList}></Route>
+        <Route path="/make-me-do" component={ToDoListInput}></Route>
         <Route path="/activities" component={AllActivities}></Route>
         <Route path="/add-activity" component={AddActivity}></Route>
         <Route path="/my-activities" component={MyActivities}></Route>
+        <Route path="/my-todo-list"> <CreateToDoList availableTime={120} possibleCategories={["Relaxing", "Housework"]} /></Route>
       </div>
     );
   }
