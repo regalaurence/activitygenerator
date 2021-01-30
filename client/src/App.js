@@ -44,6 +44,17 @@ class App extends Component {
       }
   }
 
+  componentDidUpdate = () => {
+    if (this.state.user) {
+    axios.put(`/api/user/${this.statee.user._id}`, 
+              {bookmarkedActivities: this.state.currentFavorites})
+    .then((response) => {
+      console.log(response)
+    })
+    }
+  }
+
+
   addToFavorite = (activityIDtoAdd, priorityToAdd) => {
     let newFavorites = this.state.currentFavorites.concat({activityID: activityIDtoAdd, isHighPriority: priorityToAdd})
     this.setState({
