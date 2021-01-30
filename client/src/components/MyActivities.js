@@ -36,7 +36,9 @@ class MyActivities extends Component {
     return (
       <div>
         {this.state.favoriteActivities &&
-          this.state.favoriteActivities.map(activity => <li>{activity.activity.name}</li>)}
+          this.state.favoriteActivities.map(activity => <li>{activity.activity.name} || 
+            {activity.isHighPriority ? <span> High priority</span> : <span> Low priority</span>} </li>
+          )}
       </div>
     )
   }

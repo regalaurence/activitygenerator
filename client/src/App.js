@@ -17,12 +17,13 @@ class App extends Component {
 
   state = {
     currentUser: this.props.user.userDoc,
-    currentFavorites: []
+    currentFavorites: this.props.user.userDoc ? this.props.user.userDoc.bookmarkedActivities : []
   }
 
   updateCurrentUser = (userObjFromBackend) => {
     this.setState({
-      currentUser: userObjFromBackend
+      currentUser: userObjFromBackend,
+      currentFavorites: userObjFromBackend.bookmarkedActivities
     })
   }
 
@@ -36,13 +37,14 @@ class App extends Component {
       })
   }
 
-
-  componentDidMount = () => {
-    if (this.state.currentUser) {
-        this.setState({
-          currentFavorites : this.props.user.userDoc.bookmarkedActivities
-        })
-      }
+  componentDidUpdate = () => {
+    if (this.state.user) {
+    axios.put(`/api/user/${this.statee.user._id}`, 
+              {bookmarkedActivities: this.state.currentFavorites})
+    .then((response) => {
+      console.log(response)
+    })
+    }
   }
 
   addToFavorite = (activityIDtoAdd, priorityToAdd) => {
