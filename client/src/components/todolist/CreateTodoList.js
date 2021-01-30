@@ -16,7 +16,10 @@ class CreateToDoList extends Component {
 
     for (let i = 0; i < activitiesToPopulate.length; i++) {
       promises.push(axios.get(`/api/activities/${activitiesToPopulate[i].activityID}`)
-        .then((response) => response.data))
+        .then(response => {
+          return { activity: response.data, isHighPriority: activitiesToPopulate[i].isHighPriority }
+        })
+      )
     }
 
     Promise.all(promises)
@@ -77,7 +80,7 @@ class CreateToDoList extends Component {
     console.log("suggested", suggestedActivities)
 
     //Step 3b: Assess how many can be added to the todolist
-    let suggestedActivitiesForToDoList = this.selectActivitiesForToDoList(suggestedActivities, timeLeft)
+    let suggestedActivitiesForToDoList = this.selectSuggestedActivitiesForToDoList(suggestedActivities, timeLeft)
     suggestedActivitiesForToDoList.forEach(todo => toDoList.push(todo))
 
     // Update timeLeft
@@ -94,19 +97,20 @@ class CreateToDoList extends Component {
   checkForHighPriorityToDos = (userActivities) => {
     console.log("checking for HighPrioTodos...")
     console.log("Activities I received to check for prio:", userActivities)
-    return userActivities.filter(activity => activity.highPriority === true)
+    return userActivities.filter(activity => activity.isHighPriority === true)
   }
 
   checkForSavedActivities = (userActivities, categories) => {
     console.log("Checking for saved activities");
+    console.log("Activities I received to check for saved:", userActivities)
 
     let savedActivities = userActivities.filter(activity => {
       console.log("Activity in savedActivities", activity)
       return categories.some(category => {
         console.log("Category in savedActivities", category)
-        return activity.categories.includes(category)
+        return activity.activity.categories.includes(category)
       })
-    }).filter(activity => activity.highPriority !== true)
+    }).filter(activity => activity.isHighPriority !== true)
     return savedActivities
   }
 
@@ -122,19 +126,51 @@ class CreateToDoList extends Component {
         })
       })
 
-    suggestedActivities.map(activity => {
-      return activity.plannedDuration = Number(activity.minDuration)
-    })
+    // suggestedActivities.map(activity => {
+    //   return activity.plannedDuration = Number(activity.minDuration)
+    // })
 
     return suggestedActivities
   }
 
+  // sumActivityDuration = (activities) => {
+  //   if (activities.length > 0) {
+  //     let objWithSum = activities.reduce((todo1, todo2) => ({ minDuration: todo1.activity.minDuration + todo2.activity.minDuration }))
+  //     return objWithSum.minDuration
+  //   }
+  //   return 0
+  // }
+
   sumActivityDuration = (activities) => {
     if (activities.length > 0) {
-      let objWithSum = activities.reduce((todo1, todo2) => ({ plannedDuration: todo1.plannedDuration + todo2.plannedDuration }))
-      return objWithSum.plannedDuration
+      let sum = 0
+      activities.forEach(activity => {
+        if (activity.isHighPriority !== undefined) {
+          sum = sum + activity.activity.minDuration
+        } else {
+          sum = sum + activity.minDuration
+        }
+      })
+      return sum
     }
     return 0
+  }
+
+  selectSuggestedActivitiesForToDoList = (activities, timeLeft) => {
+    console.log("Activities in Select for toddo list", activities)
+    console.log("Timeleft in select: ", timeLeft)
+    let activityDuration = this.sumActivityDuration(activities)
+    console.log("Duration in Function", activityDuration)
+
+    if (activityDuration <= timeLeft) {
+      return activities
+    } else {
+      activities.sort((todo1, todo2) => todo1.minDuration - todo2.minDuration)
+      while (this.sumActivityDuration(activities) > timeLeft) {
+        activities.pop() // Remove the most time-consuming activity
+      }
+      return activities
+    }
   }
 
   selectActivitiesForToDoList = (activities, timeLeft) => {
@@ -146,7 +182,7 @@ class CreateToDoList extends Component {
     if (activityDuration <= timeLeft) {
       return activities
     } else {
-      activities.sort((todo1, todo2) => todo1.plannedDuration - todo2.plannedDuration)
+      activities.sort((todo1, todo2) => todo1.activity.minDuration - todo2.activity.minDuration)
       while (this.sumActivityDuration(activities) > timeLeft) {
         activities.pop() // Remove the most time-consuming activity
       }
@@ -154,6 +190,16 @@ class CreateToDoList extends Component {
     }
   }
 
+  renderTodoList = (todos) => {
+    console.log("calling render todo list")
+    return todos.map(todo => {
+      if (todo.isHighPriority !== undefined) {
+        return <li>{todo.activity.name}</li>
+      } else {
+        return <li>{todo.name}</li>
+      }
+    })
+  }
 
   render() {
 
@@ -173,7 +219,7 @@ class CreateToDoList extends Component {
         <div id="todolist">
           Render todolist here
           <ul>
-            {generatedToDoList.map(todo => <li>{todo.name}</li>)}
+            {this.renderTodoList(generatedToDoList)}
           </ul>
         </div>
       </div>
