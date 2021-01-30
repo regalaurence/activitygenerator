@@ -5,59 +5,72 @@ import Activity from './Activity.js'
 class AllActivities extends Component {
 
   state = {
-    activitiesFromDb: []
+    activitiesFromDb: [],
+    search: ''
   }
 
   componentDidMount() {
     axios.get("/api/activities")
       .then(response => {
-        console.log("Response from backend: ", response.data)
         this.setState({ activitiesFromDb: response.data })
+        console.log("Response from backend: ", response.data)
       })
   }
 
-  handleChange=(event) =>{
+  handleChange = (event) => {
     let target = event.target;
     let value = target.value;
-    this.setState({ 
-        search: value 
+    this.setState({
+      search: value
     });
-// !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
     console.log('state here', this.state);
-};
+  };
 
 
 
 
   render() {
 
-    let allActivities = [...this.state.activitiesFromDb].filter(activity => {
-      return activity.name.toLowerCase().includes(this.state.search);
+    let activitiesFromDb = [...this.state.activitiesFromDb].filter(activity => {
+      return activity.name.toLowerCase().includes(this.state.search.toLowerCase());
     });
-
-
-
     console.log(this.state.activitiesFromDb)
+
     return (
+      <div className="all-activities">
+        <form>
+          <input
+            type="text"
+            placeholder="Find activity here..."
+            name="search"
+            value={this.state.search}
+            onChange={this.handleChange}
+          />
+        </form>
 
-<div className="all-activities">
-          <form>
-            <input
-              type="text"
-              placeholder="Find activity here..."
-              name="search"
-              value={this.state.search}
-              onChange={this.handleChange}
-            />
-          </form>
 
 
-      
         <h3>All Activities</h3>
-        {this.state.activitiesFromDb.map(activity => <Activity activity={activity} />)}
+
+        {activitiesFromDb.map(activity => {
+          return (
+            <div key={activity._id}>
+              <Activity activity={activity} />
+            </div>
+          )
+        })
+        }
+
+
       </div>
     )
   }
 }
 
+
+
 export default AllActivities;
+
+{/* <h3>All Activities</h3>
+        {this.state.activitiesFromDb.map(activity => <Activity activity={activity} />)}
+      </div> */}

@@ -12,6 +12,7 @@ import AllActivities from './components/AllActivities';
 import MyActivities from './components/MyActivities';
 import StartGame from './components/StartGame'
 import Home from './components/Home'
+import Weather from './components/Weather'
 
 class App extends Component {
 
@@ -87,6 +88,7 @@ class App extends Component {
         <Route path="/add-activity" component={AddActivity}></Route>
         <Route path="/my-activities" component={MyActivities}></Route>
         <Route path="/home" component={Home}></Route>
+        <Route path="/weather" component={Weather}></Route>
       </div>
     );
   }

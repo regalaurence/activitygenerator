@@ -47,8 +47,8 @@ class StartGame extends Component {
     return this.state.preferences.map(pref => {
       return (
         <div>
-          <button id={pref.propositionOne} type="submit" onClick={this.pushToCategories} value={pref.propositionOne}>{pref.propositionOne}</button>
-          <button id={pref.propositionTwo} type="submit" onClick={this.pushToCategories} value={pref.propositionTwo}>{pref.propositionTwo}</button>
+          <button key={pref.propositionOne} type="submit" onClick={this.pushToCategories} value={pref.propositionOne}>{pref.propositionOne}</button>
+          <button key={pref.propositionTwo} type="submit" onClick={this.pushToCategories} value={pref.propositionTwo}>{pref.propositionTwo}</button>
         </div>
       )
     }
