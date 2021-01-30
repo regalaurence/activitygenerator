@@ -5,7 +5,7 @@ const SelectMonth = (props) => {
   return (
     <span>
       <label for="seasons">{props.label}</label>
-      <select id="startmonth" name="cars">
+      <select id={props.agenda} name="months" form="addActivityForm" onChange={props.onSelect} >
         <option value="01">January</option>
         <option value="02">February</option>
         <option value="03">March</option>

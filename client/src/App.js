@@ -50,22 +50,23 @@ class App extends Component {
 
   componentDidUpdate = () => {
     if (this.state.currentUser) {
-    axios.put(`/api/user/${this.state.currentUser._id}`, {bookmarkedActivities: this.state.currentFavorites})
+    axios.put(`/api/user/${this.state.currentUser._id}`, 
+              {bookmarkedActivities: this.state.currentFavorites})
     .then((response) => {
       console.log(response)
     })
     }
   }
 
-  addToFavorite = (activityIDtoAdd) => {
-    let newFavorites = this.state.currentFavorites.concat(activityIDtoAdd)
+  addToFavorite = (activityIDtoAdd, priorityToAdd) => {
+    let newFavorites = this.state.currentFavorites.concat({activityID: activityIDtoAdd, isHighPriority: priorityToAdd})
     this.setState({
       currentFavorites: newFavorites
     })
   }
 
   removeFromFavorite = (activityIDToRemove) => {
-    let filteredDeletionFavorites = this.state.currentFavorites.filter(activity => activity !== activityIDToRemove)
+    let filteredDeletionFavorites = this.state.currentFavorites.filter(activity => activity.activityID !== activityIDToRemove)
     this.setState({
       currentFavorites: filteredDeletionFavorites
     })

@@ -8,7 +8,7 @@ class MyActivities extends Component {
     return (
       <div>
        {this.props.currentFavorites && 
-       this.props.currentFavorites.map(activity => <li>{activity}</li>)}
+       this.props.currentFavorites.map(activity => <li>{activity.activityID}</li>)}
       </div>
     )
   }
