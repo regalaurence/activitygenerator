@@ -2,7 +2,7 @@ import React from 'react';
 
 const CategoriesCheckboxes = (props) => {
 
-  let availableCategories = ['indoors', 'outdoors', 'sports', 'adventures', 'housework', 'socializing', 'relaxing', 'online']
+  let availableCategories = ['Indoors', 'Outdoors', 'Sports', 'Adventures', 'Housework', 'Socializing', 'Relaxing', 'Online']
 
   return (
     <>
