@@ -4,25 +4,39 @@ import axios from 'axios';
 class Weather extends Component {
 
   state = {
-    weatherFromDb: [],
+    weatherFromDb: null,
   }
 
   componentDidMount() {
-    axios.get("/api/weather")
-      .then(response => {
-        this.setState({ weatherFromDb: response.data })
-        console.log("Response from backend: ", response.data)
-      })
+    navigator.geolocation.getCurrentPosition((position) => {
+      const values =position.coords
+      console.log(values.latitude); // lat
+      console.log(values.longitude); // lon
+      
+      axios.get('/api/weather/?lat=' + Math.round(values.latitude) + '&lon=' + Math.round(values.longitude) +'&units=metric')
+        .then(response => {
+          this.setState({ weatherFromDb: response.data })
+          console.log("Response from backend: ", response.data)
+        })
+    });
   }
 
-
+//// IMPORTANT FUNCTION DONT DELETE DURING MERGING 
+// componentDidMount() {
+//   navigator.geolocation.getCurrentPosition(function(position) {
+//     console.log("Latitude is :", position.coords.latitude);
+//     console.log("Longitude is :", position.coords.longitude);
+//   });
+// }
 
   render() {
+    if (!this.state.weatherFromDb) {
+      return "loading ..."
+    }
     return (
       <div>
-        <h4>{this.state.weatherFromDb}</h4>
-        <button>Save weatherFromDb</button>
-      
+        <p>{this.state.weatherFromDb.main.temp}C</p>
+
       </div>
     )
   }
