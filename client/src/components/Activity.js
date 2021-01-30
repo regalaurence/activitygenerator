@@ -9,7 +9,7 @@ class Activity extends Component {
     currentFavorites: this.props.currentFavorites
   }
 
-  componentWillMount = () => {
+  componentDidMount = () => {
     let isFavorite = !!this.state.currentFavorites.some(item => item.activityID === this.props.idToPush)
     console.log(isFavorite)
     if (isFavorite) {
@@ -18,6 +18,7 @@ class Activity extends Component {
       })
     }
   }
+
 
   toggleFavoritesHandler = (event) => {
     if (this.state.isFavorite === false) {

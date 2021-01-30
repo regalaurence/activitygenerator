@@ -16,6 +16,16 @@ class AllActivities extends Component {
       })
   }
 
+  componentDidUpdate = () => {
+    if (this.props.user) {
+    axios.put(`/api/user/${this.props.user._id}`, 
+              {bookmarkedActivities: this.props.currentFavorites})
+    .then((response) => {
+      console.log(response)
+    })
+    }
+  }
+
   render() {
     console.log(this.props.user)
     return (
