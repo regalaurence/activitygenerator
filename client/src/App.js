@@ -11,8 +11,6 @@ import NewActivityForm from './components/createactivities/NewActivityForm';
 import AllActivities from './components/AllActivities';
 import MyActivities from './components/MyActivities';
 import StartGame from './components/StartGame'
-import ToDoListInput from './components/todolist/ToDoListInput';
-import CreateToDoList from './components/todolist/CreateTodoList';
 import MakeMeDo from './components/todolist/MakeMeDo';
 
 class App extends Component {
