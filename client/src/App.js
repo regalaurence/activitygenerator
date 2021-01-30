@@ -29,7 +29,8 @@ class App extends Component {
     axios.post("/api/logout", {})
       .then((resp) => {
         this.setState({
-          currentUser: null
+          currentUser: null,
+          currentFavorites: []
         });
       })
   }
