@@ -4,7 +4,7 @@ const bodyParser = require('body-parser');
 const cookieParser = require('cookie-parser');
 const express = require('express');
 const favicon = require('serve-favicon');
-const hbs = require('hbs');
+// const hbs = require('hbs');
 const mongoose = require('mongoose');
 const logger = require('morgan');
 const path = require('path');
@@ -19,6 +19,7 @@ mongoose
   });
 
 // eslint-disable-next-line no-unused-vars
+// eslint-disable-next-line import/order
 const appName = require('./package.json').name;
 // eslint-disable-next-line no-unused-vars
 const debug = require('debug')(`${appName}:${path.basename(__filename).split('.')[0]}`);
