@@ -35,6 +35,8 @@ class App extends Component {
       })
   }
 
+  
+
   componentDidMount = () => {
     if (this.state.currentUser) {
       console.log(this.state.currentUser)
