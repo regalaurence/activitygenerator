@@ -95,7 +95,9 @@ class App extends Component {
           currentFavorites={this.state.currentFavorites}
           />}/>
         <Route path="/add-activity" render={(props) => <NewActivityForm
-          {...props} user={this.state.currentUser}/>}/>
+          {...props} user={this.state.currentUser}
+          addToFavorite={this.addToFavorite}
+          />}/>
         <Route path="/my-activities" render={(props) => <MyActivities
           {...props} user={this.state.currentUser}
           addToFavorite={this.addToFavorite}

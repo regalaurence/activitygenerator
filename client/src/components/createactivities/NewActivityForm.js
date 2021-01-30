@@ -26,7 +26,9 @@ class AddActivity extends Component {
     event.preventDefault();
     let { name, minDuration, creator, categories, startTime, endTime, cost, isHighPriority, seasonStart, seasonEnd } = this.state;
     axios.post("/api/activities", { name, minDuration, creator, categories, startTime, endTime, cost,isHighPriority, seasonStart, seasonEnd })
-    // .then(() => axios.get("/api/activities"))
+    .then((response) => {
+      return this.props.addToFavorites(response.data._id, response.data.isHighPriority) 
+    })
     // .then((response) => console.log(response))
     .then(() => {
         this.setState({
