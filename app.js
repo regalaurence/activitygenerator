@@ -67,5 +67,6 @@ const index = require('./routes/index');
 app.use('/', index);
 app.use('/api', require('./routes/activity-routes'));
 app.use('/api', require('./routes/auth'));
+app.use('/api', require('./routes/weather'));
 
 module.exports = app;
