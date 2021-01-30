@@ -18,6 +18,26 @@ class Login extends Component {
       })
   }
 
+// Geolocation of user - checking if its available
+  // componentDidMount() {
+  //   if ("geolocation" in navigator) {
+  //     console.log("Available");
+  //   } else {
+  //     console.log("Not Available");
+  //   }
+  // }
+
+// getting the location
+
+  // componentDidMount() {
+  //   navigator.geolocation.getCurrentPosition(function(position) {
+  //     console.log("Latitude is :", position.coords.latitude);
+  //     console.log("Longitude is :", position.coords.longitude);
+  //   });
+  // }
+
+
+
   handleChange = (event) => {
     const { name, value } = event.target;
     this.setState({ [name]: value });

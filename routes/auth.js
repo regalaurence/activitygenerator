@@ -45,23 +45,8 @@ router.put('/user/:id', (req, res) => {
   });
 });
 
-// COPIED IN CASE I MESS OUT THE CREATING COPY OF AN USER
-// router.put('/user-edit', (req, res, next) => {
+router.post('/login', (req, res, next) => {
 
-//   const password = req.body.password;
-//   const salt = bcrypt.genSaltSync(bcryptSalt);
-//   const hashPassword = bcrypt.hashSync(password, salt);
-
-//   // Is User.create right here? I would have expected findAndUpdate?
-//   User.create({
-//     username: req.body.username,
-//     password: hashPassword
-//   }).then((createdUser) => {
-//     res.json(createdUser)
-//   })
-// });
-
-router.post('/login', (req, res) => {
   User.findOne({ username: req.body.username }).then((user) => {
     if (bcrypt.compareSync(req.body.password, user.password)) {
       req.session.currentUserId = user._id;

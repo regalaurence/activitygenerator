@@ -12,6 +12,8 @@ import AllActivities from './components/AllActivities';
 import MyActivities from './components/MyActivities';
 import StartGame from './components/StartGame'
 import MakeMeDo from './components/todolist/MakeMeDo';
+import Home from './components/Home'
+import Weather from './components/Weather'
 
 class App extends Component {
 
@@ -90,6 +92,8 @@ class App extends Component {
           <Link to="/my-todo-list">My ToDo List (just for testing purpose)</Link>
         </div>
         <Route path="/make-me-do"><MakeMeDo user={this.state.currentUser}/></Route>
+        <Route path="/home" component={Home}></Route>
+        <Route path="/weather" component={Weather}></Route>
         <Route path="/activities" render={(props) => <AllActivities
           {...props} user={this.state.currentUser}
           addToFavorite={this.addToFavorite}
