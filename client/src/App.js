@@ -35,28 +35,13 @@ class App extends Component {
       })
   }
 
-  
 
   componentDidMount = () => {
     if (this.state.currentUser) {
-      console.log(this.state.currentUser)
-      axios.put(`/api/user/${this.state.currentUser._id}`)
-      .then((response) => {
         this.setState({
-          currentFavorites : response.data.bookmarkedActivities
+          currentFavorites : this.props.user.userDoc.bookmarkedActivities
         })
-      })
-    }
-  }
-
-  componentDidUpdate = () => {
-    if (this.state.currentUser) {
-    axios.put(`/api/user/${this.state.currentUser._id}`, 
-              {bookmarkedActivities: this.state.currentFavorites})
-    .then((response) => {
-      console.log(response)
-    })
-    }
+      }
   }
 
   addToFavorite = (activityIDtoAdd, priorityToAdd) => {
