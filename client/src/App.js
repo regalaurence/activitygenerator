@@ -7,10 +7,11 @@ import { Link, Route } from 'react-router-dom';
 import Signup from './components/auth/Signup';
 import Login from './components/auth/Login';
 import NewActivityForm from './components/createactivities/NewActivityForm';
-import CreateTodoList from './components/CreateTodoList';
+//import CreateTodoList from './components/todolist/CreateTodoList';
 import AllActivities from './components/AllActivities';
 import MyActivities from './components/MyActivities';
 import StartGame from './components/StartGame'
+import MakeMeDo from './components/todolist/MakeMeDo';
 
 class App extends Component {
 
@@ -86,8 +87,9 @@ class App extends Component {
           <Link to="/activities">Browse activities</Link><br></br>
           <Link to="/add-activity">Create an Activity</Link><br></br>
           <Link to="/my-activities">My activities</Link><br></br>
+          <Link to="/my-todo-list">My ToDo List (just for testing purpose)</Link>
         </div>
-        <Route path="/make-me-do" component={CreateTodoList}></Route>
+        <Route path="/make-me-do"><MakeMeDo user={this.state.currentUser}/></Route>
         <Route path="/activities" render={(props) => <AllActivities
           {...props} user={this.state.currentUser}
           addToFavorite={this.addToFavorite}
@@ -102,6 +104,7 @@ class App extends Component {
           removeFromFavorite={this.removeFromFavorite} 
           currentFavorites={this.state.currentFavorites}
           />}/>
+          {/* <Route path="/my-todo-list"> <CreateToDoList availableTime={120} possibleCategories={["Relaxing", "Housework"]}  /></Route> */}
       </div>
     );
   }
