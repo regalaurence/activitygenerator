@@ -1,0 +1,10 @@
+@import '../node_modules/bulma/sass/utilities/initial-variables.sass';
+
+$blue: #72d0eb;
+$pink: #ffb3b3;
+$pink-invert: #fff;
+$family-serif: "Merriweather", "Georgia", serif;
+
+@import './another-style-variables.scss';
+
+@import '../node_modules/bulma/bulma.sass'; 

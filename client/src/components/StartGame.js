@@ -119,10 +119,12 @@ class StartGame extends Component {
   render() {
 
     return (
+      <section class="hero is-fullheight">
       <div>
         Choose one of the options to set your profile
         {this.creatingButtonsFunction()}
       </div>
+      </section>
     )
   }
 }

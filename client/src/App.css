@@ -1,8 +1,25 @@
-.App {
+/* @import "~react-bulma-components/src/index.sass" */
+/* $primary: #ffaa50; */
+/* .App {
   text-align: center;
-}
+} */
 
-.App-logo {
+/* .is-primary{
+  background-color: #2A3166;
+} */
+
+
+/* colors:
+Schema nr 4:
+park peach: #EE7879
+dark blue: #2A3166
+light peach: #F4ABAA
+pistacchio: #CAE7DF */
+
+
+
+
+/* .App-logo {
   height: 40vmin;
   pointer-events: none;
 }
@@ -35,4 +52,4 @@
   to {
     transform: rotate(360deg);
   }
-}
+} */

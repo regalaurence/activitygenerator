@@ -1,6 +1,10 @@
 import React, { Component } from 'react';
+
+// import 'react-bulma-components/dist/react-bulma-components.min.css';
+// import { Button } from 'react-bulma-components';
+// import Button from 'react-bulma-components/lib/components/button';
 import axios from 'axios'
-import './App.css';
+// import './App.scss';
 import { Link, Route } from 'react-router-dom';
 import 'bulma/css/bulma.css'
 
@@ -73,16 +77,16 @@ class App extends Component {
             <button onClick={this.logoutUser}>Logout</button>
           </div>) : (
             <div>
-              <h3>Signup</h3>
-              <Signup></Signup>
-              <hr></hr>
-              <h3>Login</h3>
-              <Login updateCurrentUser={this.updateCurrentUser}></Login>
+              {/* <h3>Signup</h3> */}
+              {/* <Signup></Signup> */}
+              {/* <hr></hr>
+              <h3>Login</h3> */}
+              {/* <Login updateCurrentUser={this.updateCurrentUser}></Login> */}
             </div>
           )}
         <hr></hr>
         <StartGame user={this.state.currentUser} />
-
+{/* 
         <h1>Make Me Do</h1>
         <h2>A list of things we said we'd do tomorrow</h2>
         <div>
@@ -109,7 +113,7 @@ class App extends Component {
           addToFavorite={this.addToFavorite}
           removeFromFavorite={this.removeFromFavorite} 
           currentFavorites={this.state.currentFavorites}
-          />}/>
+          />}/> */}
           {/* <Route path="/my-todo-list"> <CreateToDoList availableTime={120} possibleCategories={["Relaxing", "Housework"]}  /></Route> */}
       </div>
     );
