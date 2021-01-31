@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
 import axios from 'axios';
 import Home from './Home';
-// import { Redirect } from 'react-router-dom'
+import 'bulma/css/bulma.css'
+import { Redirect } from 'react-router-dom'
 
 import { withRouter } from 'react-router-dom'
 
@@ -28,18 +29,29 @@ class StartGame extends Component {
   updatingUserPreferences = () => {
     const preferences = this.chosenPreferences;
 
-    axios.put(`/api/user/${this.props.user._id}`, { preferences })
-      .then(() => {
-        this.setState({
-          preferences: this.chosenPreferences
-        })
-        let user = this.props.user
-        user.preferences = preferences
-        this.props.updateUser(user)
-        //this.props.history.push('/home');
-      })
-      .catch(error => console.log(error))
-  }
+  //   axios.put(`/api/user/${this.props.user._id}`, { preferences })
+  //     .then(() => {
+  //       this.setState({
+  //         preferences: this.chosenPreferences
+  //       })
+  //       let user = this.props.user
+  //       user.preferences = preferences
+  //       this.props.updateUser(user)
+  //       this.props.history.push('/home');
+  //     })
+  //     .catch(error => console.log(error))
+  // }
+
+  axios.put(`/api/user/${this.props.user._id}`, { preferences })
+  .then(() => {
+    this.setState({
+      preferences: this.chosenPreferences
+    })
+    this.props.history.push('/activities');
+  })
+  .catch(error => console.log(error))
+}
+
 
 
   // creatingButtonsFunction needed
@@ -103,20 +115,6 @@ class StartGame extends Component {
     }
 
   };
-
-
-
-
-
-
-
-
-
-
-  // handleChange = () => {
-  //   this.setState({ categories: chosenCategories });
-  // }
-
 
   render() {
 

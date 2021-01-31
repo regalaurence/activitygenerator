@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import axios from 'axios';
+import 'bulma/css/bulma.css'
 
 class Login extends Component {
 
@@ -35,17 +36,11 @@ class Login extends Component {
   //     console.log("Longitude is :", position.coords.longitude);
   //   });
   // }
-
-
-
+  
   handleChange = (event) => {
     const { name, value } = event.target;
     this.setState({ [name]: value });
   }
-
-
-
-
 
   render() {
     return (

@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import axios from 'axios'
 import './App.css';
 import { Link, Route } from 'react-router-dom';
+import 'bulma/css/bulma.css'
 
 //Components
 import Signup from './components/auth/Signup';
@@ -93,6 +94,7 @@ class App extends Component {
         </div>
         <Route path="/make-me-do"><MakeMeDo user={this.state.currentUser}/></Route>
         <Route path="/home" component={Home}></Route>
+        <Route path="/login" component={Login}></Route>
         <Route path="/weather" component={Weather}></Route>
         <Route path="/activities" render={(props) => <AllActivities
           {...props} user={this.state.currentUser}
