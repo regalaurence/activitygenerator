@@ -1,14 +1,10 @@
 import React, { Component } from 'react';
-
-// import 'react-bulma-components/dist/react-bulma-components.min.css';
-// import { Button } from 'react-bulma-components';
-// import Button from 'react-bulma-components/lib/components/button';
 import axios from 'axios'
-// import './App.scss';
-import { Link, Route } from 'react-router-dom';
-import 'bulma/css/bulma.css'
+import './App.scss';
+import { Link, Route, Switch} from 'react-router-dom';
 
 //Components
+import Navbar from './components/Navbar'
 import Signup from './components/auth/Signup';
 import Login from './components/auth/Login';
 import NewActivityForm from './components/createactivities/NewActivityForm';
@@ -73,29 +69,33 @@ class App extends Component {
       <div className="App">
         {this.state.currentUser ? (
           <div>
-            <h1>Welcome, {this.state.currentUser.username}</h1>
-            <button onClick={this.logoutUser}>Logout</button>
+            {/* <h1>Welcome, {this.state.currentUser.username}</h1>
+            <button onClick={this.logoutUser}>Logout</button> */}
           </div>) : (
             <div>
               {/* <h3>Signup</h3> */}
-              {/* <Signup></Signup> */}
+              <Signup></Signup>
               {/* <hr></hr>
               <h3>Login</h3> */}
-              {/* <Login updateCurrentUser={this.updateCurrentUser}></Login> */}
+              <Login updateCurrentUser={this.updateCurrentUser}></Login>
             </div>
           )}
-        <hr></hr>
-        <StartGame user={this.state.currentUser} />
-{/* 
-        <h1>Make Me Do</h1>
-        <h2>A list of things we said we'd do tomorrow</h2>
+        {/* <hr></hr> */}
+        <Navbar user={this.state.currentUser}/>
+        
+        {/* <StartGame user={this.state.currentUser} /> */}
+
+        {/* <h1>Make Me Do</h1>
+        <h2>A list of things we said we'd do tomorrow</h2> */}
         <div>
-          <Link to="/make-me-do">Make me DO something</Link><br></br>
+       
+          {/* <Link to="/make-me-do">Make me DO something</Link><br></br>
           <Link to="/activities">Browse activities</Link><br></br>
           <Link to="/add-activity">Create an Activity</Link><br></br>
           <Link to="/my-activities">My activities</Link><br></br>
-          <Link to="/my-todo-list">My ToDo List (just for testing purpose)</Link>
+          <Link to="/my-todo-list">My ToDo List (just for testing purpose)</Link> */}
         </div>
+        <Switch>
         <Route path="/make-me-do"><MakeMeDo user={this.state.currentUser}/></Route>
         <Route path="/home" component={Home}></Route>
         <Route path="/login" component={Login}></Route>
@@ -113,9 +113,11 @@ class App extends Component {
           addToFavorite={this.addToFavorite}
           removeFromFavorite={this.removeFromFavorite} 
           currentFavorites={this.state.currentFavorites}
-          />}/> */}
+          />}/>
           {/* <Route path="/my-todo-list"> <CreateToDoList availableTime={120} possibleCategories={["Relaxing", "Housework"]}  /></Route> */}
+          </Switch>
       </div>
+      
     );
   }
 }

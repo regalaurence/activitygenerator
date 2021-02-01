@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import axios from 'axios';
 import Home from './Home';
-import 'bulma/css/bulma.css'
+// import 'bulma/css/bulma.css'
 import { Redirect } from 'react-router-dom'
 
 import { withRouter } from 'react-router-dom'
@@ -29,28 +29,28 @@ class StartGame extends Component {
   updatingUserPreferences = () => {
     const preferences = this.chosenPreferences;
 
-  //   axios.put(`/api/user/${this.props.user._id}`, { preferences })
-  //     .then(() => {
-  //       this.setState({
-  //         preferences: this.chosenPreferences
-  //       })
-  //       let user = this.props.user
-  //       user.preferences = preferences
-  //       this.props.updateUser(user)
-  //       this.props.history.push('/home');
-  //     })
-  //     .catch(error => console.log(error))
-  // }
+    //   axios.put(`/api/user/${this.props.user._id}`, { preferences })
+    //     .then(() => {
+    //       this.setState({
+    //         preferences: this.chosenPreferences
+    //       })
+    //       let user = this.props.user
+    //       user.preferences = preferences
+    //       this.props.updateUser(user)
+    //       this.props.history.push('/home');
+    //     })
+    //     .catch(error => console.log(error))
+    // }
 
-  axios.put(`/api/user/${this.props.user._id}`, { preferences })
-  .then(() => {
-    this.setState({
-      preferences: this.chosenPreferences
-    })
-    this.props.history.push('/activities');
-  })
-  .catch(error => console.log(error))
-}
+    axios.put(`/api/user/${this.props.user._id}`, { preferences })
+      .then(() => {
+        this.setState({
+          preferences: this.chosenPreferences
+        })
+        this.props.history.push('/activities');
+      })
+      .catch(error => console.log(error))
+  }
 
 
 
@@ -58,9 +58,9 @@ class StartGame extends Component {
   creatingButtonsFunction = () => {
     return this.state.preferences.map(pref => {
       return (
-        <div>
-          <button key={pref.propositionOne} type="submit" onClick={this.pushToCategories} value={pref.propositionOne}>{pref.propositionOne}</button>
-          <button key={pref.propositionTwo} type="submit" onClick={this.pushToCategories} value={pref.propositionTwo}>{pref.propositionTwo}</button>
+        <div className="buttons is-vcentered is-centered">
+          <button className="button is-light" key={pref.propositionOne} type="submit" onClick={this.pushToCategories} value={pref.propositionOne}>{pref.propositionOne}</button>
+          <button className="button is-light" key={pref.propositionTwo} type="submit" onClick={this.pushToCategories} value={pref.propositionTwo}>{pref.propositionTwo}</button>
         </div>
       )
     }
@@ -119,14 +119,24 @@ class StartGame extends Component {
   render() {
 
     return (
-      <section class="hero is-fullheight">
-      <div>
-        Choose one of the options to set your profile
-        {this.creatingButtonsFunction()}
-      </div>
+      <section className="hero is-fullheight">
+        <div className="hero-body">
+          <div className="container">
+            <div className="columns is-vcentered is-centered">
+              <h1 className="subtitle has-text-centered pb-5">Choose one of the options to set your profile</h1>
+            </div>
+            <div className="columns is-vcentered is-centered">
+              {this.creatingButtonsFunction()}
+            </div>
+            <div className="columns is-vcentered is-centered">
+              <figure className="image">
+                <img style={{ maxWidth: "512px" }} src="images/thinking_girl_with_plants.png" />
+              </figure>
+            </div>
+          </div>
+        </div>
       </section>
     )
   }
 }
-
 export default withRouter(StartGame);

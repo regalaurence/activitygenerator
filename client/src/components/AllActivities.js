@@ -37,20 +37,37 @@ class AllActivities extends Component {
     });
 
     return (
-      <div className="all-activities">
-        <form>
-          <input
-            type="text"
-            placeholder="Find activity here..."
-            name="search"
-            value={this.state.search}
-            onChange={this.handleChange}
-          />
+      <section className="hero">
+      <div className="hero-body">
+        <div className="container">
+      <div className="columns is-vcentered is-centered has-text-centered">
+      <form style={{ maxWidth: "512px" }}>
+      
+        <div className="field">
+        <div className="columns is-vcentered is-centered">
+
+              <figure className="image">
+                <img style={{ maxWidth: "412px" }} src="images/AllActivities.png" />
+              </figure>
+            </div>
+                  <div className="control">
+                    <p className="control has-icons-left">
+                      <input className="input" type="text" placeholder="Find Activity..." name="search" value={this.state.search} onChange={this.handleChange} />
+                      <span className="icon is-small is-left">
+                        <i className="fas fa-search"></i>
+                      </span>
+                    </p>
+                  </div>
+                  </div>
         </form>
+        </div>
 
 
 
-        <h3>All Activities</h3>
+
+       
+        <div>
+        
         {filteredActivities
           .map(activity => <Activity
             key={activity._id}
@@ -61,6 +78,9 @@ class AllActivities extends Component {
             removeFromFavorite={this.props.removeFromFavorite}
             />)}
       </div>
+      </div>
+      </div>
+      </section>
     )
   }
 }

@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import axios from 'axios';
-import 'bulma/css/bulma.css'
-import 'react-bulma-components/dist/react-bulma-components.min.css';
+// import 'bulma/css/bulma.css'
+// import 'react-bulma-components/dist/react-bulma-components.min.css';
 import { Link } from 'react-router-dom';
 
 
@@ -28,46 +28,50 @@ class Signup extends Component {
 
   render() {
     return (
-      <section className = "hero is-fullheight">
-      <div className="hero-body">
-      <div className="container"> 
-      <div className="columns is-vcentered is-centered">
-      
-      <figure className="image">
-                        <img style={{ maxWidth:"512px" }} src="images/CloudFinalDarktext.png"/>
-                    </figure>
-                    </div>
-                    <div className="columns is-vcentered is-centered">
-      <form style={{ maxWidth:"512px" }} onSubmit={this.handleFormSubmit}>
-      
-<div className="field">
-  <label className="label">Username</label>
-  <div className="control">
-  <input className="input" type="text"  placeholder="e.g Anna Smith" name="username" value={this.state.username} onChange={e => this.handleChange(e)} />
-  </div>
-</div>
+      <section className="hero is-fullheight">
+        <div className="hero-body">
+          <div className="container">
+            <div className="columns is-vcentered is-centered">
 
-<div className="field">
-  <label className="label">Password</label>
-  <div className="control">
-  <input className="input" type="password" name="password" value={this.state.password} onChange={e => this.handleChange(e)} />
-  </div>
-</div>
-<div className="control">
-  <button type="submit" className="button is-primary">Submit</button>
-</div>
-<div>Already have an account?
+              <figure className="image">
+                <img style={{ maxWidth: "512px" }} src="images/CloudFinalDarkText.png" />
+              </figure>
+            </div>
+            <div className="columns is-vcentered is-centered">
+              <form style={{ maxWidth: "512px" }} onSubmit={this.handleFormSubmit}>
+
+                <div className="field">
+                  <label className="label">Username</label>
+                  <div className="control">
+                    <input className="input" type="text" placeholder="e.g Anna Smith" name="username" value={this.state.username} onChange={e => this.handleChange(e)} />
+                  </div>
+                </div>
+
+                <div className="field">
+                  <label className="label">Password</label>
+                  <div className="control">
+                    <p class="control has-icons-left">
+                      <input className="input" type="password" placeholder="Password" name="password" value={this.state.password} onChange={e => this.handleChange(e)} />
+                      <span class="icon is-small is-left">
+                        <i class="fas fa-lock"></i>
+                      </span>
+                    </p>
+                  </div>
+                </div>
+                <div className="control">
+                  <button type="submit" className="button is-primary mb-3">Submit</button>
+                </div>
+                <div>Already have an account?
 {/* <Route path="/login" component={Login}></Route> */}
-<Link to="/login"> Log in</Link>
-{/* <a href='/login'> Log in here</a> */}
-</div>
-</form>
+                  <Link to="/login"> Log in</Link>
+                  {/* <a href='/login'> Log in here</a> */}
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
 
-</div>
-</div>
-      </div>
-     
-      
+
       </section>
     )
   }
@@ -76,7 +80,7 @@ class Signup extends Component {
 export default Signup;
 
 
- {/* <form onSubmit={this.handleFormSubmit}>
+{/* <form onSubmit={this.handleFormSubmit}>
           <label>Username:</label>
           <input type="text" name="username" value={this.state.username} onChange={e => this.handleChange(e)} />
           <label>Password:</label>

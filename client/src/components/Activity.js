@@ -42,19 +42,39 @@ class Activity extends Component {
 
   render() {
     return (
-      <div>
-        <h4>{this.props.activity.name}</h4>
+      <div className="columns is-vcentered is-centered has-text-centered mt-6">
+      <div className="field">
+       <div className="content mb-5"><h2 className="has-text-warning">{this.props.activity.name}</h2></div>
+
         {this.state.isFavorite ?
-          <button onClick={this.toggleFavoritesHandler}>Remove from My Activties</button> :
+          <button className="button is-light is-small" onClick={this.toggleFavoritesHandler}>Remove from My Activties</button> :
           <form onSubmit={this.toggleFavoritesHandler}>
+          <div className="field is-grouped columns is-vcentered is-centered">
+          
+          <div className="control">
+    <div className="select mb-3 has-text-centered is-small">
             <select id="priority" name="priority" onChange={this.handleChange}>
               <option value="false">Low priority</option>
               <option value="true">High priority</option>
             </select>
-            <button type="submit">Save to My Activities</button>
+</div>
+            <div className="control">
+                  <button type="submit" className="button is-light is-small">Save to My Activities</button>
+                </div>
+</div>
+            </div>
           </form>
         }
+      
       </div>
+      </div>
+
+
+
+
+
+
+
     )
   }
 }

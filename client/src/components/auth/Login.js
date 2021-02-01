@@ -1,7 +1,5 @@
 import React, { Component } from 'react';
 import axios from 'axios';
-import 'bulma/css/bulma.css'
-import 'react-bulma-components/dist/react-bulma-components.min.css';
 import { Link } from 'react-router-dom';
 
 class Login extends Component {
@@ -52,7 +50,7 @@ class Login extends Component {
       <div className="columns is-vcentered is-centered">
       
       <figure className="image">
-                        <img style={{ maxWidth:"512px" }} src="images/CloudFinalDarktext.png"/>
+                        <img style={{ maxWidth:"512px" }} src="images/CloudFinalDarkText.png"/>
                     </figure>
                     </div>
                     <div className="columns is-vcentered is-centered">
@@ -68,11 +66,16 @@ class Login extends Component {
 <div className="field">
   <label className="label">Password</label>
   <div className="control">
-  <input className="input" type="password" name="password" value={this.state.password} onChange={e => this.handleChange(e)} />
+  <p class="control has-icons-left">
+  <input className="input" type="password" placeholder="Password" name="password" value={this.state.password} onChange={e => this.handleChange(e)} />
+  <span class="icon is-small is-left">
+      <i class="fas fa-lock"></i>
+    </span>
+  </p>
   </div>
 </div>
 <div className="control">
-  <button type="submit" className="button is-primary">Submit</button>
+  <button type="submit" className="button is-primary mb-3">Submit</button>
 </div>
 <div><p>First time here?
 {/* <Route path="/login" component={Login}></Route> */}
