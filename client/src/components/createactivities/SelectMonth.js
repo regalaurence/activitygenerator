@@ -3,8 +3,10 @@ import React from 'react';
 const SelectMonth = (props) => {
 
   return (
-    <span>
-      <label for="seasons">{props.label}</label>
+    <div className="field">
+      <label className="label" for="seasons">{props.label}</label>
+      <div className="control" style={{ maxWidth: "160px" }}>
+      <div class="select">
       <select id={props.agenda} name="months" form="addActivityForm" onChange={props.onSelect} >
         <option value="01">January</option>
         <option value="02">February</option>
@@ -19,8 +21,18 @@ const SelectMonth = (props) => {
         <option value="11">November</option>
         <option value="12">December</option>
       </select>
-    </span>
+      </div>
+      </div>
+    </div>
   )
 }
 
 export default SelectMonth;
+
+
+{/* <div className="field">
+<label className="label">Possible roughly until:</label>
+<div className="control" style={{ maxWidth: "100px" }}>
+  <input className="input" type="number" name="endTime" value={this.state.endTime} onChange={this.handleChange} />
+</div>
+</div> */}
