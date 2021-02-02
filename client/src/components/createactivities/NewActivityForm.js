@@ -107,7 +107,7 @@ class AddActivity extends Component {
              
 
               <form style={{ maxWidth: "612px" }} onSubmit={this.handleFormSubmit} id="addActivityForm">
-              <h2 class="title is-3">Create a new activity</h2>
+              <h2 className="title is-3">Create a new activity</h2>
                 <div className="field">
                   <label className="label">Name</label>
                   <div className="control">
@@ -161,14 +161,14 @@ class AddActivity extends Component {
                 </div>
 
 
-                <div class="field">
-                  <label class="label">I'd rather do this 
+                <div className="field">
+                  <label className="label">I'd rather do this 
 
                   <SelectMonth label={"between"} agenda={"seasonStart"} onSelect={this.handleChange} />
                   <SelectMonth label={"and"} agenda={"seasonEnd"} onSelect={this.handleChange} />
 </label>
-                  <div class="control">
-                    <div class="select">
+                  <div className="control">
+                    <div classNAme="select">
                       <div className="control">
                         <button onClick={this.handleFormSubmit} className="button is-primary mb-3">Ok, let's add!</button>
                       </div>
@@ -263,10 +263,10 @@ export default AddActivity;
 //             <div className="field">
 //               <label className="label">Password</label>
 //               <div className="control">
-//                 <p class="control has-icons-left">
+//                 <p className="control has-icons-left">
 //                   <input className="input" type="password" placeholder="Password" name="password" value={this.state.password} onChange={e => this.handleChange(e)} />
-//                   <span class="icon is-small is-left">
-//                     <i class="fas fa-lock"></i>
+//                   <span className="icon is-small is-left">
+//                     <i className="fas fa-lock"></i>
 //                   </span>
 //                 </p>
 //               </div>

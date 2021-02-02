@@ -9,12 +9,11 @@ const bcryptSalt = 10;
 
 // GET /api/checkuser
 
-router.get("/checkuser", (req, res, next) => {
+router.get('/checkuser', (req, res) => {
   if (req.session.currentUserId) {
-    User.findById(req.session.currentUserId).then((user)=> {
+    User.findById(req.session.currentUserId).then((user) => {
       res.json({ userDoc: user });
-    })
-    
+    });
   } else {
     res.json({ userDoc: null });
   }
@@ -45,12 +44,12 @@ router.put('/user/:id', (req, res) => {
   });
 });
 
-router.post('/login', (req, res, next) => {
-
+router.post('/login', (req, res) => {
   User.findOne({ username: req.body.username }).then((user) => {
     if (bcrypt.compareSync(req.body.password, user.password)) {
+      // eslint-disable-next-line no-underscore-dangle
       req.session.currentUserId = user._id;
-      res.json(user)
+      res.json(user);
     }
   });
 });

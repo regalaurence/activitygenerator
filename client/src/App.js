@@ -1,14 +1,14 @@
 import React, { Component } from 'react';
 import axios from 'axios'
 import './App.scss';
-import { Link, Route, Switch} from 'react-router-dom';
+import { Link, Redirect, Route, Switch, withRouter } from 'react-router-dom';
 
 //Components
 import Navbar from './components/Navbar'
 import Signup from './components/auth/Signup';
 import Login from './components/auth/Login';
 import NewActivityForm from './components/createactivities/NewActivityForm';
-//import CreateTodoList from './components/todolist/CreateTodoList';
+import CreateToDoList from './components/todolist/CreateTodoList';
 import AllActivities from './components/AllActivities';
 import MyActivities from './components/MyActivities';
 import StartGame from './components/StartGame'
@@ -24,34 +24,33 @@ class App extends Component {
   }
 
   updateCurrentUser = (userObjFromBackend) => {
-    this.setState({
-      currentUser: userObjFromBackend,
-      currentFavorites: userObjFromBackend.bookmarkedActivities
-    })
+      this.setState({
+        currentUser: userObjFromBackend,
+        currentFavorites: userObjFromBackend ? userObjFromBackend.bookmarkedActivities : []
+      })
   }
+
 
   logoutUser = () => {
     axios.post("/api/logout", {})
       .then((resp) => {
-        this.setState({
-          currentUser: null,
-          currentFavorites: []
-        });
+        this.updateCurrentUser(null)
+        this.props.history.push('/login');
       })
   }
 
   componentDidUpdate = () => {
     if (this.state.user) {
-    axios.put(`/api/user/${this.statee.user._id}`, 
-              {bookmarkedActivities: this.state.currentFavorites})
-    .then((response) => {
-      console.log(response)
-    })
+      axios.put(`/api/user/${this.statee.user._id}`,
+        { bookmarkedActivities: this.state.currentFavorites })
+        .then((response) => {
+          console.log(response)
+        })
     }
   }
 
   addToFavorite = (activityIDtoAdd, priorityToAdd) => {
-    let newFavorites = this.state.currentFavorites.concat({activityID: activityIDtoAdd, isHighPriority: priorityToAdd})
+    let newFavorites = this.state.currentFavorites.concat({ activityID: activityIDtoAdd, isHighPriority: priorityToAdd })
     this.setState({
       currentFavorites: newFavorites
     })
@@ -65,60 +64,48 @@ class App extends Component {
   }
 
   render() {
-    
+
     return (
       <div className="App">
-        {this.state.currentUser ? (
-          <div>
-            {/* <h1>Welcome, {this.state.currentUser.username}</h1>
-            <button onClick={this.logoutUser}>Logout</button> */}
-          </div>) : (
-            <div>
-              <Signup></Signup>       
-              <Login updateCurrentUser={this.updateCurrentUser}></Login>
-              <Navbar user={this.state.currentUser}/>
-            </div>
-          )}
-        {/* <hr></hr> */}
-        <Navbar user={this.state.currentUser}/>
-        {/* <AllActivities></AllActivities> */}
+        {!this.state.currentUser && <Redirect to="/login"></Redirect>}
+
+        <Navbar currentUser={this.state.currentUser} logoutUser={this.logoutUser} />
+ 
         {/* <StartGame user={this.state.currentUser} /> */}
 
-        {/* <h1>Make Me Do</h1>
-        <h2>A list of things we said we'd do tomorrow</h2> */}
-        <div>
-       
-          {/* <Link to="/make-me-do">Make me DO something</Link><br></br>
-          <Link to="/activities">Browse activities</Link><br></br>
-          <Link to="/add-activity">Create an Activity</Link><br></br>
-          <Link to="/my-activities">My activities</Link><br></br>
-          <Link to="/my-todo-list">My ToDo List (just for testing purpose)</Link> */}
-        </div>
         <Switch>
-        <Route path="/make-me-do"><MakeMeDo user={this.state.currentUser}/></Route>
-        <Route path="/home" component={Home}></Route>
-        <Route path="/login" user={this.state.currentUser} component={Login}></Route>
-        <Route path="/weather" component={Weather}></Route>
-        <Route path="/activities" render={(props) => <AllActivities
-          {...props} user={this.state.currentUser}
-          addToFavorite={this.addToFavorite}
-          removeFromFavorite={this.removeFromFavorite} 
-          currentFavorites={this.state.currentFavorites}
-          />}/>
-        <Route path="/add-activity" render={(props) => <NewActivityForm
-          {...props} user={this.state.currentUser}/>}/>
-        <Route path="/my-activities" render={(props) => <MyActivities
-          {...props} user={this.state.currentUser}
-          addToFavorite={this.addToFavorite}
-          removeFromFavorite={this.removeFromFavorite} 
-          currentFavorites={this.state.currentFavorites}
-          />}/>
-          {/* <Route path="/my-todo-list"> <CreateToDoList availableTime={120} possibleCategories={["Relaxing", "Housework"]}  /></Route> */}
-          </Switch>
+          <Route path="/make-me-do"><MakeMeDo user={this.state.currentUser} /></Route>
+          <Route path="/home" component={Home} />
+          <Route path="/login">
+            <Login updateCurrentUser={this.updateCurrentUser} />
+          </Route>
+          <Route path="/signup">
+           <Signup user={this.state.currentUser} /> 
+          </Route>
+          <Route path="/weather" component={Weather} />
+          <Route path="/activities" render={(props) => <AllActivities
+            {...props} user={this.state.currentUser}
+            addToFavorite={this.addToFavorite}
+            removeFromFavorite={this.removeFromFavorite}
+            currentFavorites={this.state.currentFavorites}
+          />} />
+          <Route path="/add-activity" render={(props) => <NewActivityForm
+            {...props} user={this.state.currentUser} />} />
+          <Route path="/my-activities" render={(props) => <MyActivities
+            {...props} user={this.state.currentUser}
+            addToFavorite={this.addToFavorite}
+            removeFromFavorite={this.removeFromFavorite}
+            currentFavorites={this.state.currentFavorites}
+          />} />
+          <Route path="/my-todo-list">
+            <CreateToDoList availableTime={120}
+              possibleCategories={["Relaxing", "Housework"]} />
+          </Route>
+        </Switch>
       </div>
-      
+
     );
   }
 }
 
-export default App;
+export default withRouter(App);

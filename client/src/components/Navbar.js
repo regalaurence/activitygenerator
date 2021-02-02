@@ -1,16 +1,23 @@
 import React, { Component } from 'react';
-//import 'bulma/css/bulma.css'
-//import 'react-bulma-components/dist/react-bulma-components.min.css';
+import axios from 'axios'
 import { Link } from 'react-router-dom';
+import { withRouter } from 'react-router-dom'
+
 
 class Navbar extends Component {
-  render() {
 
+handleLogOut = () => {
+  this.props.logoutUser()
+}
+
+  render() {
     return (
       <nav className="navbar" role="navigation" aria-label="main navigation">
         <div className="navbar-brand">
-          <a className="navbar-item">  <Link to="/home" className="has-text-grey-dark"><img src="images/MakeMeDo_textOnly_black.png" width="112" height="28" /></Link>
-
+          <a className="navbar-item">  
+          <Link to="/home" className="has-text-grey-dark">
+          <img src="images/MakeMeDo_textOnly_black.png" width="112" height="28" />
+          </Link>
           </a>
 
           <a role="button" className="navbar-burger" aria-label="menu" aria-expanded="false" data-target="navbarBasicExample">
@@ -47,7 +54,6 @@ class Navbar extends Component {
             <a className="navbar-item">
               <Link to="/add-activity" className="has-text-grey-dark">Create Activities</Link>
             </a>
-        
               </div>
             </div>
           </div>
@@ -60,9 +66,10 @@ class Navbar extends Component {
                   {/* <strong>Sign up</strong> */}
                 </a>
                 {/* PROBLEMS HERE PROBLEMS HERE PROBLEMS HERE PROBLEMS HERE */}
-                <a className="button is-light" onClick={this.logoutUser}>
-                  Log out
-              </a>
+                {this.props.currentUser ? <a className="button is-light" onClick={this.handleLogOut}>
+                  Log out</a> : <a className="button is-light">
+                  Log in
+              </a>}
               </div>
             </div>
           </div>
@@ -73,4 +80,4 @@ class Navbar extends Component {
   }
 }
 
-export default Navbar;
+export default withRouter(Navbar);

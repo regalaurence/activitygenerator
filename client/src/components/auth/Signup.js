@@ -52,10 +52,10 @@ class Signup extends Component {
                 <div className="field">
                   <label className="label">Password</label>
                   <div className="control">
-                    <p class="control has-icons-left">
+                    <p className="control has-icons-left">
                       <input className="input" type="password" placeholder="Password" name="password" value={this.state.password} onChange={e => this.handleChange(e)} />
-                      <span class="icon is-small is-left">
-                        <i class="fas fa-lock"></i>
+                      <span className="icon is-small is-left">
+                        <i className="fas fa-lock"></i>
                       </span>
                     </p>
                   </div>

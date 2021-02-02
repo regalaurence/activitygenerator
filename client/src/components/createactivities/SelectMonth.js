@@ -6,7 +6,7 @@ const SelectMonth = (props) => {
     <div className="field">
       <label className="label" for="seasons">{props.label}</label>
       <div className="control" style={{ maxWidth: "160px" }}>
-      <div class="select">
+      <div className="select">
       <select id={props.agenda} name="months" form="addActivityForm" onChange={props.onSelect} >
         <option value="01">January</option>
         <option value="02">February</option>
