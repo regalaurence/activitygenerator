@@ -65,6 +65,7 @@ class App extends Component {
   }
 
   render() {
+    
     return (
       <div className="App">
         {this.state.currentUser ? (
@@ -73,16 +74,14 @@ class App extends Component {
             <button onClick={this.logoutUser}>Logout</button> */}
           </div>) : (
             <div>
-              {/* <h3>Signup</h3> */}
-              <Signup></Signup>
-              {/* <hr></hr>
-              <h3>Login</h3> */}
+              <Signup></Signup>       
               <Login updateCurrentUser={this.updateCurrentUser}></Login>
+              <Navbar user={this.state.currentUser}/>
             </div>
           )}
         {/* <hr></hr> */}
         <Navbar user={this.state.currentUser}/>
-        
+        {/* <AllActivities></AllActivities> */}
         {/* <StartGame user={this.state.currentUser} /> */}
 
         {/* <h1>Make Me Do</h1>
@@ -98,7 +97,7 @@ class App extends Component {
         <Switch>
         <Route path="/make-me-do"><MakeMeDo user={this.state.currentUser}/></Route>
         <Route path="/home" component={Home}></Route>
-        <Route path="/login" component={Login}></Route>
+        <Route path="/login" user={this.state.currentUser} component={Login}></Route>
         <Route path="/weather" component={Weather}></Route>
         <Route path="/activities" render={(props) => <AllActivities
           {...props} user={this.state.currentUser}

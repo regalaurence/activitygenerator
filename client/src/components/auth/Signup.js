@@ -2,7 +2,9 @@ import React, { Component } from 'react';
 import axios from 'axios';
 // import 'bulma/css/bulma.css'
 // import 'react-bulma-components/dist/react-bulma-components.min.css';
-import { Link } from 'react-router-dom';
+import { Link, Route } from 'react-router-dom';
+import Login from './Login';
+
 
 
 class Signup extends Component {
@@ -59,11 +61,12 @@ class Signup extends Component {
                   </div>
                 </div>
                 <div className="control">
-                  <button type="submit" className="button is-primary mb-3">Submit</button>
+                  <button type="submit" className="button is-primary mb-3" value="Submit">Submit</button>
                 </div>
                 <div>Already have an account?
 {/* <Route path="/login" component={Login}></Route> */}
-                  <Link to="/login"> Log in</Link>
+                  <Link to="/login" updateCurrentUser={this.updateCurrentUser}> Log in</Link>
+                
                   {/* <a href='/login'> Log in here</a> */}
                 </div>
               </form>

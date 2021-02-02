@@ -50,24 +50,38 @@ class ToDoListInput extends Component {
   render() {
 
     return (
-      <div>
-        <h3>Make me DO!!</h3>
-        <form onSubmit={this.submitHandler}>
-    
-          <label>How much time do you have? (in min)</label>
-          <input type="number" name="availableTime" value={this.state.availableTime} onChange={this.handleChange} /><br></br>
+      <section className="hero">
+        <div className="hero-body">
+          <div className="container">
+            <div className="columns is-vcentered is-centered">
 
-          <CategoriesCheckboxes
-            label="Categories"
-            value={this.state.possibleCategories}
-            onChange={this.handleChange}
-          />
-            <label>Include only free activities (not working)</label>
-          <input type="checkbox" name="cost" value={!this.state.cost} onChange={this.handleChange} /><br></br>
+              <form style={{ maxWidth: "612px" }} onSubmit={this.submitHandler}>
+                <h2 className="title is-3 mb-5">Let me do something!</h2>
 
-          <button onClick={this.submitHandler}>Ok, MAKE ME DO!</button>
-        </form>
-      </div>
+
+                <div className="field control">
+                  <label className="label">{`How much time do you have? (in min) `}
+                 
+                    <input  style={{ maxWidth: "100px" }} className="input is-small" type="number" name="availableTime" value={this.state.availableTime} onChange={this.handleChange} />
+                    </label>
+                  </div>
+              
+                <CategoriesCheckboxes
+                  label="Categories"
+                  value={this.state.possibleCategories}
+                  onChange={this.handleChange}
+                />
+                
+                <label className="label"><input type="checkbox" name="cost" value={!this.state.cost} onChange={this.handleChange} />{` Include only free activities (not done)`}</label>
+
+                <div className="control">
+                  <button onClick={this.submitHandler} className="button is-primary mt-5">Ok, make me do!!</button>
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+      </section>
     )
   }
 }
