@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import axios from 'axios';
+import 'bulma/css/bulma.css'
 
 class Signup extends Component {
 
