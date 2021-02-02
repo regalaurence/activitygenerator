@@ -15,6 +15,7 @@ import StartGame from './components/StartGame'
 import MakeMeDo from './components/todolist/MakeMeDo';
 import Home from './components/Home'
 import Weather from './components/Weather'
+import Footer from './components/Footer'
 
 class App extends Component {
 
@@ -115,6 +116,7 @@ class App extends Component {
           />}/>
           {/* <Route path="/my-todo-list"> <CreateToDoList availableTime={120} possibleCategories={["Relaxing", "Housework"]}  /></Route> */}
           </Switch>
+          <Footer></Footer>
       </div>
       
     );
