@@ -36,12 +36,12 @@ class Signup extends Component {
             <div className="columns is-vcentered is-centered">
 
               <figure className="image">
-                <img style={{ maxWidth: "512px" }} src="images/CloudFinalDarkText.png" />
+                <img style={{ maxWidth: "512px" }} src="images/FinalLightPeach.png" />
               </figure>
             </div>
             <div className="columns is-vcentered is-centered">
               <form style={{ maxWidth: "512px" }} onSubmit={this.handleFormSubmit}>
-
+              <h2 className="title is-4">Sign up</h2>
                 <div className="field">
                   <label className="label">Username</label>
                   <div className="control">
