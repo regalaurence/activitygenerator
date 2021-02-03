@@ -63,25 +63,36 @@ class App extends Component {
     })
   }
 
+
+  checkPreferences = () => {
+    if  (this.state.currentUser.preferences.length === 0) {
+      return
+        <StartGame user={this.state.currentUser}/>
+        }
+  }
+
+
+
   render() {
+
 
     return (
       <div className="App">
+       <Navbar currentUser={this.state.currentUser} logoutUser={this.logoutUser} />
+        {this.checkPreferences()}
         {!this.state.currentUser && <Redirect to="/login"></Redirect>}
 
-        <Navbar currentUser={this.state.currentUser} logoutUser={this.logoutUser} />
- 
-        {/* <StartGame user={this.state.currentUser} /> */}
-
-        <Switch>
-          <Route path="/make-me-do"><MakeMeDo user={this.state.currentUser} /></Route>
-          <Route path="/home" component={Home} />
-          <Route path="/login">
+{/*  
+        {this.state.currentUser && <StartGame user={this.state.currentUser} />} */}
+        <Route path="/login">
             <Login updateCurrentUser={this.updateCurrentUser} />
           </Route>
           <Route path="/signup">
            <Signup user={this.state.currentUser} /> 
           </Route>
+        <Switch>
+          <Route path="/make-me-do"><MakeMeDo user={this.state.currentUser} /></Route>
+          <Route path="/home" component={Home} />
           <Route path="/weather" component={Weather} />
           <Route path="/activities" render={(props) => <AllActivities
             {...props} user={this.state.currentUser}

@@ -1,53 +1,31 @@
 import React, { Component } from 'react';
 import axios from 'axios';
 import Home from './Home';
-// import 'bulma/css/bulma.css'
 import { Redirect } from 'react-router-dom'
-
 import { withRouter } from 'react-router-dom'
 
 class StartGame extends Component {
   constructor(props) {
-    super(props); /////??????
-
-    this.chosenPreferences = []
-
+    super(props);
+    this.chosenPreferences = [];
     this.state = {
       preferences: [
-        { propositionOne: "Relax", propositionTwo: "Sport" },
-        // { propositionOne: "Indoor", propositionTwo: "Outdoor" },
-        // { propositionOne: "Early Bird", propositionTwo: "Late night life" },
-        // { propositionOne: "Alone", propositionTwo: "Together" },
-        // { propositionOne: "Create", propositionTwo: "Consume" },
-        // { propositionOne: "Online", propositionTwo: "Offline" },
-        // { propositionOne: "Tea", propositionTwo: "Coctail" }
-      ],
+        { propositionOne: "Relax", propositionTwo: "Sport" }
+      ]
     };
   }
 
 
   updatingUserPreferences = () => {
+    
     const preferences = this.chosenPreferences;
-
-    //   axios.put(`/api/user/${this.props.user._id}`, { preferences })
-    //     .then(() => {
-    //       this.setState({
-    //         preferences: this.chosenPreferences
-    //       })
-    //       let user = this.props.user
-    //       user.preferences = preferences
-    //       this.props.updateUser(user)
-    //       this.props.history.push('/home');
-    //     })
-    //     .catch(error => console.log(error))
-    // }
-
     axios.put(`/api/user/${this.props.user._id}`, { preferences })
       .then(() => {
         this.setState({
           preferences: this.chosenPreferences
         })
-        this.props.history.push('/activities');
+       
+        this.props.history.push('/home');
       })
       .catch(error => console.log(error))
   }

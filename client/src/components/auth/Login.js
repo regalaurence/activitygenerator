@@ -16,7 +16,7 @@ class Login extends Component {
       .then((resp) => {
         this.setState({ username: "", password: "" });
         this.props.updateCurrentUser(resp.data)
-        this.props.history.push('/home');
+        // this.props.history.push('/home');
       })
   }
 
