@@ -25,10 +25,10 @@ class App extends Component {
   }
 
   updateCurrentUser = (userObjFromBackend) => {
-      this.setState({
-        currentUser: userObjFromBackend,
-        currentFavorites: userObjFromBackend ? userObjFromBackend.bookmarkedActivities : []
-      })
+    this.setState({
+      currentUser: userObjFromBackend,
+      currentFavorites: userObjFromBackend ? userObjFromBackend.bookmarkedActivities : []
+    })
   }
 
 
@@ -66,9 +66,9 @@ class App extends Component {
 
 
   checkPreferences = () => {
-    if  (this.state.currentUser.preferences.length === 0) {
+    if (this.state.currentUser.preferences.length === 0) {
       return <StartGame user={this.state.currentUser} updateUser={this.updateCurrentUser} />
-        }
+    }
   }
 
 
@@ -81,41 +81,55 @@ class App extends Component {
 
     return (
       <div className="App">
-       <Navbar currentUser={this.state.currentUser} logoutUser={this.logoutUser} />
-       
+        <Navbar currentUser={this.state.currentUser} logoutUser={this.logoutUser} />
+
         {this.state.currentUser && this.checkPreferences()}
         {/* !this.state.currentUser && <Redirect to="/login"></Redirect> */}
 
-{/*  
+        {/*  
         {this.state.currentUser && <StartGame user={this.state.currentUser} />} */}
         <Route path="/login">
-            <Login updateCurrentUser={this.updateCurrentUser} />
-          </Route>
-          <Route path="/signup">
-           <Signup user={this.state.currentUser} /> 
-          </Route>
+          <Login updateCurrentUser={this.updateCurrentUser} />
+        </Route>
+        <Route path="/signup">
+          <Signup user={this.state.currentUser} />
+        </Route>
         <Switch>
-          <Route path="/make-me-do"><MakeMeDo user={this.state.currentUser} /></Route>
-          <Route path="/home" component={Home} />
-          <Route path="/weather" component={Weather} />
-          <Route path="/activities" render={(props) => <AllActivities
-            {...props} user={this.state.currentUser}
-            addToFavorite={this.addToFavorite}
-            removeFromFavorite={this.removeFromFavorite}
-            currentFavorites={this.state.currentFavorites}
-          />} />
-          <Route path="/add-activity" render={(props) => <NewActivityForm
-            {...props} user={this.state.currentUser} />} />
-          <Route path="/my-activities" render={(props) => <MyActivities
-            {...props} user={this.state.currentUser}
-            addToFavorite={this.addToFavorite}
-            removeFromFavorite={this.removeFromFavorite}
-            currentFavorites={this.state.currentFavorites}
-          />} />
-          <Route path="/my-todo-list">
-            <CreateToDoList availableTime={120}
-              possibleCategories={["Relaxing", "Housework"]} />
-          </Route>
+          <Route path="/make-me-do" render={() => (
+            this.state.currentUser
+              ? <MakeMeDo user={this.state.currentUser} />
+              : <Redirect to='/login' />
+          )} />
+          <Route path="/home" render={() => (
+            this.state.currentUser
+              ? <Home user={this.state.currentUser} />
+              : <Redirect to='/login' />
+          )} />
+          {/* <Route path="/weather" component={Weather} /> */}
+          <Route path="/activities" render={(props) => (
+            this.state.currentUser
+              ? <AllActivities
+                {...props} user={this.state.currentUser}
+                addToFavorite={this.addToFavorite}
+                removeFromFavorite={this.removeFromFavorite}
+                currentFavorites={this.state.currentFavorites}
+              />
+              : <Redirect to='login' />)} />
+          <Route path="/add-activity" render={(props) => (
+            this.state.currentUser
+              ? <NewActivityForm
+                {...props} user={this.state.currentUser} />
+              : <Redirect to='login' />
+          )} />
+          <Route path="/my-activities" render={(props) => (
+            this.state.currentUser
+              ? <MyActivities
+                {...props} user={this.state.currentUser}
+                addToFavorite={this.addToFavorite}
+                removeFromFavorite={this.removeFromFavorite}
+                currentFavorites={this.state.currentFavorites}
+              />
+              : <Redirect to='/login' />)} />
         </Switch>
         <Footer />
       </div>
