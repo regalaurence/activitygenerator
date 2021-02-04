@@ -39,26 +39,26 @@ class AllActivities extends Component {
 
     return (
       <section className="hero">
-      <div className="hero-body">
-        <div className="container">
-      <div className="columns is-vcentered is-centered has-text-centered">
-      <form style={{ maxWidth: "512px" }}>
-      
-        <div className="field">
-        <div className="columns is-vcentered is-centered">
+        <div className="hero-body">
+          <div className="container">
+            <div className="columns is-vcentered is-centered has-text-centered">
+              <form style={{ maxWidth: "512px" }}>
 
-              <figure className="image">
-                <img style={{ maxWidth: "412px" }} src="images/AllActivities.png" />
-              </figure>
-            </div>
+                <div className="field">
+                  <div className="columns is-vcentered is-centered">
 
-            <div className="control">
-            <Link to="/my-activities"> <button className="button is-primary mb-3">My Activities</button></Link> 
-            <Link to="/add-activity"> <button className="button is-primary mb-3">Create Activity</button></Link>
-                </div>
+                    <figure className="image">
+                      <img style={{ maxWidth: "412px" }} src="images/AllActivities.png" />
+                    </figure>
+                  </div>
 
-  
-                  
+                  <div className="control">
+                    <Link to="/my-activities"> <button className="button is-primary mb-3">My Activities</button></Link>
+                    <Link to="/add-activity"> <button className="button is-primary mb-3">Create Activity</button></Link>
+                  </div>
+
+
+
 
 
                   <div className="control">
@@ -69,23 +69,23 @@ class AllActivities extends Component {
                       </span>
                     </p>
                   </div>
-                  </div>
-        </form>
-        </div>      
-        <div>
-        
-        {filteredActivities
-          .map(activity => <Activity
-            key={activity._id}
-            idToPush={activity._id}
-            activity={activity}
-            currentFavorites={this.props.currentFavorites} 
-            addToFavorite={this.props.addToFavorite}
-            removeFromFavorite={this.props.removeFromFavorite}
-            />)}
-      </div>
-      </div>
-      </div>
+                </div>
+              </form>
+            </div>
+            <div>
+
+              {filteredActivities
+                .map(activity => <Activity
+                  key={activity._id}
+                  idToPush={activity._id}
+                  activity={activity}
+                  currentFavorites={this.props.currentFavorites}
+                  addToFavorite={this.props.addToFavorite}
+                  removeFromFavorite={this.props.removeFromFavorite}
+                />)}
+            </div>
+          </div>
+        </div>
       </section>
     )
   }

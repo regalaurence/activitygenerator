@@ -31,7 +31,6 @@ class App extends Component {
       })
   }
 
-
   logoutUser = () => {
     axios.post("/api/logout", {})
       .then((resp) => {
@@ -41,8 +40,8 @@ class App extends Component {
   }
 
   componentDidUpdate = () => {
-    if (this.state.user) {
-      axios.put(`/api/user/${this.statee.user._id}`,
+    if (this.state.currentUser) {
+      axios.put(`/api/user/${this.state.currentUser._id}`,
         { bookmarkedActivities: this.state.currentFavorites })
         .then((response) => {
           console.log(response)
