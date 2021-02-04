@@ -15,6 +15,7 @@ import StartGame from './components/StartGame'
 import MakeMeDo from './components/todolist/MakeMeDo';
 import Home from './components/Home'
 import Weather from './components/Weather'
+import Footer from './components/Footer'
 
 class App extends Component {
 
@@ -64,12 +65,12 @@ class App extends Component {
   }
 
 
-  checkPreferences = () => {
-    if  (this.state.currentUser.preferences.length === 0) {
-      return
-        <StartGame user={this.state.currentUser}/>
-        }
-  }
+  // checkPreferences = () => {
+  //   if  (this.state.userObjFromBackend.preferences.length === 0) {
+  //     return
+  //       <StartGame user={this.state.currentUser}/>
+  //       }
+  // }
 
 
 
@@ -79,7 +80,8 @@ class App extends Component {
     return (
       <div className="App">
        <Navbar currentUser={this.state.currentUser} logoutUser={this.logoutUser} />
-        {this.checkPreferences()}
+       
+        {/* {this.checkPreferences()} */}
         {!this.state.currentUser && <Redirect to="/login"></Redirect>}
 
 {/*  
@@ -113,6 +115,7 @@ class App extends Component {
               possibleCategories={["Relaxing", "Housework"]} />
           </Route>
         </Switch>
+        <Footer />
       </div>
 
     );

@@ -35,7 +35,7 @@ const activitiesSeeds = [{
 {
   name: 'Listen to a playlist',
   description: 'Checkout your spotify suggestions, or just listen to our curated paylist.',
-  url: ['http://www.stotify.com'],
+  url: ['http://www.spotify.com'],
   minDuration: '10',
   categories: ['Relaxing'],
   timeWindowStart: 0,

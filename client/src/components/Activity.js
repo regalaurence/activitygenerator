@@ -44,7 +44,9 @@ class Activity extends Component {
     return (
       <div className="columns is-vcentered is-centered has-text-centered mt-6">
       <div className="field">
-       <div className="content mb-5"><h2 className="has-text-warning">{this.props.activity.name}</h2></div>
+       <div className="content mb-4"><h2 className="has-text-warning">{this.props.activity.name}</h2></div>
+       <div className="content"><p className="has-text-centered">{this.props.activity.description}</p></div>
+       <div className="content"><a href={this.props.activity.url} className="has-text-centered">{this.props.activity.url}</a></div>
 
         {this.state.isFavorite ?
           <button className="button is-light is-small" onClick={this.toggleFavoritesHandler}>Remove from My Activties</button> :

@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import axios from 'axios';
 import Activity from './Activity.js'
+import { Link, withRouter } from 'react-router-dom';
 
 class AllActivities extends Component {
 
@@ -50,6 +51,16 @@ class AllActivities extends Component {
                 <img style={{ maxWidth: "412px" }} src="images/AllActivities.png" />
               </figure>
             </div>
+
+            <div className="control">
+            <Link to="/my-activities"> <button className="button is-primary mb-3">My Activities</button></Link> 
+            <Link to="/add-activity"> <button className="button is-primary mb-3">Create Activity</button></Link>
+                </div>
+
+  
+                  
+
+
                   <div className="control">
                     <p className="control has-icons-left">
                       <input className="input" type="text" placeholder="Find Activity..." name="search" value={this.state.search} onChange={this.handleChange} />
@@ -60,12 +71,7 @@ class AllActivities extends Component {
                   </div>
                   </div>
         </form>
-        </div>
-
-
-
-
-       
+        </div>      
         <div>
         
         {filteredActivities
@@ -87,4 +93,4 @@ class AllActivities extends Component {
 
 
 
-export default AllActivities;
+export default withRouter(AllActivities);
