@@ -65,12 +65,11 @@ class App extends Component {
   }
 
 
-  // checkPreferences = () => {
-  //   if  (this.state.userObjFromBackend.preferences.length === 0) {
-  //     return
-  //       <StartGame user={this.state.currentUser}/>
-  //       }
-  // }
+  checkPreferences = () => {
+    if  (this.state.currentUser.preferences.length === 0) {
+      return <StartGame user={this.state.currentUser} updateUser={this.updateCurrentUser} />
+        }
+  }
 
 
 
@@ -81,8 +80,8 @@ class App extends Component {
       <div className="App">
        <Navbar currentUser={this.state.currentUser} logoutUser={this.logoutUser} />
        
-        {/* {this.checkPreferences()} */}
-        {!this.state.currentUser && <Redirect to="/login"></Redirect>}
+        {this.state.currentUser && this.checkPreferences()}
+        {/* !this.state.currentUser && <Redirect to="/login"></Redirect> */}
 
 {/*  
         {this.state.currentUser && <StartGame user={this.state.currentUser} />} */}

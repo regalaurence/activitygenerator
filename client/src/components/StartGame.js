@@ -23,9 +23,11 @@ class StartGame extends Component {
       .then(() => {
         this.setState({
           preferences: this.chosenPreferences
-        })
-       
-        this.props.history.push('/home');
+        });
+        let user = this.props.user
+        user.preferences = this.chosenPreferences
+        this.props.updateUser(user)
+        //this.props.history.push('/home');
       })
       .catch(error => console.log(error))
   }

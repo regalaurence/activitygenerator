@@ -4,77 +4,46 @@ import SelectMonth from './SelectMonth'
 import CategoriesCheckboxes from './CategoriesCheckboxes';
 import { withRouter } from 'react-router-dom';
 
+const initialState = {
+  name: "",
+  description: "",
+  url: [],
+  minDuration: 20,
+  categories: [],
+  startTime: 7,
+  endTime: 22,
+  cost: false,
+  isHighPriority: false,
+  seasonStart: new Date('2020-01'),
+  seasonEnd: new Date('2020-12')
+}
+
 class AddActivity extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      name: "",
-      description: "",
-      url: [],
-      minDuration: 20,
-      creator: this.props.user._id,
-      categories: [],
-      startTime: 7,
-      endTime: 22,
-      cost: false,
-      isHighPriority: false,
-      seasonStart: new Date('2020-01'),
-      seasonEnd: new Date('2020-12'),
-      button: ""
-    };
+  
+  state = { ...initialState, creator: this.props.user._id }
+
+  submitData = () => {
+
+    let { name, description, url, minDuration, creator, categories, startTime, endTime, cost, isHighPriority, seasonStart, seasonEnd } = this.state;
+
+    return axios.post("/api/activities", { name, description, url, minDuration, creator, categories, startTime, endTime, cost, isHighPriority, seasonStart, seasonEnd })
+      // .then(() => axios.get("/api/activities"))
+      // .then((response) => console.log(response))
+      .then(() => {
+        this.setState(initialState);
+      })
+      .catch(error => console.log(error))
+
   }
 
-  handleFormSubmit = (event) => {
-    event.preventDefault();
-    let { name, description, url, minDuration, creator, categories, startTime, endTime, cost, isHighPriority, seasonStart, seasonEnd, button } = this.state;
-    if (button == "addOne") {
-      axios.post("/api/activities", { name, description, url, minDuration, creator, categories, startTime, endTime, cost, isHighPriority, seasonStart, seasonEnd })
-        // .then(() => axios.get("/api/activities"))
-        // .then((response) => console.log(response))
-        .then(() => {
-          this.setState({
-            name: "",
-            description: "",
-            url: [],
-            minDuration: 0,
-            creator: "",
-            categories: "",
-            startTime: "",
-            endTime: "",
-            cost: false,
-            isHighPriority: false,
-            seasonStart: new Date('2020-01'),
-            seasonEnd: new Date('2020-12'),
-            button: ""
-          });
-          this.props.history.push('/activities');
-        })
-        .catch(error => console.log(error))
-    } else {
+  handleAddOne = () => {
+    this.submitData().then(() => {
+      this.props.history.push('/activities');
+    })
+  }
 
-      axios.post("/api/activities", { name, description, url, minDuration, creator, categories, startTime, endTime, cost, isHighPriority, seasonStart, seasonEnd })
-        // .then(() => axios.get("/api/activities"))
-        // .then((response) => console.log(response))
-        .then(() => {
-          this.setState({
-            name: "",
-            description: "",
-            url: [],
-            minDuration: 0,
-            creator: "",
-            categories: "",
-            startTime: "",
-            endTime: "",
-            cost: false,
-            isHighPriority: false,
-            seasonStart: new Date('2020-01'),
-            seasonEnd: new Date('2020-12'),
-            button: ""
-          });
-          this.props.history.push('/add-activity');
-        })
-        .catch(error => console.log(error))
-    }
+  handleAddMore = () => {
+    this.submitData()
   }
 
   handleChange = (event) => {
@@ -138,7 +107,7 @@ class AddActivity extends Component {
 
 
 
-              <form style={{ maxWidth: "612px" }} onSubmit={this.handleFormSubmit} id="addActivityForm">
+              <div style={{ maxWidth: "612px" }} id="addActivityForm">
                 <h2 className="title is-3">Create a new activity</h2>
                 <div className="field">
                   <label className="label">Name</label>
@@ -216,14 +185,14 @@ class AddActivity extends Component {
                   <div className="control">
                     <div classNAme="select">
                       <div className="control">
-                        <button name="button" value="addOne" onClick={this.handleFormSubmit} className="button is-primary mb-3">Add this one only</button>
+                        <button onClick={this.handleAddOne} className="button is-primary mb-3">Add this one only</button>
 
-                        <button name="button" value="addMore" onClick={this.handleFormSubmit} className="button is-primary mb-3">Add another after that</button>
+                        <button onClick={this.handleAddMore} className="button is-primary mb-3">Add another after that</button>
                       </div>
                     </div>
                   </div>
                 </div>
-              </form>
+              </div>
             </div>
           </div>
         </div>
