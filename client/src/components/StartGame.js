@@ -1,7 +1,5 @@
 import React, { Component } from 'react';
 import axios from 'axios';
-import Home from './Home';
-import { Redirect } from 'react-router-dom'
 import { withRouter } from 'react-router-dom'
 
 class StartGame extends Component {
@@ -27,7 +25,6 @@ class StartGame extends Component {
         let user = this.props.user
         user.preferences = this.chosenPreferences
         this.props.updateUser(user)
-        //this.props.history.push('/home');
       })
       .catch(error => console.log(error))
   }

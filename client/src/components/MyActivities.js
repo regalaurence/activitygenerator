@@ -35,10 +35,8 @@ class MyActivities extends Component {
     return (
       <section className="hero">
         <div className="hero-body">
-          <div className="container">
-           
+          <div className="container">          
             <div className="columns is-vcentered is-centered">
-
               <figure className="image">
                 <img style={{ maxWidth: "412px" }} src="images/Myactivities.png" />
               </figure>
@@ -51,8 +49,6 @@ class MyActivities extends Component {
           </div>
           </div>
         </div>
-
-
       </section>
     )
   }
