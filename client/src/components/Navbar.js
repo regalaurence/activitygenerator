@@ -11,6 +11,11 @@ handleLogOut = () => {
 }
 
   render() {
+
+    console.log("History: ", this.props.history.location.pathname)
+    console.log("User: ", this.props.currentUser)
+
+
     return (
       <nav className="navbar" role="navigation" aria-label="main navigation">
         <div className="navbar-brand">
@@ -26,7 +31,7 @@ handleLogOut = () => {
             <span aria-hidden="true"></span>
           </a>
         </div>
-
+        
         <div id="navbarBasicExample" className="navbar-menu">
           <div className="navbar-start">
             <a className="navbar-item">
@@ -59,16 +64,19 @@ handleLogOut = () => {
           </div>
 
           <div className="navbar-end">
+          <a className="navbar-item">
+              {this.props.currentUser ? <div to="/make-me-do" className="has-text-grey-dark">{this.props.currentUser.username}</div> : null}
+            </a>
             <div className="navbar-item">
               <div className="buttons">
+              {!this.props.currentUser ? 
                 <a className="button is-primary">
                   <Link to="/signup" className="has-text-grey-dark">Sign up</Link>
-                  {/* <strong>Sign up</strong> */}
-                </a>
+                </a> : null}
                 {/* PROBLEMS HERE PROBLEMS HERE PROBLEMS HERE PROBLEMS HERE */}
                 {this.props.currentUser ? <a className="button is-light" onClick={this.handleLogOut}>
                   Log out</a> : <a className="button is-light">
-                  Log in
+                  <Link to="/login" className="button-is-light">Log in</Link>
               </a>}
               </div>
             </div>
