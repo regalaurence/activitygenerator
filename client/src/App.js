@@ -65,6 +65,10 @@ class App extends Component {
 
   render() {
 
+    console.log("Rendering App...")
+    console.log(this.state.currentUser)
+    console.log(!this.state.currentUser)
+
     return (
       <div className="App">
         {!this.state.currentUser && <Redirect to="/login"></Redirect>}
