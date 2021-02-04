@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 import axios from 'axios';
+import ToDoListInput from './ToDoListInput';
+import ToDoListItem from './ToDoListItem';
 
 class CreateToDoList extends Component {
   // CreateToDoList receives the available time, possibleCategories and user as props
@@ -211,16 +213,16 @@ class CreateToDoList extends Component {
         <div>
           Here is your To Do List!
         Available time: {this.props.availableTime} min
-        Possible Categories:
+        Selected Categories:
           <ul>
             {this.props.possibleCategories.map(category => <li>{category}</li>)}
           </ul>
         </div>
         <div id="todolist">
-          Render todolist here
-          <ul>
+          {generatedToDoList.map(todo => <ToDoListItem todo={todo} />)}
+          {/* <ul>
             {this.renderTodoList(generatedToDoList)}
-          </ul>
+          </ul> */}
         </div>
       </div>
     )
