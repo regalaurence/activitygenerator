@@ -9,7 +9,8 @@ const Activity = require('../models/activity-model');
 router.post('/activities', (req, res) => {
   Activity.create({
     name: req.body.name,
-    descrption: req.body.descrption,
+    description: req.body.description,
+    url: req.body.url,
     minDuration: req.body.minDuration,
     creator: req.body.creator,
     // ? return User.findByIdAndUpdate(user, { $push: { bookmarkedActivities: dbActivity._id } });

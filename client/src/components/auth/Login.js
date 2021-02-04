@@ -56,7 +56,7 @@ class Login extends Component {
             </div>
             <div className="columns is-vcentered is-centered">
               <form style={{ maxWidth: "512px" }} onSubmit={this.handleFormSubmit}>
-
+              <h2 className="title is-4">Log in</h2>
                 <div className="field">
                   <label className="label">Username</label>
                   <div className="control">

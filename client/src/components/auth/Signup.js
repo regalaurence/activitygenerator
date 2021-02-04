@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import axios from 'axios';
 // import 'bulma/css/bulma.css'
 // import 'react-bulma-components/dist/react-bulma-components.min.css';
-import { Link, Route } from 'react-router-dom';
+import { Link, Route, withRouter } from 'react-router-dom';
 import Login from './Login';
 
 
@@ -20,7 +20,9 @@ class Signup extends Component {
     axios.post("/api/signup", { username, password })
       .then(() => {
         this.setState({ username: "", password: "" });
+        this.props.history.push('/login');
       })
+     
   }
 
   handleChange = (event) => {
@@ -36,12 +38,12 @@ class Signup extends Component {
             <div className="columns is-vcentered is-centered">
 
               <figure className="image">
-                <img style={{ maxWidth: "512px" }} src="images/CloudFinalDarkText.png" />
+                <img style={{ maxWidth: "512px" }} src="images/FinalLightPeach.png" />
               </figure>
             </div>
             <div className="columns is-vcentered is-centered">
               <form style={{ maxWidth: "512px" }} onSubmit={this.handleFormSubmit}>
-
+              <h2 className="title is-4 mt-1">Sign up</h2>
                 <div className="field">
                   <label className="label">Username</label>
                   <div className="control">
@@ -64,7 +66,6 @@ class Signup extends Component {
                   <button type="submit" className="button is-primary mb-3" value="Submit">Submit</button>
                 </div>
                 <div>Already have an account?
-{/* <Route path="/login" component={Login}></Route> */}
                   <Link to="/login" updateCurrentUser={this.updateCurrentUser}> Log in</Link>
                 
                   {/* <a href='/login'> Log in here</a> */}
@@ -80,7 +81,7 @@ class Signup extends Component {
   }
 }
 
-export default Signup;
+export default withRouter(Signup);
 
 
 {/* <form onSubmit={this.handleFormSubmit}>
