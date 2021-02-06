@@ -199,7 +199,7 @@ class AddActivity extends Component {
                 <div className="field">
                   <div className="control">
                     <label className="checkbox">
-                      <input type="checkbox" name="cost" value={!this.state.cost} onChange={this.handleChange} />
+                      <input type="checkbox" name="cost" checked={this.state.cost} onChange={this.handleChange} />
                       {` Is the activity for free?`}</label>
                   </div>
                 </div>
@@ -207,7 +207,7 @@ class AddActivity extends Component {
                 <div className="field">
                   <div className="control">
                     <label className="checkbox">
-                      <input type="checkbox" name="isHighPriority" checked={!this.state.isHighPriority} onChange={this.handleChange} />
+                      <input type="checkbox" name="isHighPriority" checked={this.state.isHighPriority} onChange={this.handleChange} />
                       {` Is it a high priority?`}</label>
                   </div>
                 </div>
