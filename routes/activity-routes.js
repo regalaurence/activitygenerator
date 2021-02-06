@@ -18,6 +18,7 @@ router.post('/activities', (req, res) => {
     timeWindowStart: req.body.timeWindowStart,
     timeWindowEnd: req.body.timeWindowEnd,
     hasCost: false,
+    isHighPriority: false,
     seasonStart: req.body.seasonStart,
     seasonEnd: req.body.seasonEnd,
   })
@@ -41,7 +42,6 @@ router.get('/activities', (req, res) => {
     });
 });
 
-
 // GET route => to get all activities of a specific user !! Needs to be updated!!!
 router.get('/user-activities', (req, res) => {
   // console.log('Looking for activities...');
@@ -54,7 +54,6 @@ router.get('/user-activities', (req, res) => {
       res.json(err);
     });
 });
-
 
 // router.post('/add-activity', () => {
 //   console.log('lets add activities');
