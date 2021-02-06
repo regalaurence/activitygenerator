@@ -15,7 +15,6 @@ const CategoriesCheckboxes = (props) => {
       {availableCategories.map(c => {
         return (
           <div className="column is-one-third-mobile is-one-quarter-tablet is-one-quarter-desktop is-one-quarter-widescreen is-one-quarter-fullhd">
-
             <figure className="image column is-vcentered is-centered">
               <img style={{ maxWidth: "180px" }} src={"images/" + c + ".png"} />
             </figure>

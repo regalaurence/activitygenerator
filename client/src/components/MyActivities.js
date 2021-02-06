@@ -36,9 +36,7 @@ class MyActivities extends Component {
       <section className="hero">
         <div className="hero-body">
           <div className="container">
-           
             <div className="columns is-vcentered is-centered">
-
               <figure className="image">
                 <img style={{ maxWidth: "412px" }} src="images/Myactivities.png" />
               </figure>
