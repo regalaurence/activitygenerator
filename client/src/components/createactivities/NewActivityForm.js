@@ -24,12 +24,12 @@ class AddActivity extends Component {
 
   submitData = () => {
     let { name, description, url, minDuration, creator, categories, startTime, endTime, cost, isHighPriority, seasonStart, seasonEnd } = this.state;
-    
+
     return axios.post("/api/activities", { name, description, url, minDuration, creator, categories, startTime, endTime, cost, isHighPriority, seasonStart, seasonEnd })
       .then((response) => {
         axios.put(`/api/user/${this.props.user._id}`,
           {
-            $push:  { "bookmarkedActivities": { "activityID": response.data._id, "isHighPriority": response.data.isHighPriority } }
+            $push: { "bookmarkedActivities": { "activityID": response.data._id, "isHighPriority": response.data.isHighPriority } }
           })
       })
       .then(() => {
@@ -163,12 +163,11 @@ class AddActivity extends Component {
                   </div>
                 </div>
 
-
                 <CategoriesCheckboxes
-                  currentCategories={this.state.categories}
+                  label="Categories"
+                  value={this.state.categories}
                   onChange={this.handleChange}
                 />
-
 
                 <div className="field">
                   <label className="label">Possible roughly from:</label>
