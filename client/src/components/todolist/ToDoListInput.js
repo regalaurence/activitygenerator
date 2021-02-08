@@ -28,8 +28,9 @@ class ToDoListInput extends Component {
   // }
   getRandomActivity = () => {
    console.log("RANDOM ACTIVITY RETURNING HERE");
-   return <div>"RANDOM ACTIVITY RETURNING HERE"<RandomActivity/></div>
+   return <RandomActivity/>
   }
+  
   handleChange = (event) => {
     let { name, value, id } = event.target;
     if (id === "categories") {

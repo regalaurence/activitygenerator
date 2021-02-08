@@ -16,7 +16,7 @@ import MakeMeDo from './components/todolist/MakeMeDo';
 import Home from './components/Home'
 import Weather from './components/Weather'
 import Footer from './components/Footer'
-
+import UserProfile from './components/UserProfile'
 class App extends Component {
 
   state = {
@@ -94,6 +94,9 @@ class App extends Component {
           <Signup user={this.state.currentUser} />
         </Route>
         <Switch>
+        <Route path="/userprofile">
+          <UserProfile user={this.state.currentUser} />
+        </Route>
           <Route path="/make-me-do" render={() => (
             this.state.currentUser
               ? <MakeMeDo user={this.state.currentUser} />
