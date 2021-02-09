@@ -13,8 +13,11 @@ class CreateToDoList extends Component {
   }
 
   populateAcitivities = () => {
+    //console.log("populate activities runs")
     let promises = []
     let activitiesToPopulate = this.props.user.bookmarkedActivities
+
+    //console.log("activities to populate: ", activitiesToPopulate)
 
     for (let i = 0; i < activitiesToPopulate.length; i++) {
       promises.push(axios.get(`/api/activities/${activitiesToPopulate[i].activityID}`)
@@ -24,9 +27,12 @@ class CreateToDoList extends Component {
       )
     }
 
+    //console.log("Promises: ", promises)
+
     Promise.all(promises)
       .then((response) => {
-        console.log("CHECK THIS OUTTTTTTT: " + response)
+        //console.log("All promises resolved")
+        //console.log("CHECK THIS OUTTTTTTT: " + response)
         this.setState({
           userActivitiesFromDb: response
         })
@@ -37,10 +43,11 @@ class CreateToDoList extends Component {
   // Call to backend to get allactivities
 
   componentDidMount = () => {
+    //console.log("calling populate activities")
     this.populateAcitivities()
     axios.get('/api/activities')
       .then(response => {
-        console.log("Repsonse from backend: ", response.data)
+        //console.log("Repsonse from backend: ", response.data)
         this.setState({
           allActivitiesFromDb: response.data,
         })
@@ -50,6 +57,11 @@ class CreateToDoList extends Component {
   // Functions that generate todo list as Class Methods for CreateToDoList
 
   generateToDoList = (time, categories) => {
+
+    if (this.state.userActivitiesFromDb === 0 || this.state.allActivitiesFromDb.length === 0) {
+      return [];
+    }
+
     let toDoList = [];
     let timeLeft = time;
 
@@ -58,7 +70,7 @@ class CreateToDoList extends Component {
 
     // Step 1b: Assess how many can be added to the todolist
     let highPriorityForToDoList = this.selectActivitiesForToDoList(highPriorityToDos, timeLeft)
-    console.log("High Prio for Todo List: ", highPriorityForToDoList)
+    //console.log("High Prio for Todo List: ", highPriorityForToDoList)
     highPriorityForToDoList.forEach(todo => toDoList.push(todo))
 
     // Update timeLeft
@@ -67,49 +79,49 @@ class CreateToDoList extends Component {
 
     // Step 2a: Check for activities that meet certain criteria (on user list matching to possible categories)
     let savedActivities = this.checkForSavedActivities(this.state.userActivitiesFromDb, categories) // returns highprio todos
-    console.log("Saved", savedActivities)
+    //console.log("Saved", savedActivities)
 
     // Step 2b: Assess how many can be added to the todolist
     let savedActivitiesForToDoList = this.selectActivitiesForToDoList(savedActivities, timeLeft)
     savedActivitiesForToDoList.forEach(todo => toDoList.push(todo))
 
     // Update timeLeft
-    console.log("Duration", this.sumActivityDuration(toDoList))
+    //console.log("Duration", this.sumActivityDuration(toDoList))
     timeLeft = time - this.sumActivityDuration(toDoList)
 
     // Step 3a: Check for activities that meet criteria in all activities
     let suggestedActivities = this.checkForAllActivities(this.state.allActivitiesFromDb, categories, timeLeft)
-    console.log("suggested", suggestedActivities)
+    //console.log("suggested", suggestedActivities)
 
     //Step 3b: Assess how many can be added to the todolist
     let suggestedActivitiesForToDoList = this.selectSuggestedActivitiesForToDoList(suggestedActivities, timeLeft)
     suggestedActivitiesForToDoList.forEach(todo => toDoList.push(todo))
 
     // Update timeLeft
-    console.log("Duration", this.sumActivityDuration(toDoList))
+    //console.log("Duration", this.sumActivityDuration(toDoList))
     timeLeft = time - this.sumActivityDuration(toDoList)
 
-    console.log("TimeLeft: ", timeLeft)
-    console.log("Todo List in function: ", toDoList)
+    //console.log("TimeLeft: ", timeLeft)
+    //console.log("Todo List in function: ", toDoList)
 
     return toDoList
 
   }
 
   checkForHighPriorityToDos = (userActivities) => {
-    console.log("checking for HighPrioTodos...")
-    console.log("Activities I received to check for prio:", userActivities)
+    //console.log("checking for HighPrioTodos...")
+    //console.log("Activities I received to check for prio:", userActivities)
     return userActivities.filter(activity => activity.isHighPriority === true)
   }
 
   checkForSavedActivities = (userActivities, categories) => {
-    console.log("Checking for saved activities");
-    console.log("Activities I received to check for saved:", userActivities)
+    //console.log("Checking for saved activities");
+    //console.log("Activities I received to check for saved:", userActivities)
 
     let savedActivities = userActivities.filter(activity => {
-      console.log("Activity in savedActivities", activity)
+      //console.log("Activity in savedActivities", activity)
       return categories.some(category => {
-        console.log("Category in savedActivities", category)
+        //console.log("Category in savedActivities", category)
         return activity.activity.categories.includes(category)
       })
     }).filter(activity => activity.isHighPriority !== true)
@@ -117,37 +129,28 @@ class CreateToDoList extends Component {
   }
 
   checkForAllActivities = (allActivities, categories) => {
-    console.log("Checking for all activities");
+    //console.log("Checking for all activities");
 
     let suggestedActivities = allActivities
       .filter(activity => {
-        //console.log(activity)
         return categories.some(category => {
-          //console.log(category)
           return activity.categories.includes(category)
         })
       })
-
-    // suggestedActivities.map(activity => {
-    //   return activity.plannedDuration = Number(activity.minDuration)
+    // .filter(activity => {
+    //   // return only activities that are not already on the todolist
     // })
 
     return suggestedActivities
   }
 
-  // sumActivityDuration = (activities) => {
-  //   if (activities.length > 0) {
-  //     let objWithSum = activities.reduce((todo1, todo2) => ({ minDuration: todo1.activity.minDuration + todo2.activity.minDuration }))
-  //     return objWithSum.minDuration
-  //   }
-  //   return 0
-  // }
-
   sumActivityDuration = (activities) => {
+    //console.log("Sum, activtities passed in: ", activities)
     if (activities.length > 0) {
       let sum = 0
       activities.forEach(activity => {
-        if (activity.isHighPriority !== undefined) {
+        //console.log("each activity ", activity)
+        if (activity?.activity?.minDuration) {
           sum = sum + activity.activity.minDuration
         } else {
           sum = sum + activity.minDuration
@@ -159,10 +162,10 @@ class CreateToDoList extends Component {
   }
 
   selectSuggestedActivitiesForToDoList = (activities, timeLeft) => {
-    console.log("Activities in Select for toddo list", activities)
-    console.log("Timeleft in select: ", timeLeft)
+    //console.log("Activities in Select for toddo list", activities)
+    //console.log("Timeleft in select: ", timeLeft)
     let activityDuration = this.sumActivityDuration(activities)
-    console.log("Duration in Function", activityDuration)
+    //console.log("Duration in Function", activityDuration)
 
     if (activityDuration <= timeLeft) {
       return activities
@@ -176,10 +179,10 @@ class CreateToDoList extends Component {
   }
 
   selectActivitiesForToDoList = (activities, timeLeft) => {
-    console.log("Activities in Select for toddo list", activities)
-    console.log("Timeleft in select: ", timeLeft)
+    //console.log("Activities in Select for toddo list", activities)
+    //console.log("Timeleft in select: ", timeLeft)
     let activityDuration = this.sumActivityDuration(activities)
-    console.log("Duration in Function", activityDuration)
+    //console.log("Duration in Function", activityDuration)
 
     if (activityDuration <= timeLeft) {
       return activities
@@ -192,21 +195,10 @@ class CreateToDoList extends Component {
     }
   }
 
-  renderTodoList = (todos) => {
-    console.log("calling render todo list")
-    return todos.map(todo => {
-      if (todo.isHighPriority !== undefined) {
-        return <li>{todo.activity.name}</li>
-      } else {
-        return <li>{todo.name}</li>
-      }
-    })
-  }
-
   render() {
 
     let generatedToDoList = this.generateToDoList(this.props.availableTime, this.props.possibleCategories)
-    console.log("Todolist in Render: ", generatedToDoList)
+    console.log("Here is the generated TodoList: ", generatedToDoList)
 
     return (
       <div>
@@ -218,12 +210,10 @@ class CreateToDoList extends Component {
             {this.props.possibleCategories.map(category => <li>{category}</li>)}
           </ul>
         </div>
-        <div id="todolist">
-          {generatedToDoList.map(todo => <ToDoListItem todo={todo} />)}
-          {/* <ul>
-            {this.renderTodoList(generatedToDoList)}
-          </ul> */}
-        </div>
+        {generatedToDoList ?
+          <div id="todolist">
+            {generatedToDoList.map(todo => <ToDoListItem todo={todo} />)}
+          </div> : null}
       </div>
     )
   }

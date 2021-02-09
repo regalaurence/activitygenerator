@@ -39,7 +39,7 @@ class ToDoListItem extends Component {
     let todoTime = 0
     console.log(todo)
 
-    if (todo.isHighPriority !== undefined) {
+    if ("activity" in todo) {
       todoName = todo.activity.name
       todoTime = todo.activity.minDuration
     } else {
