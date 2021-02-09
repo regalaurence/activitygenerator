@@ -49,15 +49,15 @@ class App extends Component {
     }
   }
 
-  addToFavorite = (activityIDtoAdd, priorityToAdd) => {
-    let newFavorites = this.state.currentFavorites.concat({ activityID: activityIDtoAdd, isHighPriority: priorityToAdd })
+  addToFavorite = (activityToAdd) => {
+    let newFavorites = [...this.state.currentFavorites, activityToAdd]
     this.setState({
       currentFavorites: newFavorites
     })
   }
 
   removeFromFavorite = (activityIDToRemove) => {
-    let filteredDeletionFavorites = this.state.currentFavorites.filter(activity => activity.activityID !== activityIDToRemove)
+    let filteredDeletionFavorites = this.state.currentFavorites.filter(activity => activity._id !== activityIDToRemove)
     this.setState({
       currentFavorites: filteredDeletionFavorites
     })
