@@ -9,7 +9,7 @@ class Activity extends Component {
   }
 
   componentDidMount = () => {
-    let isFavorite = !!this.state.currentFavorites.some(item => item.activityID === this.props.idToPush)
+    let isFavorite = !!this.state.currentFavorites.some(item => item._id === this.props.activity._id)
     console.log(isFavorite)
     if (isFavorite) {
       this.setState({
@@ -18,16 +18,15 @@ class Activity extends Component {
     }
   }
 
-
   toggleFavoritesHandler = (event) => {
     if (this.state.isFavorite === false) {
-      this.props.addToFavorite(this.props.idToPush, this.state.isHighPriority)
+      this.props.addToFavorite(this.props.activity)
       this.setState({
         isFavorite: true
       })
     }
     else if (this.state.isFavorite === true) {
-      this.props.removeFromFavorite(this.props.idToPush)
+      this.props.removeFromFavorite(this.props.activity._id)
       this.setState({
         isFavorite: false
       })

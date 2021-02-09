@@ -85,7 +85,6 @@ class AllActivities extends Component {
               {filteredBySearchAndCatsActivities
                 .map(activity => <Activity
                   key={activity._id}
-                  idToPush={activity._id}
                   activity={activity}
                   currentFavorites={this.props.currentFavorites}
                   addToFavorite={this.props.addToFavorite}
