@@ -3,13 +3,14 @@ import axios from 'axios';
 
 class RandomActivity extends Component {
   state = {
-    activitiesFromDb: []
+    activitiesFromDb: [],
+    loading : true
   }
 
   componentDidMount() {
     axios.get("/api/activities")
       .then(response => {
-        this.setState({ activitiesFromDb: response.data })
+        this.setState({ activitiesFromDb: response.data, loading: false })
         console.log("Response from backend for random activity: ", response.data)
       })
   }
@@ -21,12 +22,18 @@ class RandomActivity extends Component {
   }
   // Getting random activity from both - Users and allFromDb
   generateRandomActivity = () => {
-    let allActivities = [...this.state.allActivitiesFromDb]
+    let allActivities = [...this.state.activitiesFromDb]
     let generatedActivityNumber = this.getRandomIntInclusive(0, allActivities.length)
     return (allActivities[generatedActivityNumber])
 
   }
   render() {
+
+    if (this.state.loading) {
+      return <div>Loading ... </div>
+    }
+
+
     let randomActivity = this.generateRandomActivity()
     return (
       <div>{randomActivity.name}Test</div>

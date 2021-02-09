@@ -94,7 +94,7 @@ class App extends Component {
           <Signup user={this.state.currentUser} />
         </Route>
         <Switch>
-        <Route path="/userprofile">
+        <Route path="/user-profile">
           <UserProfile user={this.state.currentUser} />
         </Route>
           <Route path="/make-me-do" render={() => (

@@ -7,7 +7,7 @@ class UserProfile extends Component {
     username: "",
     // password: "",
     preferences: [],
-    oldpreferences: [],
+  
   }
 
   componentDidMount = () => {
@@ -15,8 +15,8 @@ class UserProfile extends Component {
     console.log(user.username)
     this.setState({
       username: user.username,
-      preferences: [],
-      oldpreferences: user.preferences
+      preferences: user.preferences,
+     
     })
   }
 
@@ -41,12 +41,10 @@ class UserProfile extends Component {
 
     let button = event.currentTarget
     this.newChosenPreferences.push(button.value)
-    console.log(this.chosenPreferences)
+    console.log(this.newChosenPreferences)
 
-    if (this.newChosenPreferences > 7) {
-      return  (<div className="column has-text-centered">
-      <button className="button is-warning" key="submitNewPreferences" type="submit" onClick={this.updatingUserPreferences}>Save changes</button>
-    </div>)
+    if (this.newChosenPreferences.length >= 7) {
+      this.updatingUserPreferences()
     }
   }
 
@@ -75,7 +73,11 @@ class UserProfile extends Component {
           <div className="content has-text-centered">
           <h2 className="is-small">Username: {this.state.username}</h2></div>
           <div className="content has-text-centered">
-          <h5 className="is-small">Your preferences: {this.state.oldpreferences}</h5></div>
+          <h5 className="is-small">Your preferences: </h5> {this.state.preferences.map(pref => {
+          return <p>{pref}</p>  
+          })}
+          
+          </div>
           <div className="columns is-multiline is-vcentered is-centered has-text-centered">
         {this.creatingButtonsFunction()}
         </div>
