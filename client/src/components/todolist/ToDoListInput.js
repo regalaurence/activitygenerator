@@ -20,7 +20,7 @@ class ToDoListInput extends Component {
 
   handleChange = (event) => {
     let { name, value, id } = event.target;
-
+    event.preventDefault()
     if (id === "categories") {
       if (!this.state.possibleCategories.includes(name)) {
         this.setState({

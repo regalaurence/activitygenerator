@@ -118,7 +118,7 @@ class AddActivity extends Component {
                   <div className="control">
                     <input className="input"
                       type="text"
-                      placeholder="e.g Listening podcast"
+                      placeholder="e.g Listen to some podcast"
                       name="name"
                       value={this.state.name}
                       onChange={this.handleChange}
@@ -131,7 +131,7 @@ class AddActivity extends Component {
                   <div className="control">
                     <input className="input"
                       type="text"
-                      placeholder="e.g Listening 'Armchair Expert' ep. 63"
+                      placeholder="e.g 'Armchair Expert' ep. 63"
                       name="description"
                       value={this.state.description}
                       onChange={this.handleChange}
