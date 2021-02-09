@@ -27,9 +27,10 @@ class AddActivity extends Component {
 
     return axios.post("/api/activities", { name, description, url, minDuration, creator, categories, startTime, endTime, cost, isHighPriority, seasonStart, seasonEnd })
       .then((response) => {
+        let { _id, name, description, url, minDuration, creator, categories, startTime, endTime, cost, isHighPriority, seasonStart, seasonEnd } = response.data
         axios.put(`/api/user/${this.props.user._id}`,
           {
-            $push: { "bookmarkedActivities": { "activityID": response.data._id, "isHighPriority": response.data.isHighPriority } }
+            $push: { "bookmarkedActivities": { _id, name, description, url, minDuration, creator, categories, startTime, endTime, cost, isHighPriority, seasonStart, seasonEnd } }
           })
       })
       .then(() => {
@@ -117,7 +118,7 @@ class AddActivity extends Component {
                   <div className="control">
                     <input className="input"
                       type="text"
-                      placeholder="e.g Listening podcast"
+                      placeholder="e.g Listen to some podcast"
                       name="name"
                       value={this.state.name}
                       onChange={this.handleChange}
@@ -130,7 +131,7 @@ class AddActivity extends Component {
                   <div className="control">
                     <input className="input"
                       type="text"
-                      placeholder="e.g Listening 'Armchair Expert' ep. 63"
+                      placeholder="e.g 'Armchair Expert' ep. 63"
                       name="description"
                       value={this.state.description}
                       onChange={this.handleChange}
