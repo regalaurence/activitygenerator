@@ -117,7 +117,8 @@ class App extends Component {
           <Route path="/add-activity" render={(props) => (
             this.state.currentUser
               ? <NewActivityForm
-                {...props} user={this.state.currentUser} />
+                {...props} user={this.state.currentUser}
+                addToFavorite={this.addToFavorite} />
               : <Redirect to='login' />
           )} />
           <Route path="/my-activities" render={(props) => (
