@@ -65,7 +65,8 @@ handleLogOut = () => {
 
           <div className="navbar-end">
           <a className="navbar-item">
-              {this.props.currentUser ? <div to="/make-me-do" className="has-text-grey-dark">{this.props.currentUser.username}</div> : null}
+          {/* ANITA CHENGE HERE FOR USER PROFILE */}
+              {this.props.currentUser ? <div to="/make-me-do" className="has-text-grey-dark"><Link to="/user-profile" className="button-is-light">Your profile</Link></div> : null}
             </a>
             <div className="navbar-item">
               <div className="buttons">
