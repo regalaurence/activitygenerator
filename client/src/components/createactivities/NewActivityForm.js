@@ -27,9 +27,10 @@ class AddActivity extends Component {
 
     return axios.post("/api/activities", { name, description, url, minDuration, creator, categories, startTime, endTime, cost, isHighPriority, seasonStart, seasonEnd })
       .then((response) => {
+        let { _id, name, description, url, minDuration, creator, categories, startTime, endTime, cost, isHighPriority, seasonStart, seasonEnd } = response.data
         axios.put(`/api/user/${this.props.user._id}`,
           {
-            $push: { "bookmarkedActivities": { "activityID": response.data._id, "isHighPriority": response.data.isHighPriority } }
+            $push: { "bookmarkedActivities": { _id, name, description, url, minDuration, creator, categories, startTime, endTime, cost, isHighPriority, seasonStart, seasonEnd } }
           })
       })
       .then(() => {
