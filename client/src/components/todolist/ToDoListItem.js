@@ -31,13 +31,10 @@ class ToDoListItem extends Component {
 
   render() {
 
-    //let generatedToDoList = this.generateToDoList(this.props.availableTime, this.props.possibleCategories)
-    //console.log("Todolist in Render: ", generatedToDoList)
-
     let todo = this.props.todo
     let todoName = ""
     let todoTime = 0
-    console.log(todo)
+    //console.log(todo)
 
     if ("activity" in todo) {
       todoName = todo.activity.name

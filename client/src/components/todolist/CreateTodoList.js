@@ -44,12 +44,13 @@ class CreateToDoList extends Component {
 
   componentDidMount = () => {
     //console.log("calling populate activities")
-    this.populateAcitivities()
+    //this.populateAcitivities()
     axios.get('/api/activities')
       .then(response => {
         //console.log("Repsonse from backend: ", response.data)
         this.setState({
           allActivitiesFromDb: response.data,
+          userActivitiesFromDb: this.props.user.bookmarkedActivities
         })
       })
   }
@@ -90,7 +91,7 @@ class CreateToDoList extends Component {
     timeLeft = time - this.sumActivityDuration(toDoList)
 
     // Step 3a: Check for activities that meet criteria in all activities
-    let suggestedActivities = this.checkForAllActivities(this.state.allActivitiesFromDb, categories, timeLeft)
+    let suggestedActivities = this.checkForAllActivities(this.state.allActivitiesFromDb, categories, toDoList)
     //console.log("suggested", suggestedActivities)
 
     //Step 3b: Assess how many can be added to the todolist
@@ -122,25 +123,32 @@ class CreateToDoList extends Component {
       //console.log("Activity in savedActivities", activity)
       return categories.some(category => {
         //console.log("Category in savedActivities", category)
-        return activity.activity.categories.includes(category)
+        return activity.categories.includes(category)
       })
     }).filter(activity => activity.isHighPriority !== true)
     return savedActivities
   }
 
-  checkForAllActivities = (allActivities, categories) => {
+  checkForAllActivities = (allActivities, categories, todolist) => {
     //console.log("Checking for all activities");
-
-    let suggestedActivities = allActivities
+    console.log("Todolist: ", todolist)
+    let filteredActivities = allActivities
       .filter(activity => {
+        console.log("running")
         return categories.some(category => {
           return activity.categories.includes(category)
         })
       })
-    // .filter(activity => {
-    //   // return only activities that are not already on the todolist
-    // })
 
+    let suggestedActivities = filteredActivities
+      .filter(suggestion => {
+        console.log("suggestion 1", suggestion)
+        return todolist.every(todo => {
+          console.log("todo in second filter", todo)
+          return todo._id !== suggestion._id
+        })
+      })
+    console.log("Here are my suggestions: ", suggestedActivities)
     return suggestedActivities
   }
 
@@ -187,7 +195,7 @@ class CreateToDoList extends Component {
     if (activityDuration <= timeLeft) {
       return activities
     } else {
-      activities.sort((todo1, todo2) => todo1.activity.minDuration - todo2.activity.minDuration)
+      activities.sort((todo1, todo2) => todo1.minDuration - todo2.minDuration)
       while (this.sumActivityDuration(activities) > timeLeft) {
         activities.pop() // Remove the most time-consuming activity
       }
