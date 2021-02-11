@@ -14,12 +14,12 @@ const CategoriesCheckboxes = (props) => {
       {/* <label>Choose categories:</label> */}
       {availableCategories.map(c => {
         return (
-          <div className="column is-one-third-mobile is-one-quarter-tablet is-one-quarter-desktop is-one-quarter-widescreen is-one-quarter-fullhd">
-          <button id="categories" name={c} className="has-text-centered" onClick={props.onChange}>
+          <div className="column is-one-third-mobile is-one-quarter-tablet is-one-quarter-desktop is-one-quarter-widescreen is-one-quarter-fullhd has-text-centered">
+          <button id="categories" className="has-text-centered is-white">
           <figure className="image column is-vcentered is-centered">
-              <img className="image column is-vcentered is-centered" style={{ maxWidth: "180px" }} src={"images/" + c + ".png"} />
+              <img id="categories" className="image" name={c} style={{ maxWidth: "180px" }} src={"images/" + c + ".png"} onClick={props.onChange}/>
             </figure>
-            {c + " "}</button><br />
+            </button><br />{c}
           </div>
         )
       })}
@@ -28,3 +28,7 @@ const CategoriesCheckboxes = (props) => {
 }
 
 export default CategoriesCheckboxes;
+
+{/* <figure className="image column is-vcentered is-centered">
+              <img className="image column is-vcentered is-centered" style={{ maxWidth: "180px" }} src={"images/" + c + ".png"} />
+            </figure> */}

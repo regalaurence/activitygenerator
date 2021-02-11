@@ -1,7 +1,5 @@
 import React, { Component } from 'react';
 import axios from 'axios';
-import Home from './Home';
-import { Redirect } from 'react-router-dom'
 import { withRouter } from 'react-router-dom'
 
 class StartGame extends Component {
@@ -10,14 +8,14 @@ class StartGame extends Component {
     this.chosenPreferences = [];
     this.state = {
       preferences: [
-        { propositionOne: "Relax", propositionTwo: "Sport" }
+        { propositionOne: ["Relax", "Relaxing"], propositionTwo: ["Sport", "Sports"] }
       ]
     };
   }
 
 
   updatingUserPreferences = () => {
-    
+
     const preferences = this.chosenPreferences;
     axios.put(`/api/user/${this.props.user._id}`, { preferences })
       .then(() => {
@@ -39,8 +37,8 @@ class StartGame extends Component {
     return this.state.preferences.map(pref => {
       return (
         <div className="buttons is-vcentered is-centered">
-          <button className="button is-light" key={pref.propositionOne} type="submit" onClick={this.pushToCategories} value={pref.propositionOne}>{pref.propositionOne}</button>
-          <button className="button is-light" key={pref.propositionTwo} type="submit" onClick={this.pushToCategories} value={pref.propositionTwo}>{pref.propositionTwo}</button>
+          <button className="button is-light" key={pref.propositionOne[0]} type="submit" onClick={this.pushToCategories} value={pref.propositionOne[1]}>{pref.propositionOne[0]}</button>
+          <button className="button is-light" key={pref.propositionTwo[0]} type="submit" onClick={this.pushToCategories} value={pref.propositionTwo[1]}>{pref.propositionTwo[0]}</button>
         </div>
       )
     }
@@ -56,37 +54,37 @@ class StartGame extends Component {
 
     if (this.chosenPreferences.length === 1) {
       this.setState({
-        preferences: [{ propositionOne: "Indoor", propositionTwo: "Outdoor" }]
+        preferences: [{ propositionOne: ["Indoor", "Indoors"], propositionTwo: ["Outdoor", "Outdoors"] }]
       })
     }
 
     if (this.chosenPreferences.length === 2) {
       this.setState({
-        preferences: [{ propositionOne: "Early Bird", propositionTwo: "Late night life" }]
+        preferences: [{ propositionOne: ["Gym", "Sports"], propositionTwo: ["Bathtube", "Relaxing"] }]
       })
     }
 
     if (this.chosenPreferences.length === 3) {
       this.setState({
-        preferences: [{ propositionOne: "Alone", propositionTwo: "Together" }]
+        preferences: [{ propositionOne: ["Leave me alone", "Relaxing"], propositionTwo: ["Take me out", "Socializing"] }]
       })
     }
 
     if (this.chosenPreferences.length === 4) {
       this.setState({
-        preferences: [{ propositionOne: "Create", propositionTwo: "Consume" }]
+        preferences: [{ propositionOne: ["Cleaning master", "Housework"], propositionTwo: ["Dust doesn't hurt", "Adventures"] }]
       })
     }
 
     if (this.chosenPreferences.length === 5) {
       this.setState({
-        preferences: [{ propositionOne: "Online", propositionTwo: "Offline" }]
+        preferences: [{ propositionOne: ["Online", "Online"], propositionTwo: ["Offline", "Outside"] }]
       })
     }
 
     if (this.chosenPreferences.length === 6) {
       this.setState({
-        preferences: [{ propositionOne: "Tea", propositionTwo: "Coctail" }]
+        preferences: [{ propositionOne: ["Tea", "Relaxing"], propositionTwo: ["Bungee jumping", "Adventures"] }]
       })
     }
 
@@ -103,7 +101,7 @@ class StartGame extends Component {
         <div className="hero-body">
           <div className="container">
             <div className="columns is-vcentered is-centered">
-              <h1 className="subtitle has-text-centered pb-5">Choose one of the options to set your profile</h1>
+              <h1 className="subtitle has-text-centered pb-5">Choose one of the options to create your profile</h1>
             </div>
             <div className="columns is-vcentered is-centered">
               {this.creatingButtonsFunction()}
