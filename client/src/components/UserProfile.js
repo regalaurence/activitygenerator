@@ -40,10 +40,12 @@ class UserProfile extends Component {
   pushToCategories = (event) => {
 
     let button = event.currentTarget
-    this.newChosenPreferences.push(button.value)
-    console.log(this.newChosenPreferences)
 
-    if (this.newChosenPreferences.length >= 7) {
+    if(!this.newChosenPreferences.includes(button.value))
+   {this.newChosenPreferences.push(button.value)
+    console.log(this.newChosenPreferences)}
+
+    if (this.newChosenPreferences.length >= 1) {
       this.updatingUserPreferences()
     }
   }
@@ -51,7 +53,7 @@ class UserProfile extends Component {
 
 
   creatingButtonsFunction = () => {
-    let possiblePreferences = ["Sport", "Relax", "Indoor", "Outdoor", "Early Bird", "Late night life", "Alone", "Together", "Create", "Consume", "Online", "Offline", "Tea", "Coctail"];
+    let possiblePreferences = ["Sports", "Relaxing", "Indoors", "Housework", "Socializing", "Adventures", "Indoors", "Online",];
     return possiblePreferences.map(pref => {
         return (
           <div className="column has-text-centered is-one-quarter-mobile is-one-quarter-tablet is-one-quarter-desktop is-one-quarter-widescreen is-one-quarter-fullhd">
