@@ -18,6 +18,13 @@ $primary: #cae7df;
 $link: darkgrey;
 $warning: #2a3166;
 $footer-background-color: white;
+#categories{
+  background-color: white;
+  border:none;
+}
+#categories:hover{
+  border: 1px solid gray;
+}
 
 
 // Update Bulma's global variables
