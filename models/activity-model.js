@@ -14,8 +14,8 @@ const activitySchema = new Schema({
   timeWindowEnd: Number,
   hasCost: Boolean,
   isHighPriority: Boolean,
-  seasonStart: Date,
-  seasonEnd: Date,
+  seasonStart: Number,
+  seasonEnd: Number,
 });
 
 const Activity = mongoose.model('Activity', activitySchema);
