@@ -15,6 +15,7 @@ import StartGame from './components/StartGame'
 import MakeMeDo from './components/todolist/MakeMeDo';
 import Home from './components/Home'
 import Weather from './components/Weather'
+import Welcome from './components/homepage/Welcome'
 import Footer from './components/Footer'
 import UserProfile from './components/UserProfile'
 class App extends Component {
@@ -81,7 +82,7 @@ class App extends Component {
     return (
       <div className="App">
         <Navbar currentUser={this.state.currentUser} logoutUser={this.logoutUser} />
-
+        <Welcome/>
         {this.state.currentUser && this.checkPreferences()}
         {/* !this.state.currentUser && <Redirect to="/login"></Redirect> */}
 
