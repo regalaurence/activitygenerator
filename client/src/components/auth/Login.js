@@ -4,7 +4,11 @@ import { Link, withRouter } from 'react-router-dom';
 
 class Login extends Component {
 
-  state = { username: "", password: "" };
+  state = { 
+    username: "", 
+    password: "" ,
+    isError: false
+  };
 
   handleFormSubmit = (event) => {
     event.preventDefault();
@@ -14,9 +18,14 @@ class Login extends Component {
 
     axios.post("/api/login", { username, password })
       .then((resp) => {
-        this.setState({ username: "", password: "" });
+        this.setState({ username: "", password: ""});
         this.props.updateCurrentUser(resp.data)
         this.props.history.push('/home');
+      })
+      .catch((err) => {
+        this.setState({
+          isError: true
+        })
       })
   }
 
