@@ -9,8 +9,6 @@ class UserProfile extends Component {
     preferences: [],
   }
 
-
-
   componentDidMount = () => {
     let user = this.props.user
     console.log(user.username)
@@ -61,9 +59,14 @@ class UserProfile extends Component {
     let possiblePreferences = ["Sports", "Relaxing", "Indoors", "Housework", "Socializing", "Adventures", "Outdoors", "Online",];
     return possiblePreferences.map(pref => {
       return (
-        <div className="column has-text-centered is-one-quarter-mobile is-one-quarter-tablet is-one-quarter-desktop is-one-quarter-widescreen is-one-quarter-fullhd">
-          <button className="button is-primary" key={pref} type="submit" onClick={this.pushToCategories} value={pref}>{pref}</button>
-        </div>)
+        <div className="column is-one-third-mobile is-one-quarter-tablet is-one-quarter-desktop is-one-quarter-widescreen is-one-quarter-fullhd has-text-centered">
+        <button id="categories" className="has-text-centered is-white button-checkboxes" key={pref} type="submit" onClick={this.pushToCategories} value={pref}>
+        <figure className="image column is-vcentered is-centered">
+            <img id="categories" className="image" key={pref} name={pref} style={{ maxWidth: "180px" }} src={"images/" + pref + ".png"} />
+          </figure>
+          </button><br />{pref}
+        </div>      
+        )
     }
     )
   }
@@ -76,14 +79,15 @@ class UserProfile extends Component {
             <div className="columns is-vcentered is-centered">
               <div className="is-vcentered is-centered">
                 <div className="content has-text-centered">
-                  <h2 className="is-small">Username: {this.state.username}</h2></div>
-                <div className="content has-text-centered">
-                  <h5 className="is-small">Your preferences: </h5> {this.state.preferences.map(pref => {
-                    return <p>{pref}</p>
+                  <h2 className="is-small">Hello {this.state.username}!</h2></div>
+                <div className="column content has-text-centered">
+                  <h5 className="is-small">Your preferences are: </h5> {this.state.preferences.map(pref => {
+                    return <li> {pref} </li>
                   })}
-
+                  <div className="content has-text-centered mt-4">
+                  <h5 className="is-small">To edit your preferences use the buttons below</h5></div>
                 </div>
-                <div className="columns is-multiline is-vcentered is-centered has-text-centered">
+                <div className="columns is-multiline is-one-third-mobile is-one-quarter-tablet is-one-quarter-desktop is-one-quarter-widescreen is-one-quarter-fullhd">
                   {this.creatingButtonsFunction()}
                 </div>
                 {/* <div className="column has-text-centered">
@@ -99,3 +103,9 @@ class UserProfile extends Component {
 }
 
 export default UserProfile;
+
+
+
+{/* <div className="column is-multiline has-text-centered is-one-quarter-mobile is-one-quarter-tablet is-one-quarter-desktop is-one-quarter-widescreen is-one-quarter-fullhd">
+          <button className="button is-primary" key={pref} type="submit" onClick={this.pushToCategories} value={pref}>{pref}</button>
+        </div> */}
