@@ -54,7 +54,7 @@ class Login extends Component {
                 <img style={{ maxWidth: "512px" }} src="images/CloudFinalDarkText.png" />
               </figure>
             </div>
-            <div className="column is-vcentered is-centered">
+            <div className="columns is-vcentered is-centered">
               <form style={{ maxWidth: "512px" }} onSubmit={this.handleFormSubmit}>
               <h2 className="title is-4">Log in</h2>
                 <div className="field">
@@ -67,11 +67,12 @@ class Login extends Component {
                 <div className="field">
                   <label className="label">Password</label>
                   <div className="control">
-                    <p className="control has-icons-left">
+                    <p className="control">
+                    {/* <p className="control has-icons-left"> */}
                       <input className="input" type="password" placeholder="Password" name="password" value={this.state.password} onChange={e => this.handleChange(e)} />
-                      <span className="icon is-small is-left">
+                      {/* <span className="icon is-small is-left">
                         <i className="fas fa-lock"></i>
-                      </span>
+                      </span> */}
                     </p>
                   </div>
                 </div>

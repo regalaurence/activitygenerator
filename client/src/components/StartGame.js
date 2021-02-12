@@ -111,7 +111,7 @@ class StartGame extends Component {
               {this.creatingButtonsFunction()}
             </div>
             <div className="columns is-vcentered is-centered">
-              <figure className="image">
+              <figure className="column is-full has-text-centered">
                 <img style={{ maxWidth: "512px" }} src="images/thinking_girl_with_plants.png" />
               </figure>
             </div>

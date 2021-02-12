@@ -4,29 +4,63 @@ import axios from 'axios';
 class MyActivities extends Component {
 
   state = {
-    favoriteActivities: this.props.currentFavorites
+    favoriteActivities: this.props.currentFavorites,
+    activityDetailsShown: false,
+    clickedActivity: null,
+    chosenOne: null
   }
 
+
+  showActivityDetails = (event) => {
+      
+     
+    this.setState({ 
+      favoriteActivities: this.props.currentFavorites,
+      
+      activityDetailsShown: true,
+      clickedActivity: event.target.value,
+      chosenOne: null
+     })
+  }
+
+printDetails = (argActivity) => {
+let forDetail = [...this.state.favoriteActivities]
+let foundActivity = forDetail.find(el => el._id === argActivity)
+return (<p>{foundActivity.name}</p>)
+}
+
+
+
   render() {
+
+
     return (
-      <section className="hero">
+
+      // this.state.activityDetailsShown ?
+      // <div><p>Checking here</p></div> :
+
+      <section className="hero is-fullheight">
         <div className="hero-body">
           <div className="container">
             <div className="columns is-vcentered is-centered">
-              <figure className="image">
+              <figure className="image is-vcentered is-centered has-text-centered mb-6">
                 <img style={{ maxWidth: "412px" }} src="images/Myactivities.png" />
               </figure>
             </div>
             <div className="columns is-multiline is-mobile">
-        {this.state.favoriteActivities &&
-          this.state.favoriteActivities.map(activity => <div className="column is-full has-text-centered">{activity.name} || 
-            {activity.isHighPriority ? <span> High priority</span> : <span> Low priority</span>} </div>
-          )}
-          </div>
+              {this.state.favoriteActivities &&
+                this.state.favoriteActivities.map(activity =>
+                <div className="column is-full has-text-centered"><button onClick={this.showActivityDetails} key={activity._id} value={activity._id} className="button is-primary mt-2 mb-2">{activity.name}</button>
+            {activity.isHighPriority ? <span> High priority</span> : <span> Low priority</span>} 
+            {activity._id == this.state.clickedActivity ? <div className="columns is-multiline is-mobile">
+{this.printDetails(this.state.clickedActivity)}
+            
+            </div> : <p></p>}
+            </div>    
+                )}    
+            </div>
           </div>
         </div>
-
-
       </section>
     )
   }
