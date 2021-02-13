@@ -10,12 +10,12 @@ const initialState = {
   url: [],
   minDuration: 20,
   categories: [],
-  startTime: 7,
-  endTime: 22,
+  timeWindowStart: 7,
+  timeWindowEnd: 22,
   cost: false,
   isHighPriority: false,
-  seasonStart: new Date('2020-01'),
-  seasonEnd: new Date('2020-12')
+  seasonStart: 1,
+  seasonEnd: 12
 }
 
 class AddActivity extends Component {
@@ -23,11 +23,11 @@ class AddActivity extends Component {
   state = { ...initialState, creator: this.props.user._id }
 
   submitData = () => {
-    let { name, description, url, minDuration, creator, categories, startTime, endTime, cost, isHighPriority, seasonStart, seasonEnd } = this.state;
+    let { name, description, url, minDuration, creator, categories, timeWindowStart, timeWindowEnd, cost, isHighPriority, seasonStart, seasonEnd } = this.state;
 
-    return axios.post("/api/activities", { name, description, url, minDuration, creator, categories, startTime, endTime, cost, isHighPriority, seasonStart, seasonEnd })
+    return axios.post("/api/activities", { name, description, url, minDuration, creator, categories, timeWindowStart, timeWindowEnd, cost, isHighPriority, seasonStart, seasonEnd })
       .then((response) => {
-        this.props.addToFavorite(response.data)
+        this.props.addToFavorite(response.data, this.state.isHighPriority)
         axios.put(`/api/user/${this.props.user._id}`,
           {
             $push: { "bookmarkedActivities": response.data }
@@ -87,13 +87,13 @@ class AddActivity extends Component {
     }
     else if (id === 'seasonStart') {
       this.setState({
-        seasonStart: new Date('2020-' + value)
+        seasonStart: value
       })
     }
     else if (id === 'seasonEnd') {
       console.log(id)
       this.setState({
-        seasonEnd: new Date('2020-' + value)
+        seasonEnd: value
       })
     }
     else {
@@ -177,8 +177,8 @@ class AddActivity extends Component {
                       min="0"
                       max="24"
                       type="number"
-                      name="startTime"
-                      value={this.state.startTime}
+                      name="timeWindowStart"
+                      value={this.state.timeWindowStart}
                       onChange={this.handleChange} />
                   </div>
                 </div>
@@ -190,8 +190,8 @@ class AddActivity extends Component {
                       min="0"
                       max="24"
                       type="number"
-                      name="endTime"
-                      value={this.state.endTime}
+                      name="timeWindowEnd"
+                      value={this.state.timeWindowEnd}
                       onChange={this.handleChange}
                     />
                   </div>
