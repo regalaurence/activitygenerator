@@ -77,15 +77,40 @@ router.get('/activities/:id', (req, res) => {
     });
 });
 
-// POST route => customize a specific ACTIVITY _________WE HAVE TO COPY IT FIRST ????
+
+
+// PUT route => customize a specific ACTIVITY
 router.put('/activities/:id', (req, res) => {
+  console.log("Trying to update activity")
+  console.log(req.params.id)
+  console.log(req.body)
   if (!mongoose.Types.ObjectId.isValid(req.params.id)) {
     res.status(400).json({ message: 'Specified id is not valid' });
     return;
   }
 
-  // WE HAVE TO COPY IT FIRST  ?????????????? WILL WE ALSO UPDATE IT WITHOUT POSTING NEW ONE??
-  Activity.findByIdAndUpdate(req.params.id, req.body)
+  return Activity.findByIdAndUpdate(req.params.id, req.body, {new: true})
+    .then(() => {
+      res.json({ message: `Activity with ${req.params.id} is updated successfully.` });
+    })
+    .catch((err) => {
+      res.json(err);
+    });
+});
+
+
+
+// POST route => customize a specific ACTIVITY
+router.put('/activities/:id', (req, res) => {
+  console.log("Trying to update activity")
+  console.log(req.params.id)
+  console.log(req.body)
+  if (!mongoose.Types.ObjectId.isValid(req.params.id)) {
+    res.status(400).json({ message: 'Specified id is not valid' });
+    return;
+  }
+
+  return Activity.findByIdAndUpdate(req.params.id, req.body, {new: true})
     .then(() => {
       res.json({ message: `Activity with ${req.params.id} is updated successfully.` });
     })

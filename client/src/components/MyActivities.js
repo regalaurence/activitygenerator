@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import axios from 'axios';
+import {Link} from 'react-router-dom';
 
 class MyActivities extends Component {
 
@@ -66,7 +67,7 @@ class MyActivities extends Component {
                     <h1 className="activity-name"><strong>{activity.name}</strong></h1>
                     <button onClick={this.showActivityDetails} key={activity._id} value={activity._id} className="button is-small is-success is-outlined">See details</button>
                     <button className="button is-light is-small" value={activity._id} onClick={this.removeFromFavorites}>Remove from My Activties</button>
-                    <button className="button is-light is-small" value={activity._id} onClick={(event) => {this.props.editActivity(event.target.value)}}>Edit activity</button>
+                    <Link to="/edit-activity"><button className="button is-light is-small" value={activity._id} onClick={(event) => {this.props.editActivity(event.target.value)}}>Edit activity</button></Link>
                     {/* {activity.isHighPriority ? <span> High priority</span> : <span> Low priority</span>}  */}
                     {activity._id === this.state.clickedActivity ? <div className="columns is-multiline is-mobile">
                       {this.printDetails(this.state.clickedActivity)}

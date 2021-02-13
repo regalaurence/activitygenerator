@@ -18,6 +18,7 @@ import Weather from './components/Weather'
 import Welcome from './components/homepage/Welcome'
 import Footer from './components/Footer'
 import UserProfile from './components/UserProfile'
+import EditActivity from 'components/createactivities/EditActivity';
 class App extends Component {
 
   state = {
@@ -137,6 +138,16 @@ class App extends Component {
                 addToFavorite={this.addToFavorite} />
               : <Redirect to='login' />
           )} />
+           <Route path="/edit-activity" render={(props) => (
+            this.state.currentUser
+              ? <EditActivity
+                {...props} user={this.state.currentUser}
+                currentFavorites={this.state.currentFavorites}
+                editActivity={this.editActivity}
+                activityToChangeID={this.state.activityToChangeID}
+                updateUser={this.updateCurrentUser}
+              />
+              : <Redirect to='/login' />)} />
           <Route path="/my-activities" render={(props) => (
             this.state.currentUser
               ? <MyActivities
