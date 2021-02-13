@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-
 class Activity extends Component {
 
   state = {
@@ -18,7 +17,7 @@ class Activity extends Component {
     }
   }
 
-  toggleFavoritesHandler = (event) => {
+  toggleFavorites = (event) => {
     if (this.state.isFavorite === false) {
       this.props.addToFavorite(this.props.activity, this.state.isHighPriority)
       this.setState({
@@ -48,8 +47,8 @@ class Activity extends Component {
           <div className="content"><a href={this.props.activity.url} className="has-text-centered">{this.props.activity.url}</a></div>
 
           {this.state.isFavorite ?
-            <button className="button is-light is-small" onClick={this.toggleFavoritesHandler}>Remove from My Activties</button> :
-            <form onSubmit={this.toggleFavoritesHandler}>
+            <button className="button is-light is-small" onClick={this.toggleFavorites}>Remove from My Activties</button> :
+            <form onSubmit={this.toggleFavorites}>
               <div className="field is-grouped columns is-vcentered is-centered">
 
                 <div className="control">

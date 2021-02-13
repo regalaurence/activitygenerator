@@ -22,13 +22,14 @@ class App extends Component {
 
   state = {
     currentUser: this.props.user.userDoc,
-    currentFavorites: this.props.user.userDoc ? this.props.user.userDoc.bookmarkedActivities : []
+    currentFavorites: this.props.user.userDoc ? this.props.user.userDoc.bookmarkedActivities : [],
+    activityToChangeID: null,
   }
 
   updateCurrentUser = (userObjFromBackend) => {
     this.setState({
       currentUser: userObjFromBackend,
-      currentFavorites: userObjFromBackend ? userObjFromBackend.bookmarkedActivities : []
+      currentFavorites: userObjFromBackend ? userObjFromBackend.bookmarkedActivities : [],
     })
   }
 
@@ -50,6 +51,12 @@ class App extends Component {
     }
   }
 
+  editActivity = (activityID) => {
+    this.setState({
+      activityToChangeID: activityID
+    })
+  }
+
   addToFavorite = (activityToAdd, priority) => {
     activityToAdd.isHighPriority = priority
     let newFavorites = [...this.state.currentFavorites, activityToAdd]
@@ -64,7 +71,6 @@ class App extends Component {
       currentFavorites: filteredDeletionFavorites
     })
   }
-
 
   checkPreferences = () => {
     if (this.state.currentUser.preferences.length === 0) {
@@ -138,6 +144,7 @@ class App extends Component {
                 addToFavorite={this.addToFavorite}
                 removeFromFavorite={this.removeFromFavorite}
                 currentFavorites={this.state.currentFavorites}
+                editActivity={this.editActivity}
               />
               : <Redirect to='/login' />)} />
         </Switch>
