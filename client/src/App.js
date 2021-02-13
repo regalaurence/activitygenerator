@@ -90,24 +90,31 @@ class App extends Component {
         <Route path="/login">
           <Login updateCurrentUser={this.updateCurrentUser} />
         </Route>
+
         <Route path="/signup">
           <Signup user={this.state.currentUser} />
         </Route>
+
         <Switch>
-        <Route path="/user-profile">
-          <UserProfile user={this.state.currentUser} />
-        </Route>
+
+          <Route path="/user-profile">
+            <UserProfile user={this.state.currentUser} />
+          </Route>
+
           <Route path="/make-me-do" render={() => (
             this.state.currentUser
               ? <MakeMeDo user={this.state.currentUser} />
               : <Redirect to='/login' />
           )} />
+
           <Route path="/home" render={() => (
             this.state.currentUser
               ? <Home user={this.state.currentUser} />
               : <Redirect to='/login' />
           )} />
+
           {/* <Route path="/weather" component={Weather} /> */}
+
           <Route path="/activities" render={(props) => (
             this.state.currentUser
               ? <AllActivities
@@ -117,6 +124,7 @@ class App extends Component {
                 currentFavorites={this.state.currentFavorites}
               />
               : <Redirect to='login' />)} />
+
           <Route path="/add-activity" render={(props) => (
             this.state.currentUser
               ? <NewActivityForm
@@ -124,6 +132,7 @@ class App extends Component {
                 addToFavorite={this.addToFavorite} />
               : <Redirect to='login' />
           )} />
+
           <Route path="/my-activities" render={(props) => (
             this.state.currentUser
               ? <MyActivities
@@ -133,7 +142,9 @@ class App extends Component {
                 currentFavorites={this.state.currentFavorites}
               />
               : <Redirect to='/login' />)} />
+
         </Switch>
+        
         <Footer />
       </div>
 

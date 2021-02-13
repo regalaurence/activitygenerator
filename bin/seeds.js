@@ -1,14 +1,11 @@
 const mongoose = require('mongoose');
 const Activity = require('../models/activity-model');
-
 const DB_NAME = 'activity-generator';
-
 mongoose.connect(`mongodb://localhost/${DB_NAME}`, {
   useCreateIndex: true,
   useNewUrlParser: true,
   useUnifiedTopology: true,
 });
-
 const activitiesSeeds = [{
   name: 'Go for a walk',
   description: "Oxygeneting this brain wouldn't hurt!",
@@ -17,8 +14,9 @@ const activitiesSeeds = [{
   timeWindowStart: 7,
   timeWindowEnd: 21,
   hasCost: false,
-  seasonStart: new Date('2020-01'),
-  seasonEnd: new Date('2020-12'),
+  isHighPriority: false,
+  seasonStart: 0,
+  seasonEnd: 11,
 },
 {
   name: 'Try out a new recipe',
@@ -29,8 +27,9 @@ const activitiesSeeds = [{
   timeWindowStart: 8,
   timeWindowEnd: 22,
   hasCost: false,
-  seasonStart: new Date('2020-01'),
-  seasonEnd: new Date('2020-12'),
+  isHighPriority: false,
+  seasonStart: 0,
+  seasonEnd: 11,
 },
 {
   name: 'Listen to a playlist',
@@ -41,8 +40,9 @@ const activitiesSeeds = [{
   timeWindowStart: 0,
   timeWindowEnd: 24,
   hasCost: false,
-  seasonStart: new Date('2020-01'),
-  seasonEnd: new Date('2020-12'),
+  isHighPriority: false,
+  seasonStart: 0,
+  seasonEnd: 11,
 },
 {
   name: 'Watch a movie',
@@ -53,8 +53,9 @@ const activitiesSeeds = [{
   timeWindowStart: 0,
   timeWindowEnd: 24,
   hasCost: false,
-  seasonStart: new Date('2020-01'),
-  seasonEnd: new Date('2020-12'),
+  isHighPriority: false,
+  seasonStart: 0,
+  seasonEnd: 11,
 },
 {
   name: 'Go for a run',
@@ -64,8 +65,9 @@ const activitiesSeeds = [{
   timeWindowStart: 7,
   timeWindowEnd: 20,
   hasCost: false,
-  seasonStart: new Date('2020-01'),
-  seasonEnd: new Date('2020-12'),
+  isHighPriority: false,
+  seasonStart: 0,
+  seasonEnd: 11,
 },
 {
   name: 'Call or skype your parents',
@@ -75,8 +77,9 @@ const activitiesSeeds = [{
   timeWindowStart: 9,
   timeWindowEnd: 21,
   hasCost: false,
-  seasonStart: new Date('2020-01'),
-  seasonEnd: new Date('2020-12'),
+  isHighPriority: false,
+  seasonStart: 0,
+  seasonEnd: 11,
 },
 {
   name: 'Take a bath',
@@ -86,8 +89,9 @@ const activitiesSeeds = [{
   timeWindowStart: 12,
   timeWindowEnd: 22,
   hasCost: false,
-  seasonStart: new Date('2020-01'),
-  seasonEnd: new Date('2020-12'),
+  isHighPriority: false,
+  seasonStart: 0,
+  seasonEnd: 11,
 },
 {
   name: 'Buy groceries for the week',
@@ -97,8 +101,9 @@ const activitiesSeeds = [{
   timeWindowStart: 9,
   timeWindowEnd: 19,
   hasCost: false,
-  seasonStart: new Date('2020-01'),
-  seasonEnd: new Date('2020-12'),
+  isHighPriority: false,
+  seasonStart: 0,
+  seasonEnd: 11,
 },
 {
   name: 'Go sit at the park',
@@ -108,8 +113,9 @@ const activitiesSeeds = [{
   timeWindowStart: 10,
   timeWindowEnd: 21,
   hasCost: false,
-  seasonStart: new Date('2020-04'),
-  seasonEnd: new Date('2020-10'),
+  isHighPriority: false,
+  seasonStart: 3,
+  seasonEnd: 8,
 },
 {
   name: 'Have a drink with a friend',
@@ -119,8 +125,9 @@ const activitiesSeeds = [{
   timeWindowStart: 16,
   timeWindowEnd: 22,
   hasCost: false,
-  seasonStart: new Date('2020-01'),
-  seasonEnd: new Date('2020-12'),
+  isHighPriority: false,
+  seasonStart: 0,
+  seasonEnd: 11,
 },
 {
   name: "Call that friend you've been missing",
@@ -130,8 +137,9 @@ const activitiesSeeds = [{
   timeWindowStart: 9,
   timeWindowEnd: 22,
   hasCost: false,
-  seasonStart: new Date('2020-01'),
-  seasonEnd: new Date('2020-12'),
+  isHighPriority: false,
+  seasonStart: 0,
+  seasonEnd: 11,
 },
 {
   name: 'Clean the bathroom',
@@ -141,8 +149,9 @@ const activitiesSeeds = [{
   timeWindowStart: 9,
   timeWindowEnd: 22,
   hasCost: false,
-  seasonStart: new Date('2020-01'),
-  seasonEnd: new Date('2020-12'),
+  isHighPriority: false,
+  seasonStart: 0,
+  seasonEnd: 11,
 },
 {
   name: 'Clean the fridge',
@@ -152,8 +161,9 @@ const activitiesSeeds = [{
   timeWindowStart: 8,
   timeWindowEnd: 22,
   hasCost: false,
-  seasonStart: new Date('2020-01'),
-  seasonEnd: new Date('2020-12'),
+  isHighPriority: false,
+  seasonStart: 0,
+  seasonEnd: 11,
 },
 {
   name: 'Clean the oven',
@@ -163,8 +173,9 @@ const activitiesSeeds = [{
   timeWindowStart: 8,
   timeWindowEnd: 22,
   hasCost: false,
-  seasonStart: new Date('2020-01'),
-  seasonEnd: new Date('2020-12'),
+  isHighPriority: false,
+  seasonStart: 0,
+  seasonEnd: 11,
 },
 {
   name: 'Change the bedsheets',
@@ -174,8 +185,9 @@ const activitiesSeeds = [{
   timeWindowStart: 8,
   timeWindowEnd: 21,
   hasCost: false,
-  seasonStart: new Date('2020-01'),
-  seasonEnd: new Date('2020-12'),
+  isHighPriority: false,
+  seasonStart: 0,
+  seasonEnd: 11,
 },
 {
   name: 'Organise your wardrobe',
@@ -185,8 +197,9 @@ const activitiesSeeds = [{
   timeWindowStart: 8,
   timeWindowEnd: 22,
   hasCost: false,
-  seasonStart: new Date('2020-01'),
-  seasonEnd: new Date('2020-12'),
+  isHighPriority: false,
+  seasonStart: 0,
+  seasonEnd: 11,
 },
 {
   name: 'Update your CV',
@@ -196,8 +209,9 @@ const activitiesSeeds = [{
   timeWindowStart: 0,
   timeWindowEnd: 23,
   hasCost: false,
-  seasonStart: new Date('2020-01'),
-  seasonEnd: new Date('2020-12'),
+  isHighPriority: false,
+  seasonStart: 0,
+  seasonEnd: 11,
 },
 {
   name: 'Write a diary story',
@@ -207,8 +221,9 @@ const activitiesSeeds = [{
   timeWindowStart: 0,
   timeWindowEnd: 24,
   hasCost: false,
-  seasonStart: new Date('2020-01'),
-  seasonEnd: new Date('2020-12'),
+  isHighPriority: false,
+  seasonStart: 0,
+  seasonEnd: 11,
 },
 {
   name: 'Write a letter to your future self',
@@ -218,8 +233,9 @@ const activitiesSeeds = [{
   timeWindowStart: 8,
   timeWindowEnd: 22,
   hasCost: false,
-  seasonStart: new Date('2020-01'),
-  seasonEnd: new Date('2020-12'),
+  isHighPriority: false,
+  seasonStart: 0,
+  seasonEnd: 11,
 },
 {
   name: 'Organise your wardrobe',
@@ -229,8 +245,9 @@ const activitiesSeeds = [{
   timeWindowStart: 8,
   timeWindowEnd: 22,
   hasCost: false,
-  seasonStart: new Date('2020-01'),
-  seasonEnd: new Date('2020-12'),
+  isHighPriority: false,
+  seasonStart: 0,
+  seasonEnd: 11,
 },
 {
   name: 'Organise your wardrobe',
@@ -240,11 +257,11 @@ const activitiesSeeds = [{
   timeWindowStart: 8,
   timeWindowEnd: 22,
   hasCost: false,
-  seasonStart: new Date('2020-01'),
-  seasonEnd: new Date('2020-12'),
+  isHighPriority: false,
+  seasonStart: 0,
+  seasonEnd: 11,
 },
 ];
-
 Activity.create(activitiesSeeds)
   .then((activitiesfromDB) => {
     console.log(`Created ${activitiesfromDB.length} activities`);

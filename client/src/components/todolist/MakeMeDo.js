@@ -4,7 +4,7 @@ import ToDoListInput from './ToDoListInput';
 import CreateToDoList from './CreateTodoList';
 
 class MakeMeDo extends Component {
-  
+
   state = {
     time: null,
     possibleCategories: [],
@@ -27,12 +27,12 @@ class MakeMeDo extends Component {
 
     return (
       <section className="hero">
-      <div className="hero-body">
-        <div className="container">
-          <div className="columns is-vcentered is-centered">
-          <form style={{ maxWidth: "612px" }}>
-      <CreateToDoList user={this.props.user} availableTime={this.state.time} possibleCategories={this.state.possibleCategories}></CreateToDoList>
-      </form>
+        <div className="hero-body">
+          <div className="container">
+            <div className="columns is-vcentered is-centered">
+              <form style={{ maxWidth: "612px" }}>
+                <CreateToDoList user={this.props.user} availableTime={this.state.time} possibleCategories={this.state.possibleCategories}></CreateToDoList>
+              </form>
             </div>
           </div>
         </div>

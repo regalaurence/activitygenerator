@@ -63,8 +63,32 @@ class CreateToDoList extends Component {
       return [];
     }
 
+    let now = new Date()
+    let currentMonth = now.getMonth()
+    let currentHour = now.getHours()
+
     let toDoList = [];
     let timeLeft = time;
+
+    //Step 0a Filter activities for current season
+    let userActivitiesFilteredForSeason = this.state.userActivitiesFromDb.filter(activity => {
+      return activity.seasonStart <= currentMonth && activity.seasonEnd >= currentMonth
+    })
+
+    let allActivitiesFilteredForSeason = this.state.allActivitiesFromDb.filter(activity => {
+      return activity.seasonStart <= currentMonth && activity.seasonEnd >= currentMonth
+    })
+
+    //Step0b Filter activites for time
+    let userActivitiesFilteredForTime = userActivitiesFilteredForSeason.filter(activity => {
+      return activity.timeWindowStart <= currentHour && activity.timeWindowEnd >= currentHour
+    })
+
+    let allActivitiesFilteredForTime = allActivitiesFilteredForSeason.filter(activity => {
+      return activity.timeWindowStart <= currentHour && activity.timeWindowEnd >= currentHour
+    })
+
+    // Update below with filtered activities once database is reseeded
 
     // Step 1a: Check for activities that meet certain criteria (high priority)
     let highPriorityToDos = this.checkForHighPriorityToDos(this.state.userActivitiesFromDb)
@@ -208,23 +232,34 @@ class CreateToDoList extends Component {
     let generatedToDoList = this.generateToDoList(this.props.availableTime, this.props.possibleCategories)
     console.log("Here is the generated TodoList: ", generatedToDoList)
 
+    let userActivities = this.state.userActivitiesFromDb.map(activity => activity.seasonStart)
+
+    console.log(userActivities)
+
     return (
       <div>
         <div>
-          Here is your To Do List!
-        Available time: {this.props.availableTime} min
+          Available time: {this.props.availableTime} min
         Selected Categories:
           <ul>
             {this.props.possibleCategories.map(category => <li>{category}</li>)}
           </ul>
         </div>
-        {generatedToDoList ?
-          <div id="todolist">
-            {generatedToDoList.map(todo => <ToDoListItem todo={todo} />)}
-          </div> : null}
+        <div>
+          {
+            (this.props.availableTime === 0)
+              ? <div>This is not enough time to get something done...</div>
+              : <div> Here is your To Do List! </div>
+          }
+        </div>
+        <div>
+          {generatedToDoList ?
+            <div id="todolist"> {generatedToDoList.map(todo => <ToDoListItem todo={todo} />)} </div>
+            : null}
+        </div>
       </div>
     )
   }
 }
 
-export default CreateToDoList;
+  export default CreateToDoList;
