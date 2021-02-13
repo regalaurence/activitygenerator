@@ -8,6 +8,9 @@
     "dev-windows": "nodemon ./bin/www",
     "build": "cd client && npm install && npm run build"
   },
+  "engines": {
+    "node": "14.14.0"
+  },
   "dependencies": {
     "bcryptjs": "^2.4.3",
     "body-parser": "^1.18.3",
