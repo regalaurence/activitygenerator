@@ -1,9 +1,7 @@
 const mongoose = require('mongoose');
 const Activity = require('../models/activity-model');
 
-const DB_NAME = 'activity-generator';
-
-mongoose.connect(`mongodb://localhost/${DB_NAME}`, {
+mongoose.connect(process.env.MONGODB_URI, {
   useCreateIndex: true,
   useNewUrlParser: true,
   useUnifiedTopology: true,
