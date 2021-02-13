@@ -16,18 +16,22 @@ class StartGame extends Component {
 
   updatingUserPreferences = () => {
 
+    console.log("prevented default")
     const preferences = this.chosenPreferences;
     axios.put(`/api/user/${this.props.user._id}`, { preferences })
-      .then(() => {
-        this.setState({
-          preferences: this.chosenPreferences
-        });
+      .then((respond) => {
+        console.log("response", respond)
+        // this.setState({
+        //   preferences: this.chosenPreferences, 
+        //   preferences: [{ propositionOne: ["Indoor", "Indoors"], propositionTwo: ["Outdoor", "Outdoors"] }]
+
+        // });
         let user = this.props.user
         user.preferences = this.chosenPreferences
         this.props.updateUser(user)
         //this.props.history.push('/home');
       })
-      .catch(error => console.log(error))
+      .catch(error => console.log("function <======================== problems here" + error))
   }
 
 
@@ -37,8 +41,8 @@ class StartGame extends Component {
     return this.state.preferences.map(pref => {
       return (
         <div className="buttons is-vcentered is-centered">
-          <button className="button is-light" key={pref.propositionOne[0]} type="submit" onClick={this.pushToCategories} value={pref.propositionOne[1]}>{pref.propositionOne[0]}</button>
-          <button className="button is-light" key={pref.propositionTwo[0]} type="submit" onClick={this.pushToCategories} value={pref.propositionTwo[1]}>{pref.propositionTwo[0]}</button>
+          <button className="button is-light" key={pref.propositionOne[0]} onClick={this.pushToCategories} value={pref.propositionOne[1]}>{pref.propositionOne[0]}</button>
+          <button className="button is-light" key={pref.propositionTwo[0]} onClick={this.pushToCategories} value={pref.propositionTwo[1]}>{pref.propositionTwo[0]}</button>
         </div>
       )
     }
@@ -107,7 +111,7 @@ class StartGame extends Component {
               {this.creatingButtonsFunction()}
             </div>
             <div className="columns is-vcentered is-centered">
-              <figure className="image">
+              <figure className="column is-full has-text-centered">
                 <img style={{ maxWidth: "512px" }} src="images/thinking_girl_with_plants.png" />
               </figure>
             </div>

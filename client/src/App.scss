@@ -18,7 +18,24 @@ $primary: #cae7df;
 $link: darkgrey;
 $warning: #2a3166;
 $footer-background-color: white;
+.button-checkboxes{
+  background-color: white;
+  border-radius: 3px;
+  border: 0.2px solid #edf7f4;
+}
+#categories:hover{
+  background-color: #f3f9f7;
 
+}
+.activity-name{
+  font-size: x-large;
+}
+
+img{
+  margin: none;
+  padding: none;
+  border: none;
+}
 
 // Update Bulma's global variables
 // $family-sans-serif: "Nunito", sans-serif;

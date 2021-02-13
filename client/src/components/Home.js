@@ -12,7 +12,7 @@ class Home extends Component {
                 <div className="hero-body">
                     <div className="container">
                         <div className="columns is-vcentered is-centered">
-                            <figure className="image is-centered mb-6">
+                            <figure className="image is-vcentered is-centered has-text-centered mb-6">
                                 {/* <img style={{ maxWidth: "512px" }} src="images/CloudFinalDarkText.png" /> */}
                                 <Link to="/make-me-do"> <img style={{ maxWidth: "512px" }} src="images/CloudFinalDarkText.png" /></Link>
                             </figure>

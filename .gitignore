@@ -9,4 +9,4 @@ npm-debug.log
 
 #dev
 .eslintcache
-/client/.eslintcache
+client/.eslintcache
