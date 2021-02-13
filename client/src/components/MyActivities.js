@@ -4,19 +4,20 @@ import axios from 'axios';
 class MyActivities extends Component {
 
   state = {
-    favoriteActivities: this.props.currentFavorites,
     activityDetailsShown: false,
     clickedActivity: null,
-    chosenOne: null
   }
 
+  removeFromFavorites = (event) => {
+    this.props.removeFromFavorite(event.target.value)
+    this.setState({
+      isFavorite: false
+    })
+  }
 
   showActivityDetails = (event) => {
-
-
     this.setState({
       favoriteActivities: this.props.currentFavorites,
-
       activityDetailsShown: true,
       clickedActivity: event.target.value,
       chosenOne: null
@@ -24,20 +25,25 @@ class MyActivities extends Component {
   }
 
   printDetails = (argActivity) => {
-    let forDetail = [...this.state.favoriteActivities]
+    let forDetail = [...this.props.currentFavorites]
     let foundActivity = forDetail.find(el => el._id === argActivity)
     return (<div className="column is-vcentered is-centered"><p>
-      {foundActivity.description ? <span><strong>Description:</strong><br></br>{foundActivity.description}</span> : <span><strong>Description:</strong><br></br>Edit this activity to add the description</span>}<br></br>
+      {foundActivity.description
+        ? <span><strong>Description:</strong><br></br>{foundActivity.description}</span>
+        : <span><strong>Description:</strong><br></br>Edit this activity to add the description</span>}<br></br>
       <strong>Duration:</strong> {foundActivity.minDuration}<br></br>
-      {foundActivity.hasCost ? <span><strong>Cost:</strong> It's not for free</span> : <span><strong>Cost:</strong> It's for free!</span>}<br></br>
-      {foundActivity.isHighPriority ? <span><strong>Priority:</strong> High</span> : <span><strong>Priority:</strong> Low</span>} </p></div>)
+      {foundActivity.hasCost
+        ? <span><strong>Cost:</strong> It's not for free</span>
+        : <span><strong>Cost:</strong> It's for free!</span>}<br></br>
+      {foundActivity.isHighPriority
+        ? <span><strong>Priority:</strong> High</span>
+        : <span><strong>Priority:</strong> Low</span>} </p></div>)
   }
 
 
 
   render() {
-
-
+    
     return (
 
       // this.state.activityDetailsShown ?
@@ -52,16 +58,16 @@ class MyActivities extends Component {
               </figure>
             </div>
             <div className="columns is-multiline is-mobile">
-              {this.state.favoriteActivities &&
-                this.state.favoriteActivities.map(activity =>
+              {this.props.currentFavorites &&
+                this.props.currentFavorites.map(activity =>
                   <div className="column is-full has-text-centered">
-                  <h1 className="activity-name"><strong>{activity.name}</strong></h1>
-                  <button onClick={this.showActivityDetails} key={activity._id} value={activity._id} className="button is-small is-success is-outlined">See details</button>
-                  <button className="button is-light is-small" onClick={this.toggleFavoritesHandler}>Remove from My Activties</button>
+                    <h1 className="activity-name"><strong>{activity.name}</strong></h1>
+                    <button onClick={this.showActivityDetails} key={activity._id} value={activity._id} className="button is-small is-success is-outlined">See details</button>
+                    <button className="button is-light is-small" value={activity._id} onClick={this.removeFromFavorites}>Remove from My Activties</button>
+                    <button className="button is-light is-small" value={activity._id} onClick={(event) => {this.props.editActivity(event.target.value)}}>Edit activity</button>
                     {/* {activity.isHighPriority ? <span> High priority</span> : <span> Low priority</span>}  */}
-                    {activity._id == this.state.clickedActivity ? <div className="columns is-multiline is-mobile">
+                    {activity._id === this.state.clickedActivity ? <div className="columns is-multiline is-mobile">
                       {this.printDetails(this.state.clickedActivity)}
-
                     </div> : <p></p>}
                   </div>
                 )}
