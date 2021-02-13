@@ -78,8 +78,6 @@ class App extends Component {
     }
   }
 
-
-
   render() {
 
     console.log("Rendering App...")
