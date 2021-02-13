@@ -8,15 +8,25 @@ class AllActivities extends Component {
   state = {
     activitiesFromDb: [],
     search: '',
-    filterBy: ''
+    filterBy: '',
+    isLoading: true,
+    isError: false
   }
 
   componentDidMount() {
     axios.get("/api/activities")
       .then(response => {
-        this.setState({ activitiesFromDb: response.data })
-        console.log("Response from backend: ", response.data)
+        this.setState({ 
+          activitiesFromDb: response.data, 
+          isLoading: false 
+        })
+        // console.log("Response from backend: ", response.data)
       })
+    .catch((err => {
+      this.setState({
+        isError: true
+      })
+    }))
   }
 
   handleChange = (event) => {
@@ -34,7 +44,6 @@ class AllActivities extends Component {
     })
   }
 
-
   render() {
     let filteredByActivities = [...this.state.activitiesFromDb]
     if (this.state.filterBy.length !== 0) {
@@ -48,7 +57,6 @@ class AllActivities extends Component {
       });
     
     console.log(filteredBySearchAndCatsActivities)
-
 
     return (
       <section className="hero">
@@ -81,7 +89,7 @@ class AllActivities extends Component {
               </form>
             </div>
             <div>
-
+            {this.state.isLoading && <progress className="progress is-small is-primary" max="100">15%</progress>}
               {filteredBySearchAndCatsActivities
                 .map(activity => <Activity
                   key={activity._id}

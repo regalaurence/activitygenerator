@@ -20,7 +20,7 @@ class Activity extends Component {
 
   toggleFavoritesHandler = (event) => {
     if (this.state.isFavorite === false) {
-      this.props.addToFavorite(this.props.activity)
+      this.props.addToFavorite(this.props.activity, this.state.isHighPriority)
       this.setState({
         isFavorite: true
       })
