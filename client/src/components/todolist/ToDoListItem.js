@@ -17,7 +17,8 @@ class ToDoListItem extends Component {
     })
   }
 
-  checkBoxHandler = () => {
+  checkBoxHandler = (event) => {
+    console.log("Event: ", event)
     if (this.state.isChecked === false) {
       this.setState({
         isChecked: true
@@ -27,6 +28,7 @@ class ToDoListItem extends Component {
         isChecked: false
       })
     }
+    this.props.onCheck(event.target.id, event.target.checked)
   }
 
   render() {
@@ -34,20 +36,23 @@ class ToDoListItem extends Component {
     let todo = this.props.todo
     let todoName = ""
     let todoTime = 0
+    let todoId = ""
     //console.log(todo)
 
     if ("activity" in todo) {
       todoName = todo.activity.name
       todoTime = todo.activity.minDuration
+      todoId = todo.activity._id
     } else {
       todoName = todo.name
       todoTime = todo.minDuration
+      todoId = todo._id
     }
 
     return (
       
       <div>
-        <input type="checkbox" checked={this.state.isChecked} id="todo-item" name={todoName} onChange={this.checkBoxHandler} />
+        <input type="checkbox" checked={this.state.isChecked} id={todoId} name={todoName} onChange={this.checkBoxHandler} />
         {todoName}
         {todoTime} mins
       </div>

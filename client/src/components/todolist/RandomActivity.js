@@ -33,7 +33,6 @@ class RandomActivity extends Component {
       return <div>Loading ... </div>
     }
 
-
     let randomActivity = this.generateRandomActivity()
     return (
       <div>{randomActivity.name}</div>

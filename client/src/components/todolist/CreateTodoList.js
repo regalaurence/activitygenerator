@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
 import axios from 'axios';
-import ToDoListInput from './ToDoListInput';
+import ToDoListInput from './ToDoListForm';
 import ToDoListItem from './ToDoListItem';
+import {withRouter} from 'react-router-dom'
 
 class CreateToDoList extends Component {
   // CreateToDoList receives the available time, possibleCategories and user as props
@@ -12,54 +13,39 @@ class CreateToDoList extends Component {
     allActivitiesFromDb: []
   }
 
-  populateAcitivities = () => {
-    //console.log("populate activities runs")
-    let promises = []
-    let activitiesToPopulate = this.props.user.bookmarkedActivities
+  // Call to backend to get allactivities
 
-    //console.log("activities to populate: ", activitiesToPopulate)
-
-    for (let i = 0; i < activitiesToPopulate.length; i++) {
-      promises.push(axios.get(`/api/activities/${activitiesToPopulate[i].activityID}`)
-        .then(response => {
-          return { activity: response.data, isHighPriority: activitiesToPopulate[i].isHighPriority }
-        })
-      )
-    }
-
-    //console.log("Promises: ", promises)
-
-    Promise.all(promises)
-      .then((response) => {
-        //console.log("All promises resolved")
-        //console.log("CHECK THIS OUTTTTTTT: " + response)
+  componentDidMount = () => {
+    console.log("mounting")
+    console.log(this.props.user)
+    axios.get('/api/activities')
+      .then(response => {
+        console.log("Repsonse from backend: ", response.data)
         this.setState({
-          userActivitiesFromDb: response
+          allActivitiesFromDb: response.data,
+          userActivitiesFromDb: this.props.user.userDoc.bookmarkedActivities
         })
       })
   }
 
+  handleTodoCheck = (todoId, isTodoChecked) => {
+    this.setState({
+      [todoId]: isTodoChecked
+    })
+    this.updateUserTodos()
+  }
 
-  // Call to backend to get allactivities
-
-  componentDidMount = () => {
-    //console.log("calling populate activities")
-    //this.populateAcitivities()
-    axios.get('/api/activities')
-      .then(response => {
-        //console.log("Repsonse from backend: ", response.data)
-        this.setState({
-          allActivitiesFromDb: response.data,
-          userActivitiesFromDb: this.props.user.bookmarkedActivities
-        })
-      })
+  updateUserTodos = () => {
+    
   }
 
   // Functions that generate todo list as Class Methods for CreateToDoList
 
   generateToDoList = (time, categories) => {
 
-    if (this.state.userActivitiesFromDb === 0 || this.state.allActivitiesFromDb.length === 0) {
+    console.log("State: ", this.state.userActivitiesFromDb)
+
+    if (this.state.userActivitiesFromDb.length === 0 || this.state.allActivitiesFromDb.length === 0) {
       return [];
     }
 
@@ -229,32 +215,28 @@ class CreateToDoList extends Component {
 
   render() {
 
-    let generatedToDoList = this.generateToDoList(this.props.availableTime, this.props.possibleCategories)
+    let generatedToDoList = this.generateToDoList(this.props.timeForTodoList, this.props.categoriesForTodoList)
     console.log("Here is the generated TodoList: ", generatedToDoList)
-
-    let userActivities = this.state.userActivitiesFromDb.map(activity => activity.seasonStart)
-
-    console.log(userActivities)
 
     return (
       <div>
         <div>
-          Available time: {this.props.availableTime} min
+          Available time: {this.props.timeForTodoList} min
         Selected Categories:
           <ul>
-            {this.props.possibleCategories.map(category => <li>{category}</li>)}
+            {this.props.categoriesForTodoList.map(category => <li>{category}</li>)}
           </ul>
         </div>
         <div>
           {
-            (this.props.availableTime === 0)
+            (this.props.timeForTodoList === 0)
               ? <div>This is not enough time to get something done...</div>
               : <div> Here is your To Do List! </div>
           }
         </div>
         <div>
           {generatedToDoList ?
-            <div id="todolist"> {generatedToDoList.map(todo => <ToDoListItem todo={todo} />)} </div>
+            <div id="todolist"> {generatedToDoList.map(todo => <ToDoListItem onCheck={this.handleTodoCheck} todo={todo} />)} </div>
             : null}
         </div>
       </div>
@@ -262,4 +244,4 @@ class CreateToDoList extends Component {
   }
 }
 
-  export default CreateToDoList;
+  export default withRouter(CreateToDoList);

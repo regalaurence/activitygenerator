@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
 //import axios from 'axios';
-import ToDoListInput from './ToDoListInput';
 import CreateToDoList from './CreateTodoList';
+import ToDoListForm from './ToDoListForm';
+import {Redirect, Route, withRouter} from 'react-router-dom';
 
 class MakeMeDo extends Component {
 
@@ -13,6 +14,7 @@ class MakeMeDo extends Component {
   }
 
   handleFormSubmit = (userInputTime, userInputCategories) => {
+    this.props.onChildStateUpdate(userInputTime, userInputCategories)
     this.setState({
       time: userInputTime,
       possibleCategories: userInputCategories
@@ -22,23 +24,24 @@ class MakeMeDo extends Component {
   render() {
 
     if (this.state.time === null || this.state.possibleCategories.length === 0) {
-      return <ToDoListInput onFormSubmit={this.handleFormSubmit}></ToDoListInput>
+      return <ToDoListForm onFormSubmit={this.handleFormSubmit}></ToDoListForm>
     }
 
     return (
-      <section className="hero">
-        <div className="hero-body">
-          <div className="container">
-            <div className="columns is-vcentered is-centered">
-              <form style={{ maxWidth: "612px" }}>
-                <CreateToDoList user={this.props.user} availableTime={this.state.time} possibleCategories={this.state.possibleCategories}></CreateToDoList>
-              </form>
-            </div>
-          </div>
-        </div>
-      </section>
+      <Redirect to="/your-todo-list"></Redirect>
+      // <section className="hero">
+      //   <div className="hero-body">
+      //     <div className="container">
+      //       <div className="columns is-vcentered is-centered">
+      //         <form style={{ maxWidth: "612px" }}>
+      //           <CreateToDoList user={this.props.user} availableTime={this.state.time} possibleCategories={this.state.possibleCategories}></CreateToDoList>
+      //         </form>
+      //       </div>
+      //     </div>
+      //   </div>
+      // </section>
     )
   }
 }
 
-export default MakeMeDo;
+export default withRouter(MakeMeDo);

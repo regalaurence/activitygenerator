@@ -8,7 +8,6 @@ import Navbar from './components/Navbar'
 import Signup from './components/auth/Signup';
 import Login from './components/auth/Login';
 import NewActivityForm from './components/createactivities/NewActivityForm';
-import CreateToDoList from './components/todolist/CreateTodoList';
 import AllActivities from './components/AllActivities';
 import MyActivities from './components/MyActivities';
 import StartGame from './components/StartGame'
@@ -18,11 +17,15 @@ import Weather from './components/Weather'
 import Welcome from './components/homepage/Welcome'
 import Footer from './components/Footer'
 import UserProfile from './components/UserProfile'
+import RandomActivity from 'components/todolist/RandomActivity';
+import CreateToDoList from 'components/todolist/CreateTodoList';
 class App extends Component {
 
   state = {
     currentUser: this.props.user.userDoc,
-    currentFavorites: this.props.user.userDoc ? this.props.user.userDoc.bookmarkedActivities : []
+    currentFavorites: this.props.user.userDoc ? this.props.user.userDoc.bookmarkedActivities : [],
+    timeForTodoList: 0,
+    categoriesForTodoList: []
   }
 
   updateCurrentUser = (userObjFromBackend) => {
@@ -72,7 +75,12 @@ class App extends Component {
     }
   }
 
-
+  handleChildStateUpdate = (time, categories) => {
+    this.setState({
+      timeForTodoList: time,
+      categoriesForTodoList: categories
+    })
+  }
 
   render() {
 
@@ -89,9 +97,9 @@ class App extends Component {
         {/*  
         {this.state.currentUser && <StartGame user={this.state.currentUser} />} */}
         <Route exact path="/">
-          {this.state.currentUser ? 
+          {this.state.currentUser ?
             <Home user={this.state.currentUser} /> :
-          <Welcome/>
+            <Welcome />
           }
         </Route>
         <Route path="/login">
@@ -110,15 +118,33 @@ class App extends Component {
 
           <Route path="/make-me-do" render={() => (
             this.state.currentUser
-              ? <MakeMeDo user={this.state.currentUser} />
+              ? <MakeMeDo user={this.state.currentUser} onChildStateUpdate={this.handleChildStateUpdate} />
               : <Redirect to='/login' />
           )} />
+
+          <Route path="/your-todo-list">
+            <CreateToDoList user={this.props.user} timeForTodoList={this.state.timeForTodoList} categoriesForTodoList={this.state.categoriesForTodoList}></CreateToDoList>
+          </Route>
+
+
+          {/* <Route path="/your-todo-list" render={() => (
+            this.state.currentUser
+              ? <CreateToDoList user={this.props.user} timeForTodoList={this.state.timeForTodoList} categoriesForTodoList={this.state.categoriesForTodoList}></CreateToDoList>
+              : <Redirect to='/login' />
+          )} /> */}
 
           <Route path="/home" render={() => (
             this.state.currentUser
               ? <Home user={this.state.currentUser} />
               : <Redirect to='/login' />
           )} />
+
+          <Route path="/random-activity" render={() => (
+            this.state.currentUser
+              ? <RandomActivity />
+              : <Redirect to='/login' />
+          )} />
+
 
           {/* <Route path="/weather" component={Weather} /> */}
 
@@ -151,7 +177,7 @@ class App extends Component {
               : <Redirect to='/login' />)} />
 
         </Switch>
-        
+
         <Footer />
       </div>
 
