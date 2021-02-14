@@ -32,6 +32,9 @@ class MyActivities extends Component {
       {foundActivity.description
         ? <span><strong>Description:</strong><br></br>{foundActivity.description}</span>
         : <span><strong>Description:</strong><br></br>Edit this activity to add the description</span>}<br></br>
+        {foundActivity.url
+        ? <span><strong>Url:</strong><br></br>{foundActivity.url}</span>
+        : <span><strong>Url</strong><br></br>Edit this activity to add the url</span>}<br></br>
       <strong>Duration:</strong> {foundActivity.minDuration}<br></br>
       {foundActivity.hasCost
         ? <span><strong>Cost:</strong> It's not for free</span>
@@ -65,9 +68,9 @@ class MyActivities extends Component {
                 this.props.currentFavorites.map(activity =>
                   <div className="column is-full has-text-centered">
                     <h1 className="activity-name"><strong>{activity.name}</strong></h1>
-                    <button onClick={this.showActivityDetails} key={activity._id} value={activity._id} className="button is-small is-success is-outlined">See details</button>
-                    <button className="button is-light is-small" value={activity._id} onClick={this.removeFromFavorites}>Remove from My Activties</button>
-                    <Link to="/edit-activity"><button className="button is-light is-small" value={activity._id} onClick={(event) => {this.props.editActivity(event.target.value)}}>Edit activity</button></Link>
+                    <button onClick={this.showActivityDetails} key={activity._id} value={activity._id} className="button is-small is-success mr-2">See details</button>
+                    <Link to="/edit-activity"><button className="button is-small is-success is-outlined mr-2" value={activity._id} onClick={(event) => {this.props.editActivity(event.target.value)}}>Edit activity</button></Link>
+                    <button className="button is-light is-small" value={activity._id} onClick={this.removeFromFavorites}>Remove</button>
                     {/* {activity.isHighPriority ? <span> High priority</span> : <span> Low priority</span>}  */}
                     {activity._id === this.state.clickedActivity ? <div className="columns is-multiline is-mobile">
                       {this.printDetails(this.state.clickedActivity)}

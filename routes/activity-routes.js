@@ -102,9 +102,6 @@ router.put('/activities/:id', (req, res) => {
 
 // POST route => customize a specific ACTIVITY
 router.put('/activities/:id', (req, res) => {
-  console.log("Trying to update activity")
-  console.log(req.params.id)
-  console.log(req.body)
   if (!mongoose.Types.ObjectId.isValid(req.params.id)) {
     res.status(400).json({ message: 'Specified id is not valid' });
     return;

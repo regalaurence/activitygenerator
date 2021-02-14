@@ -63,8 +63,18 @@ class EditActivity extends Component {
     let { name, description, url, minDuration, creator, categories, timeWindowStart, timeWindowEnd, cost, isHighPriority, seasonStart, seasonEnd } = this.state;
 
     let currentActivity = bookmarksCopy.find(a => a._id === this.props.activityToChangeID) // deleting one
-    currentActivity.minDuration = minDuration
+    currentActivity.name = name
     currentActivity.description = description
+    currentActivity.url = url
+    currentActivity.minDuration = minDuration
+    currentActivity.categories = categories
+    currentActivity.timeWindowStart = timeWindowStart
+    currentActivity.timeWindowEnd = timeWindowEnd
+    currentActivity.cost = cost
+    currentActivity.isHighPriority = isHighPriority
+    currentActivity.seasonStart = seasonStart
+    currentActivity.seasonEnd = seasonEnd
+    
     
 
 
