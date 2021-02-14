@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import axios from 'axios';
 import SelectMonth from './SelectMonth'
 import CategoriesCheckboxes from './CategoriesCheckboxes';
 import { withRouter } from 'react-router-dom';
@@ -43,24 +42,11 @@ class EditActivity extends Component {
     })
   }
 
-  // submitData = () => {
-
-  //   let { name, description, url, minDuration, creator, categories, timeWindowStart, timeWindowEnd, cost, isHighPriority, seasonStart, seasonEnd } = this.state;
-
-  //   return axios.put(`/api/activities/${this.state.activityToChangeID}`, { name, description, url, minDuration, creator, categories, timeWindowStart, timeWindowEnd, cost, isHighPriority, seasonStart, seasonEnd })
-  //     // .then(() => axios.get("/api/activities"))
-  //     // .then((response) => console.log(response))
-  //     .then((response) => {
-  //       console.log("response from put route", response);
-  //     })
-  //     .catch(error => console.log(error))
-
-  // }
 
   submitData = () => {
     let bookmarksCopy = [...this.props.currentFavorites]
 
-    let { name, description, url, minDuration, creator, categories, timeWindowStart, timeWindowEnd, cost, isHighPriority, seasonStart, seasonEnd } = this.state;
+    let { name, description, url, minDuration, categories, timeWindowStart, timeWindowEnd, cost, isHighPriority, seasonStart, seasonEnd } = this.state;
 
     let currentActivity = bookmarksCopy.find(a => a._id === this.props.activityToChangeID) // deleting one
     currentActivity.name = name
@@ -74,22 +60,10 @@ class EditActivity extends Component {
     currentActivity.isHighPriority = isHighPriority
     currentActivity.seasonStart = seasonStart
     currentActivity.seasonEnd = seasonEnd
-    
-    
-
-
-    // adding the modified one
-    //bookmarksCopy.push({ name, description, url, minDuration, creator, categories, timeWindowStart, timeWindowEnd, cost, isHighPriority, seasonStart, seasonEnd })
 
     let user = this.props.user
         user.bookmarkedActivities = bookmarksCopy
         this.props.updateUser(user)
-
-    // return axios.put(`/api/user/${this.props.user._id}`,
-    //   { bookmarkedActivities: bookmarksCopy })
-    //   .then((response) => {
-    //     console.log(response)
-    //   })
   }
 
 
@@ -157,11 +131,11 @@ class EditActivity extends Component {
           <div className="container">
             <div className="columns is-vcentered is-centered">
               <div style={{ maxWidth: "612px" }} id="addActivityForm">
-                <h2 className="title is-3">Create a new activity</h2>
+                <h2 className="title is-3">Edit activity</h2>
                 <div className="field">
                   <label className="label">Name</label>
                   <div className="control">
-                    <input className="input" type="text" name="name" value={this.state.name} />
+                    <input className="input" type="text" name="name" value={this.state.name} onChange={this.handleChange}/>
                   </div>
 
                   <div className="field">

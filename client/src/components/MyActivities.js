@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import axios from 'axios';
 import {Link} from 'react-router-dom';
 
 class MyActivities extends Component {
@@ -33,8 +32,8 @@ class MyActivities extends Component {
         ? <span><strong>Description:</strong><br></br>{foundActivity.description}</span>
         : <span><strong>Description:</strong><br></br>Edit this activity to add the description</span>}<br></br>
         {foundActivity.url
-        ? <span><strong>Url:</strong><br></br>{foundActivity.url}</span>
-        : <span><strong>Url</strong><br></br>Edit this activity to add the url</span>}<br></br>
+        ? <span><strong>Url: </strong><a href={foundActivity.url}>{foundActivity.url}</a></span>
+        : <span><strong>Url: </strong><br></br>Edit this activity to add the url</span>}<br></br>
       <strong>Duration:</strong> {foundActivity.minDuration}<br></br>
       {foundActivity.hasCost
         ? <span><strong>Cost:</strong> It's not for free</span>

@@ -1,20 +1,18 @@
 import React, { Component } from 'react';
 import axios from 'axios'
 import './App.scss';
-import { Link, Redirect, Route, Switch, withRouter } from 'react-router-dom';
+import { Redirect, Route, Switch, withRouter } from 'react-router-dom';
 
 //Components
 import Navbar from './components/Navbar'
 import Signup from './components/auth/Signup';
 import Login from './components/auth/Login';
 import NewActivityForm from './components/createactivities/NewActivityForm';
-import CreateToDoList from './components/todolist/CreateTodoList';
 import AllActivities from './components/AllActivities';
 import MyActivities from './components/MyActivities';
 import StartGame from './components/StartGame'
 import MakeMeDo from './components/todolist/MakeMeDo';
 import Home from './components/Home'
-import Weather from './components/Weather'
 import Welcome from './components/homepage/Welcome'
 import Footer from './components/Footer'
 import UserProfile from './components/UserProfile'

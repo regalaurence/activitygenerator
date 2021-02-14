@@ -37,6 +37,14 @@ img{
   border: none;
 }
 
+.clicked-category{
+  background-color: #f3f9f7;
+}
+
+button:active { outline:  0.2px solid #cae7df; }
+button:focus { outline:none }
+
+
 // Update Bulma's global variables
 // $family-sans-serif: "Nunito", sans-serif;
 // $grey-dark: $brown;
