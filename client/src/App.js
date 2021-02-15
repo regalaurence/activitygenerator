@@ -77,8 +77,6 @@ class App extends Component {
     }
   }
 
-
-
   render() {
 
     console.log("Rendering App...")
@@ -165,3 +163,4 @@ class App extends Component {
 }
 
 export default withRouter(App);
+

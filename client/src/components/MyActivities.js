@@ -17,10 +17,8 @@ class MyActivities extends Component {
 
   showActivityDetails = (event) => {
     this.setState({
-      favoriteActivities: this.props.currentFavorites,
       activityDetailsShown: true,
       clickedActivity: event.target.value,
-      chosenOne: null
     })
   }
 
