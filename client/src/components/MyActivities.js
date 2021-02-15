@@ -52,15 +52,16 @@ class MyActivities extends Component {
       // this.state.activityDetailsShown ?
       // <div><p>Checking here</p></div> :
 
-      <section className="hero is-fullheight">
+      <section className="hero">
         <div className="hero-body">
           <div className="container">
-            <div className="columns is-vcentered is-centered">
+            <div className="columns is-vcentered is-centered center">
               <figure className="image is-vcentered is-centered has-text-centered mb-6">
                 <img style={{ maxWidth: "412px" }} src="images/Myactivities.png" />
               </figure>
             </div>
-            <div className="columns is-multiline is-mobile">
+            <div className="columns is-multiline is-mobile center">
+            <div className="content"><h4 className="has-text-centered">Your Favourites Activities:</h4></div>
               {this.props.currentFavorites &&
                 this.props.currentFavorites.map(activity =>
                   <div className="column is-full has-text-centered">

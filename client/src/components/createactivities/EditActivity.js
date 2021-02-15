@@ -129,7 +129,7 @@ class EditActivity extends Component {
       <section className="hero">
         <div className="hero-body">
           <div className="container">
-            <div className="columns is-vcentered is-centered">
+            <div className="columns is-vcentered is-centered center">
               <div style={{ maxWidth: "612px" }} id="addActivityForm">
                 <h2 className="title is-3">Edit activity</h2>
                 <div className="field">

@@ -4,9 +4,9 @@ class FilterByCategory extends React.Component {
 
   render() {
     return (
-      <div className="field columns is-vcentered is-centered has-text-centered">
-      <label className="label" for="seasons">Pick A Category</label>
-      <div className="control" style={{ maxWidth: "160px" }}>
+      <div className="field center">
+      <label className="label mt-2" for="seasons">Filter by Categories: </label>
+      <div className="control ml-3" style={{ maxWidth: "160px" }}>
       <div className="select">
       <select id="categoriesToFilterBy" name="categoriesToFilterBy" onChange={this.props.handleFilterChange} >
         <option value="">No filter</option>

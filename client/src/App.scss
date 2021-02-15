@@ -46,8 +46,16 @@ button.selected {
 
 button:focus { outline-color: #cae7df; }
 
+.has-border{
+  border-radius: 3px;
+  border: 0.2px solid #edf7f4;
+}
 
-
+.center {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
 // Update Bulma's global variables
 // $family-sans-serif: "Nunito", sans-serif;
 // $grey-dark: $brown;

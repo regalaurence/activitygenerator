@@ -35,13 +35,13 @@ class Signup extends Component {
       <section className="hero is-fullheight">
         <div className="hero-body">
           <div className="container">
-            <div className="columns is-vcentered is-centered">
+            <div className="columns is-vcentered is-centered center">
 
               <figure className="image">
                 <img style={{ maxWidth: "512px" }} src="images/FinalLightPeach.png" />
               </figure>
             </div>
-            <div className="columns is-vcentered is-centered">
+            <div className="columns is-vcentered is-centered center">
               <form style={{ maxWidth: "512px" }} onSubmit={this.handleFormSubmit}>
               <h2 className="title is-4 mt-1">Sign up</h2>
                 <div className="field">
