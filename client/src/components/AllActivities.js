@@ -75,7 +75,7 @@ class AllActivities extends Component {
                     <Link to="/add-activity"> <button className="button is-primary mb-3">Create Activity</button></Link>
                   </div>
                   <div className="control">
-                    <p className="control has-icons-left">
+                    <p className="control">
                       <input className="input" type="text" placeholder="Find Activity..." name="search" value={this.state.search} onChange={this.handleChange} />
                       <span className="icon is-small is-left">
                         <i className="fas fa-search"></i>
