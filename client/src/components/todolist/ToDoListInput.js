@@ -67,7 +67,7 @@ class ToDoListInput extends Component {
         <section className="hero">
           <div className="hero-body">
             <div className="container">
-              <div className="columns is-vcentered is-centered">
+              <div className="columns is-vcentered is-centered center">
                 <form style={{ maxWidth: "612px" }} onSubmit={this.submitHandler}>
                   <h2 className="title is-3 mb-5">Let me do something!</h2>
                   <p>Going wild? Get random activity:</p>
