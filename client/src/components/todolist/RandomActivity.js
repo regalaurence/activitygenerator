@@ -40,7 +40,7 @@ class RandomActivity extends Component {
 <div className="container">
 <div className="columns is-vcentered is-centered center">
 <div className="box">
-  <article className="media">
+  <article className="media pb-2">
     <div class="media-right">
       <figure class="image is-128x128 mr-4">
         <img src="/images/Randomtodo.png" alt="Image" />
@@ -49,13 +49,13 @@ class RandomActivity extends Component {
     <div className="media-content">
       <div className="content">
         <p>
-          <h3><strong>{randomActivity.name}</strong></h3>
+          <h3>Your Random Activity is... <br></br></h3><h3><strong>{randomActivity.name}!</strong></h3>
           <br></br>
           <strong>Duration:</strong> {randomActivity.minDuration} min <br></br>
-          <strong>Description:</strong> {randomActivity.description} min <br></br>
-          <strong>Categories: </strong>
+          <strong>Description:</strong> {randomActivity.description}<br></br>
+          {/* <strong>Categories: </strong>
 
-          {randomActivity.categories.map(category => <> {category} </>)}
+          {randomActivity.categories.map(category => <> {category} </>)} */}
 
         </p>
        

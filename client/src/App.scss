@@ -37,9 +37,9 @@ img{
   border: none;
 }
 
-button.selected {
-  background-color: red;
-}
+// button.selected {
+//   background-color: red;
+// }
 
 #categories:active { outline-color: #cae7df;
   outline-width: 1px;  }
@@ -55,6 +55,10 @@ button:focus { outline-color: #cae7df; }
   display: flex;
   justify-content: center;
   align-items: center;
+}
+
+.random-activity{
+  color: #ee7879;
 }
 // Update Bulma's global variables
 // $family-sans-serif: "Nunito", sans-serif;
