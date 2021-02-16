@@ -60,8 +60,8 @@ class UserProfile extends Component {
     return possiblePreferences.map(pref => {
       return (
         <div className="column is-one-third-mobile is-one-quarter-tablet is-one-quarter-desktop is-one-quarter-widescreen is-one-quarter-fullhd has-text-centered">
-        <button id="categories" className="has-text-centered is-white button-checkboxes" key={pref} type="submit" onClick={this.pushToCategories} value={pref}>
-        <figure className="image column is-vcentered is-centered">
+        <button id="categories" className="has-text-centered button-checkboxes" key={pref} type="submit" onClick={this.pushToCategories} value={pref}>
+        <figure className="image is-vcentered is-centered">
             <img id="categories" className="image" key={pref} name={pref} style={{ maxWidth: "180px" }} src={"images/" + pref + ".png"} />
           </figure>
           </button><br />{pref}
@@ -76,18 +76,18 @@ class UserProfile extends Component {
       <section className="hero is-fullheight">
         <div className="hero-body">
           <div className="container">
-            <div className="columns is-vcentered is-centered">
+            <div className="columns is-vcentered is-centered center">
               <div className="is-vcentered is-centered">
                 <div className="content has-text-centered">
                   <h2 className="is-small">Hello {this.state.username}!</h2></div>
-                <div className="column content has-text-centered">
+                <div className="content has-text-centered">
                   <h5 className="is-small">Your preferences are: </h5> {this.state.preferences.map(pref => {
-                    return <li> {pref} </li>
+                    return <p> {pref} </p>
                   })}
                   <div className="content has-text-centered mt-4">
-                  <h5 className="is-small">To edit your preferences use the buttons below</h5></div>
+                  <h5 className="is-small">To change your preferences select the images below</h5></div>
                 </div>
-                <div className="columns is-multiline is-one-third-mobile is-one-quarter-tablet is-one-quarter-desktop is-one-quarter-widescreen is-one-quarter-fullhd">
+                <div className="columns is-multiline is-mobile">
                   {this.creatingButtonsFunction()}
                 </div>
                 {/* <div className="column has-text-centered">

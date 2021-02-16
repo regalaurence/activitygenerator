@@ -62,12 +62,12 @@ class AllActivities extends Component {
       <section className="hero">
         <div className="hero-body">
           <div className="container">
-            <div className="columns is-vcentered is-centered has-text-centered">
-              <form style={{ maxWidth: "512px" }}>
+            <div className="columns is-vcentered is-centered has-text-centered center">
+              <form style={{ maxWidth: "512px" }} className="center">
                 <div className="field">
-                  <div className="columns is-vcentered is-centered">
-                    <figure className="image">
-                      <img style={{ maxWidth: "412px" }} src="images/AllActivities.png" />
+                  <div className="columns is-vcentered is-centered center">
+                    <figure className="image center" style={{ maxWidth: "412px" }}>
+                      <img src="images/AllActivities.png" />
                     </figure>
                   </div>
                   <div className="control">
@@ -75,16 +75,16 @@ class AllActivities extends Component {
                     <Link to="/add-activity"> <button className="button is-primary mb-3">Create Activity</button></Link>
                   </div>
                   <div className="control">
-                    <p className="control has-icons-left">
-                      <input className="input" type="text" placeholder="Find Activity..." name="search" value={this.state.search} onChange={this.handleChange} />
-                      <span className="icon is-small is-left">
-                        <i className="fas fa-search"></i>
-                      </span>
+                    <p className="control">
+                      <input className="input mb-1" type="text" placeholder="Find Activity..." name="search" value={this.state.search} onChange={this.handleChange} />
+                      
                     </p>
+                   
                   </div>
                   <FilterByCategory
                     handleFilterChange={this.handleFilterChange}
                   />
+                  
                 </div>
               </form>
             </div>

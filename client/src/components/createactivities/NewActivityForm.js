@@ -60,7 +60,7 @@ class AddActivity extends Component {
   }
 
   handleChange = (event) => {
-    let { name, value, id } = event.target;
+    let { name, value, id, className } = event.target;
 
     if (id === "categories") {
       if (!this.state.categories.includes(name)) {
@@ -218,12 +218,12 @@ class AddActivity extends Component {
                   <label className="label">I'd rather do this
 
                   <SelectMonth label={"between"} agenda={"seasonStart"} onSelect={this.handleChange} />
-                    <SelectMonth label={"and"} agenda={"seasonEnd"} onSelect={this.handleChange} />
+                    <SelectMonth label={"and"} agenda={"seasonEnd"} value="11" onSelect={this.handleChange} />
                   </label>
                   <div className="control">
                     <div classNAme="select">
                       <div className="control">
-                        <button onClick={this.handleAddOne} className="button is-primary mb-3">Add this one only</button>
+                        <button onClick={this.handleAddOne} className="button is-primary mb-3 mr-3">Add this one only</button>
                         <button onClick={this.handleAddMore} className="button is-primary mb-3">Add another after that</button>
                       </div>
                     </div>

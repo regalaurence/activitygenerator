@@ -40,14 +40,16 @@ class Activity extends Component {
 
   render() {
     return (
-      <div className="columns is-vcentered is-centered has-text-centered mt-6">
+      <div className="container">
+      <div className="columns is-vcentered is-centered has-text-centered mt-6 pt-4 pb-5">
         <div className="field">
           <div className="content mb-4"><h2 className="has-text-warning">{this.props.activity.name}</h2></div>
-          <div className="content"><p className="has-text-centered">{this.props.activity.description}</p></div>
-          <div className="content"><a href={this.props.activity.url} className="has-text-centered">{this.props.activity.url}</a></div>
+          <div className="content"><p className="has-text-centered"><strong>Description:</strong> {this.props.activity.description}<br></br>
+          <strong>Useful Link:</strong> <a href={this.props.activity.url} className="has-text-centered">{this.props.activity.url}</a><br></br>
+          <strong>Duration:</strong> {this.props.activity.minDuration} min<br></br></p></div>
 
           {this.state.isFavorite ?
-            <button className="button is-light is-small" onClick={this.toggleFavorites}>Remove from My Activties</button> :
+            <button className="button is-primary is-light is-small" onClick={this.toggleFavorites}>Remove from My Activties</button> :
             <form onSubmit={this.toggleFavorites}>
               <div className="field is-grouped columns is-vcentered is-centered">
 
@@ -59,7 +61,7 @@ class Activity extends Component {
                     </select>
                   </div>
                   <div className="control">
-                    <button type="submit" className="button is-light is-small">Save to My Activities</button>
+                    <button type="submit" className="button is-primary is-light is-small">Save to My Activities</button>
                   </div>
                 </div>
               </div>
@@ -68,7 +70,7 @@ class Activity extends Component {
 
         </div>
       </div>
-
+</div>
 
 
 

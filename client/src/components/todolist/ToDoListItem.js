@@ -34,22 +34,30 @@ class ToDoListItem extends Component {
     let todo = this.props.todo
     let todoName = ""
     let todoTime = 0
+    let todoDescription = ""
+    let todoUrl = ""
     //console.log(todo)
 
     if ("activity" in todo) {
       todoName = todo.activity.name
       todoTime = todo.activity.minDuration
+      todoDescription = todo.activity.description
+      todoUrl = todo.activity.url
     } else {
       todoName = todo.name
       todoTime = todo.minDuration
+      todoDescription = todo.description
+      todoUrl = todo.url
     }
 
     return (
       
-      <div>
+      <div className="mb-4"><article>
         <input type="checkbox" checked={this.state.isChecked} id="todo-item" name={todoName} onChange={this.checkBoxHandler} />
-        {todoName}
-        {todoTime} mins
+        <strong> {todoName}</strong>
+        <br></br><strong>Description:</strong> {todoDescription}
+        <br></br><strong> Duration: </strong>{todoTime} mins
+        </article>
       </div>
     )
   }
