@@ -13,14 +13,12 @@ class StartGame extends Component {
     };
   }
 
-
   updatingUserPreferences = () => {
-
     console.log("prevented default")
     const preferences = this.chosenPreferences;
     axios.put(`/api/user/${this.props.user._id}`, { preferences })
-      .then((respond) => {
-        // console.log("response", respond)
+      .then((response) => {
+        // console.log("response", response)
         // this.setState({
         //   preferences: this.chosenPreferences, 
         //   preferences: [{ propositionOne: ["Indoor", "Indoors"], propositionTwo: ["Outdoor", "Outdoors"] }]
@@ -32,8 +30,6 @@ class StartGame extends Component {
       })
       .catch(error => console.log("function <======================== problems here" + error))
   }
-
-
 
   // creatingButtonsFunction needed
   creatingButtonsFunction = () => {

@@ -1,11 +1,6 @@
 import React, { Component } from 'react';
 import axios from 'axios';
-// import 'bulma/css/bulma.css'
-// import 'react-bulma-components/dist/react-bulma-components.min.css';
-import { Link, Route, withRouter } from 'react-router-dom';
-import Login from './Login';
-
-
+import { Link, withRouter } from 'react-router-dom';
 
 class Signup extends Component {
 
@@ -55,11 +50,7 @@ class Signup extends Component {
                   <label className="label">Password</label>
                   <div className="control">
                   <p className="control">
-                    {/* <p className="control has-icons-left"> */}
                       <input className="input" type="password" placeholder="Password" name="password" value={this.state.password} onChange={e => this.handleChange(e)} />
-                      {/* <span className="icon is-small is-left">
-                        <i className="fas fa-lock"></i>
-                      </span> */}
                     </p>
                   </div>
                 </div>
@@ -68,8 +59,6 @@ class Signup extends Component {
                 </div>
                 <div>Already have an account?
                   <Link to="/login" updateCurrentUser={this.updateCurrentUser}> Log in</Link>
-                
-                  {/* <a href='/login'> Log in here</a> */}
                 </div>
               </form>
             </div>

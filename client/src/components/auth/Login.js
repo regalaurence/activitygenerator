@@ -29,24 +29,6 @@ class Login extends Component {
       })
   }
 
-  // Geolocation of user - checking if its available
-  // componentDidMount() {
-  //   if ("geolocation" in navigator) {
-  //     console.log("Available");
-  //   } else {
-  //     console.log("Not Available");
-  //   }
-  // }
-
-  // getting the location
-
-  // componentDidMount() {
-  //   navigator.geolocation.getCurrentPosition(function(position) {
-  //     console.log("Latitude is :", position.coords.latitude);
-  //     console.log("Longitude is :", position.coords.longitude);
-  //   });
-  // }
-
   handleChange = (event) => {
     const { name, value } = event.target;
     this.setState({ [name]: value });
@@ -72,16 +54,11 @@ class Login extends Component {
                     <input className="input" type="text" placeholder="e.g Anna Smith" name="username" value={this.state.username} onChange={e => this.handleChange(e)} />
                   </div>
                 </div>
-
                 <div className="field">
                   <label className="label">Password</label>
                   <div className="control">
                     <p className="control">
-                    {/* <p className="control has-icons-left"> */}
                       <input className="input" type="password" placeholder="Password" name="password" value={this.state.password} onChange={e => this.handleChange(e)} />
-                      {/* <span className="icon is-small is-left">
-                        <i className="fas fa-lock"></i>
-                      </span> */}
                     </p>
                   </div>
                 </div>
@@ -89,7 +66,6 @@ class Login extends Component {
                   <button type="submit" className="button is-primary mb-3">Submit</button>
                 </div>
                 <div><p>First time here?
-{/* <Route path="/login" component={Login}></Route> */}
                   <Link to="/signup"> Sign up</Link> </p>
                 </div>
               </form>
@@ -101,15 +77,5 @@ class Login extends Component {
     )
   }
 }
-
-{/* <form onSubmit={this.handleFormSubmit}>
-<label>Username:</label>
-<input type="text" name="username" value={this.state.username} onChange={e => this.handleChange(e)} />
-<label>Password:</label>
-<input type="password" name="password" value={this.state.password} onChange={e => this.handleChange(e)} />
-<input type="submit" value="Submit" />
-</form> */}
-
-
 
 export default withRouter(Login);

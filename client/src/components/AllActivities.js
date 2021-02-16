@@ -20,7 +20,6 @@ class AllActivities extends Component {
           activitiesFromDb: response.data, 
           isLoading: false 
         })
-        // console.log("Response from backend: ", response.data)
       })
     .catch((err => {
       this.setState({

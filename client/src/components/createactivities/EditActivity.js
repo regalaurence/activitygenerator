@@ -2,9 +2,6 @@ import React, { Component } from 'react';
 import SelectMonth from './SelectMonth'
 import CategoriesCheckboxes from './CategoriesCheckboxes';
 import { withRouter } from 'react-router-dom';
-
-
-
 class EditActivity extends Component {
   constructor(props) {
     super(props);
@@ -66,17 +63,10 @@ class EditActivity extends Component {
         this.props.updateUser(user)
   }
 
-
-
-
   handleEditOne = () => {
     this.submitData()
-    
       this.props.history.push('/my-activities');
-
   }
-
-
 
   handleChange = (event) => {
     let { name, value, id } = event.target;

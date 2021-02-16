@@ -20,9 +20,7 @@ class UserProfile extends Component {
   }
 
   updatingUserPreferences = (newPreferences) => {
-    //const newPreferences = this.newChosenPreferences;
-    // const newPreferences = [...this.state.preferences, this.newChosenPreferences];
-    axios.put(`/api/user/${this.props.user._id}`, { preferences: newPreferences })
+     axios.put(`/api/user/${this.props.user._id}`, { preferences: newPreferences })
       .then(() => {
         this.setState({
           preferences: newPreferences
@@ -30,7 +28,6 @@ class UserProfile extends Component {
         let user = this.props.user
         user.preferences = this.newChosenPreferences
         this.props.updateUser(user)
-        //this.props.history.push('/home');
       })
       .catch(error => console.log(error))
   }

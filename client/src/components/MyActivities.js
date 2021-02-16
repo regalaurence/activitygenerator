@@ -49,9 +49,6 @@ class MyActivities extends Component {
     
     return (
 
-      // this.state.activityDetailsShown ?
-      // <div><p>Checking here</p></div> :
-
       <section className="hero">
         <div className="hero-body">
           <div className="container">
@@ -69,7 +66,6 @@ class MyActivities extends Component {
                     <button onClick={this.showActivityDetails} key={activity._id} value={activity._id} className="button is-small is-success mr-2">See details</button>
                     <Link to="/edit-activity"><button className="button is-small is-success is-outlined mr-2" value={activity._id} onClick={(event) => {this.props.editActivity(event.target.value)}}>Edit activity</button></Link>
                     <button className="button is-light is-small" value={activity._id} onClick={this.removeFromFavorites}>Remove</button>
-                    {/* {activity.isHighPriority ? <span> High priority</span> : <span> Low priority</span>}  */}
                     {activity._id === this.state.clickedActivity ? <div className="columns is-multiline is-mobile">
                       {this.printDetails(this.state.clickedActivity)}
                     </div> : <p></p>}
