@@ -12,7 +12,7 @@ class Welcome extends React.Component {
           <div className="column">
             <div className="is-vcentered">
               <figure className="image">
-                <img style={{ maxWidth: "512px" }} src="images/CloudFinalDarkText.png" />
+                <img style={{ maxWidth: "512px" }} src="/images/CloudFinalDarkText.png" />
               </figure>
 
             </div>
