@@ -1,12 +1,16 @@
 const mongoose = require('mongoose');
 const Activity = require('../models/activity-model');
+<<<<<<< HEAD
+const DB_NAME = 'activity-generator';
+mongoose.connect(`mongodb://localhost/${DB_NAME}`, {
+=======
 
 mongoose.connect(process.env.MONGODB_URI, {
+>>>>>>> master
   useCreateIndex: true,
   useNewUrlParser: true,
   useUnifiedTopology: true,
 });
-
 const activitiesSeeds = [{
   name: 'Go for a walk',
   description: "Oxygeneting this brain wouldn't hurt!",
@@ -16,8 +20,8 @@ const activitiesSeeds = [{
   timeWindowEnd: 21,
   hasCost: false,
   isHighPriority: false,
-  seasonStart: 1,
-  seasonEnd: 12,
+  seasonStart: 0,
+  seasonEnd: 11,
 },
 {
   name: 'Try out a new recipe',
@@ -29,8 +33,8 @@ const activitiesSeeds = [{
   timeWindowEnd: 22,
   hasCost: false,
   isHighPriority: false,
-  seasonStart: 1,
-  seasonEnd: 12,
+  seasonStart: 0,
+  seasonEnd: 11,
 },
 {
   name: 'Listen to a playlist',
@@ -42,8 +46,8 @@ const activitiesSeeds = [{
   timeWindowEnd: 24,
   hasCost: false,
   isHighPriority: false,
-  seasonStart: 1,
-  seasonEnd: 12,
+  seasonStart: 0,
+  seasonEnd: 11,
 },
 {
   name: 'Watch a movie',
@@ -55,8 +59,8 @@ const activitiesSeeds = [{
   timeWindowEnd: 24,
   hasCost: false,
   isHighPriority: false,
-  seasonStart: 1,
-  seasonEnd: 12,
+  seasonStart: 0,
+  seasonEnd: 11,
 },
 {
   name: 'Go for a run',
@@ -67,8 +71,8 @@ const activitiesSeeds = [{
   timeWindowEnd: 20,
   hasCost: false,
   isHighPriority: false,
-  seasonStart: 1,
-  seasonEnd: 12,
+  seasonStart: 0,
+  seasonEnd: 11,
 },
 {
   name: 'Call or skype your parents',
@@ -79,8 +83,8 @@ const activitiesSeeds = [{
   timeWindowEnd: 21,
   hasCost: false,
   isHighPriority: false,
-  seasonStart: 1,
-  seasonEnd: 12,
+  seasonStart: 0,
+  seasonEnd: 11,
 },
 {
   name: 'Take a bath',
@@ -91,8 +95,8 @@ const activitiesSeeds = [{
   timeWindowEnd: 22,
   hasCost: false,
   isHighPriority: false,
-  seasonStart: 1,
-  seasonEnd: 12,
+  seasonStart: 0,
+  seasonEnd: 11,
 },
 {
   name: 'Buy groceries for the week',
@@ -103,8 +107,8 @@ const activitiesSeeds = [{
   timeWindowEnd: 19,
   hasCost: false,
   isHighPriority: false,
-  seasonStart: 1,
-  seasonEnd: 12,
+  seasonStart: 0,
+  seasonEnd: 11,
 },
 {
   name: 'Go sit at the park',
@@ -115,8 +119,8 @@ const activitiesSeeds = [{
   timeWindowEnd: 21,
   hasCost: false,
   isHighPriority: false,
-  seasonStart: 4,
-  seasonEnd: 9,
+  seasonStart: 3,
+  seasonEnd: 8,
 },
 {
   name: 'Have a drink with a friend',
@@ -127,8 +131,8 @@ const activitiesSeeds = [{
   timeWindowEnd: 22,
   hasCost: false,
   isHighPriority: false,
-  seasonStart: 1,
-  seasonEnd: 12,
+  seasonStart: 0,
+  seasonEnd: 11,
 },
 {
   name: "Call that friend you've been missing",
@@ -139,8 +143,8 @@ const activitiesSeeds = [{
   timeWindowEnd: 22,
   hasCost: false,
   isHighPriority: false,
-  seasonStart: 1,
-  seasonEnd: 12,
+  seasonStart: 0,
+  seasonEnd: 11,
 },
 {
   name: 'Clean the bathroom',
@@ -151,8 +155,8 @@ const activitiesSeeds = [{
   timeWindowEnd: 22,
   hasCost: false,
   isHighPriority: false,
-  seasonStart: 1,
-  seasonEnd: 12,
+  seasonStart: 0,
+  seasonEnd: 11,
 },
 {
   name: 'Clean the fridge',
@@ -163,8 +167,8 @@ const activitiesSeeds = [{
   timeWindowEnd: 22,
   hasCost: false,
   isHighPriority: false,
-  seasonStart: 1,
-  seasonEnd: 12,
+  seasonStart: 0,
+  seasonEnd: 11,
 },
 {
   name: 'Clean the oven',
@@ -175,8 +179,8 @@ const activitiesSeeds = [{
   timeWindowEnd: 22,
   hasCost: false,
   isHighPriority: false,
-  seasonStart: 1,
-  seasonEnd: 12,
+  seasonStart: 0,
+  seasonEnd: 11,
 },
 {
   name: 'Change the bedsheets',
@@ -187,8 +191,8 @@ const activitiesSeeds = [{
   timeWindowEnd: 21,
   hasCost: false,
   isHighPriority: false,
-  seasonStart: 1,
-  seasonEnd: 12,
+  seasonStart: 0,
+  seasonEnd: 11,
 },
 {
   name: 'Organise your wardrobe',
@@ -199,8 +203,8 @@ const activitiesSeeds = [{
   timeWindowEnd: 22,
   hasCost: false,
   isHighPriority: false,
-  seasonStart: 1,
-  seasonEnd: 12,
+  seasonStart: 0,
+  seasonEnd: 11,
 },
 {
   name: 'Update your CV',
@@ -211,8 +215,8 @@ const activitiesSeeds = [{
   timeWindowEnd: 23,
   hasCost: false,
   isHighPriority: false,
-  seasonStart: 1,
-  seasonEnd: 12,
+  seasonStart: 0,
+  seasonEnd: 11,
 },
 {
   name: 'Write a diary story',
@@ -223,8 +227,8 @@ const activitiesSeeds = [{
   timeWindowEnd: 24,
   hasCost: false,
   isHighPriority: false,
-  seasonStart: 1,
-  seasonEnd: 12,
+  seasonStart: 0,
+  seasonEnd: 11,
 },
 {
   name: 'Write a letter to your future self',
@@ -235,8 +239,8 @@ const activitiesSeeds = [{
   timeWindowEnd: 22,
   hasCost: false,
   isHighPriority: false,
-  seasonStart: 1,
-  seasonEnd: 12,
+  seasonStart: 0,
+  seasonEnd: 11,
 },
 {
   name: 'Organise your wardrobe',
@@ -247,8 +251,8 @@ const activitiesSeeds = [{
   timeWindowEnd: 22,
   hasCost: false,
   isHighPriority: false,
-  seasonStart: 1,
-  seasonEnd: 12,
+  seasonStart: 0,
+  seasonEnd: 11,
 },
 {
   name: 'Organise your wardrobe',
@@ -259,11 +263,10 @@ const activitiesSeeds = [{
   timeWindowEnd: 22,
   hasCost: false,
   isHighPriority: false,
-  seasonStart: 1,
-  seasonEnd: 12,
+  seasonStart: 0,
+  seasonEnd: 11,
 },
 ];
-
 Activity.create(activitiesSeeds)
   .then((activitiesfromDB) => {
     console.log(`Created ${activitiesfromDB.length} activities`);

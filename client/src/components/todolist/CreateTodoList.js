@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
 import axios from 'axios';
-import ToDoListInput from './ToDoListInput';
+import ToDoListInput from './ToDoListForm';
 import ToDoListItem from './ToDoListItem';
+import {withRouter} from 'react-router-dom'
 
 class CreateToDoList extends Component {
   // CreateToDoList receives the available time, possibleCategories and user as props
@@ -12,59 +13,71 @@ class CreateToDoList extends Component {
     allActivitiesFromDb: []
   }
 
-  populateAcitivities = () => {
-    //console.log("populate activities runs")
-    let promises = []
-    let activitiesToPopulate = this.props.user.bookmarkedActivities
+  // Call to backend to get allactivities
 
-    //console.log("activities to populate: ", activitiesToPopulate)
-
-    for (let i = 0; i < activitiesToPopulate.length; i++) {
-      promises.push(axios.get(`/api/activities/${activitiesToPopulate[i].activityID}`)
-        .then(response => {
-          return { activity: response.data, isHighPriority: activitiesToPopulate[i].isHighPriority }
-        })
-      )
-    }
-
-    //console.log("Promises: ", promises)
-
-    Promise.all(promises)
-      .then((response) => {
-        //console.log("All promises resolved")
-        //console.log("CHECK THIS OUTTTTTTT: " + response)
+  componentDidMount = () => {
+    console.log("mounting")
+    console.log(this.props.user)
+    axios.get('/api/activities')
+      .then(response => {
+        console.log("Repsonse from backend: ", response.data)
         this.setState({
-          userActivitiesFromDb: response
+          allActivitiesFromDb: response.data,
+          userActivitiesFromDb: this.props.user.userDoc.bookmarkedActivities
         })
       })
   }
 
+  removeFromFavorites = (todoId) => {
+    this.props.removeFromFavorite(todoId)
+    this.setState({
+      userActivitiesFromDb: this.props.user.userDoc.bookmarkedActivities
+    })
+  }
 
-  // Call to backend to get allactivities
-
-  componentDidMount = () => {
-    //console.log("calling populate activities")
-    //this.populateAcitivities()
-    axios.get('/api/activities')
-      .then(response => {
-        //console.log("Repsonse from backend: ", response.data)
-        this.setState({
-          allActivitiesFromDb: response.data,
-          userActivitiesFromDb: this.props.user.bookmarkedActivities
-        })
-      })
+  handleTodoCheck = (todoId, isTodoChecked) => {
+    this.setState({
+      [todoId]: isTodoChecked
+    })
+    this.removeFromFavorites(todoId)
   }
 
   // Functions that generate todo list as Class Methods for CreateToDoList
 
   generateToDoList = (time, categories) => {
 
-    if (this.state.userActivitiesFromDb === 0 || this.state.allActivitiesFromDb.length === 0) {
+    console.log("State: ", this.state.userActivitiesFromDb)
+
+    if (this.state.userActivitiesFromDb.length === 0 || this.state.allActivitiesFromDb.length === 0) {
       return [];
     }
 
+    let now = new Date()
+    let currentMonth = now.getMonth()
+    let currentHour = now.getHours()
+
     let toDoList = [];
     let timeLeft = time;
+
+    //Step 0a Filter activities for current season
+    let userActivitiesFilteredForSeason = this.state.userActivitiesFromDb.filter(activity => {
+      return activity.seasonStart <= currentMonth && activity.seasonEnd >= currentMonth
+    })
+
+    let allActivitiesFilteredForSeason = this.state.allActivitiesFromDb.filter(activity => {
+      return activity.seasonStart <= currentMonth && activity.seasonEnd >= currentMonth
+    })
+
+    //Step0b Filter activites for time
+    let userActivitiesFilteredForTime = userActivitiesFilteredForSeason.filter(activity => {
+      return activity.timeWindowStart <= currentHour && activity.timeWindowEnd >= currentHour
+    })
+
+    let allActivitiesFilteredForTime = allActivitiesFilteredForSeason.filter(activity => {
+      return activity.timeWindowStart <= currentHour && activity.timeWindowEnd >= currentHour
+    })
+
+    // Update below with filtered activities once database is reseeded
 
     // Step 1a: Check for activities that meet certain criteria (high priority)
     let highPriorityToDos = this.checkForHighPriorityToDos(this.state.userActivitiesFromDb)
@@ -205,10 +218,32 @@ class CreateToDoList extends Component {
 
   render() {
 
-    let generatedToDoList = this.generateToDoList(this.props.availableTime, this.props.possibleCategories)
+    let generatedToDoList = this.generateToDoList(this.props.timeForTodoList, this.props.categoriesForTodoList)
     console.log("Here is the generated TodoList: ", generatedToDoList)
 
     return (
+<<<<<<< HEAD
+      <div>
+        <div>
+          Available time: {this.props.timeForTodoList} min
+        Selected Categories:
+          <ul>
+            {this.props.categoriesForTodoList.map(category => <li>{category}</li>)}
+          </ul>
+        </div>
+        <div>
+          {
+            (this.props.timeForTodoList === 0)
+              ? <div>This is not enough time to get something done...</div>
+              : <div> Here is your To Do List! </div>
+          }
+        </div>
+        <div>
+          {generatedToDoList ?
+            <div id="todolist"> {generatedToDoList.map(todo => <ToDoListItem onCheck={this.handleTodoCheck} todo={todo} />)} </div>
+            : null}
+        </div>
+=======
 
       <div className="hero-body">
           <div className="container">
@@ -247,10 +282,11 @@ class CreateToDoList extends Component {
           </div>
         </div>
         </div>
+>>>>>>> master
       </div>
 
     )
   }
 }
 
-export default CreateToDoList;
+  export default withRouter(CreateToDoList);

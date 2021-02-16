@@ -6,7 +6,9 @@ import MyActivities from './MyActivities';
 import MakeMeDo from './todolist/MakeMeDo';
 
 class Home extends Component {
+
     render() {
+
         return (
             <section className="hero is-fullheight">
                 <div className="hero-body">
