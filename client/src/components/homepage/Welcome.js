@@ -5,20 +5,26 @@ class Welcome extends React.Component {
 
   render() {
     return (
-      <div className="container">
-        <div className="columns is-vcentered is-centered has-text-centered">
+      <section className="hero is-fullheight">
+      <div className="hero-body">
+        <div className="container">
+          <div className="columns is-vcentered is-centered center">
 
-          <div className="column">
-            <div className="is-vcentered">
-              <figure className="image">
-                <img style={{ maxWidth: "512px" }} src="images/CloudFinalDarkText.png" />
+
+          
+            
+              <figure className="image mb-4">
+                <img style={{ maxWidth: "312px" }} src="/images/BlueCloudDarkSignup.png" />
               </figure>
-
-            </div>
-          </div>
+</div>
+            <div className="columns is-vcentered is-centered center">
+            
       <About/>
       </div>
+          </div>
       </div>
+      
+      </section>
     )
 }
 }
