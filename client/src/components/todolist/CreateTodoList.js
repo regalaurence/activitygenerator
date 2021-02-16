@@ -28,15 +28,18 @@ class CreateToDoList extends Component {
       })
   }
 
+  removeFromFavorites = (todoId) => {
+    this.props.removeFromFavorite(todoId)
+    this.setState({
+      userActivitiesFromDb: this.props.user.userDoc.bookmarkedActivities
+    })
+  }
+
   handleTodoCheck = (todoId, isTodoChecked) => {
     this.setState({
       [todoId]: isTodoChecked
     })
-    this.updateUserTodos()
-  }
-
-  updateUserTodos = () => {
-    
+    this.removeFromFavorites(todoId)
   }
 
   // Functions that generate todo list as Class Methods for CreateToDoList

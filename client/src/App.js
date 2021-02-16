@@ -129,7 +129,7 @@ class App extends Component {
           )} />
 
           <Route path="/your-todo-list">
-            <CreateToDoList user={this.props.user} timeForTodoList={this.state.timeForTodoList} categoriesForTodoList={this.state.categoriesForTodoList}></CreateToDoList>
+            <CreateToDoList user={this.props.user} timeForTodoList={this.state.timeForTodoList} categoriesForTodoList={this.state.categoriesForTodoList} removeFromFavorite={this.removeFromFavorite}></CreateToDoList>
           </Route>
 
 
