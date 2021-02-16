@@ -28,6 +28,7 @@ class MakeMeDo extends Component {
     }
 
     return (
+<<<<<<< HEAD
       <Redirect to="/your-todo-list"></Redirect>
       // <section className="hero">
       //   <div className="hero-body">
@@ -40,6 +41,19 @@ class MakeMeDo extends Component {
       //     </div>
       //   </div>
       // </section>
+=======
+      <section className="hero">
+      <div className="hero-body">
+        <div className="container ">
+          <div className="columns is-vcentered is-centered center">
+          <form style={{ maxWidth: "612px" }}>
+      <CreateToDoList user={this.props.user} availableTime={this.state.time} possibleCategories={this.state.possibleCategories}></CreateToDoList>
+      </form>
+            </div>
+          </div>
+        </div>
+      </section>
+>>>>>>> master
     )
   }
 }

@@ -222,6 +222,7 @@ class CreateToDoList extends Component {
     console.log("Here is the generated TodoList: ", generatedToDoList)
 
     return (
+<<<<<<< HEAD
       <div>
         <div>
           Available time: {this.props.timeForTodoList} min
@@ -242,7 +243,48 @@ class CreateToDoList extends Component {
             <div id="todolist"> {generatedToDoList.map(todo => <ToDoListItem onCheck={this.handleTodoCheck} todo={todo} />)} </div>
             : null}
         </div>
+=======
+
+      <div className="hero-body">
+          <div className="container">
+          <div className="columns is-vcentered is-centered center">
+          <div className="box">
+            <article className="media pr-2">
+              {/* <div class="media-right">
+                <figure class="image is-64x64">
+                  <img src="/images/Todo.png" alt="Image" />
+                </figure>
+              </div> */}
+              <div className="media-content">
+                <div className="content">
+                  <p>
+                    <h3><strong>Here is your To Do List:</strong></h3>
+                    <br></br>
+                    <strong>Available time:</strong> {this.props.availableTime} min <br></br>
+                    <strong>Selected Categories: </strong>
+
+                    {this.props.possibleCategories.map(category => <> {category} </>)}
+
+                  </p>
+                  {generatedToDoList ?
+                    <div id="todolist">
+                      {generatedToDoList.map(todo => <ToDoListItem todo={todo} />)}
+                    </div> : null}
+     
+                </div>
+              </div>
+              <div className="media-right">
+                <figure className="image is-64x64 ml-4 mr-2">
+                  <img src="/images/Todo.png" alt="Image" />
+                </figure>
+              </div>
+            </article>
+          </div>
+        </div>
+        </div>
+>>>>>>> master
       </div>
+
     )
   }
 }

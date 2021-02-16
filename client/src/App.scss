@@ -37,6 +37,29 @@ img{
   border: none;
 }
 
+// button.selected {
+//   background-color: red;
+// }
+
+#categories:active { outline-color: #cae7df;
+  outline-width: 1px;  }
+
+button:focus { outline-color: #cae7df; }
+
+.has-border{
+  border-radius: 3px;
+  border: 0.2px solid #edf7f4;
+}
+
+.center {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.random-activity{
+  color: #ee7879;
+}
 // Update Bulma's global variables
 // $family-sans-serif: "Nunito", sans-serif;
 // $grey-dark: $brown;
@@ -52,7 +75,7 @@ img{
 // $input-border-color: transparent;
 // $input-shadow: none;
 
-@import "../node_modules/bulma/bulma.sass";
+@import "bulma/bulma.sass";
 
 // // Import only what you need from Bulma
 // @import "../node_modules/bulma/sass/utilities/_all.sass";

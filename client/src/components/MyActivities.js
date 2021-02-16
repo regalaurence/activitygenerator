@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import axios from 'axios';
+import {Link} from 'react-router-dom';
 
 class MyActivities extends Component {
 
@@ -17,10 +17,8 @@ class MyActivities extends Component {
 
   showActivityDetails = (event) => {
     this.setState({
-      favoriteActivities: this.props.currentFavorites,
       activityDetailsShown: true,
       clickedActivity: event.target.value,
-      chosenOne: null
     })
   }
 
@@ -31,6 +29,9 @@ class MyActivities extends Component {
       {foundActivity.description
         ? <span><strong>Description:</strong><br></br>{foundActivity.description}</span>
         : <span><strong>Description:</strong><br></br>Edit this activity to add the description</span>}<br></br>
+        {foundActivity.url
+        ? <span><strong>Url: </strong><a href={foundActivity.url}>{foundActivity.url}</a></span>
+        : <span><strong>Url: </strong><br></br>Edit this activity to add the url</span>}<br></br>
       <strong>Duration:</strong> {foundActivity.minDuration}<br></br>
       {foundActivity.hasCost
         ? <span><strong>Cost:</strong> It's not for free</span>
@@ -51,22 +52,23 @@ class MyActivities extends Component {
       // this.state.activityDetailsShown ?
       // <div><p>Checking here</p></div> :
 
-      <section className="hero is-fullheight">
+      <section className="hero">
         <div className="hero-body">
           <div className="container">
-            <div className="columns is-vcentered is-centered">
+            <div className="columns is-vcentered is-centered center">
               <figure className="image is-vcentered is-centered has-text-centered mb-6">
                 <img style={{ maxWidth: "412px" }} src="images/Myactivities.png" />
               </figure>
             </div>
-            <div className="columns is-multiline is-mobile">
+            <div className="columns is-multiline is-mobile center">
+            <div className="content"><h4 className="has-text-centered">Your Favourites Activities:</h4></div>
               {this.props.currentFavorites &&
                 this.props.currentFavorites.map(activity =>
                   <div className="column is-full has-text-centered">
                     <h1 className="activity-name"><strong>{activity.name}</strong></h1>
-                    <button onClick={this.showActivityDetails} key={activity._id} value={activity._id} className="button is-small is-success is-outlined">See details</button>
-                    <button className="button is-light is-small" value={activity._id} onClick={this.removeFromFavorites}>Remove from My Activties</button>
-                    <button className="button is-light is-small" value={activity._id} onClick={(event) => {this.props.editActivity(event.target.value)}}>Edit activity</button>
+                    <button onClick={this.showActivityDetails} key={activity._id} value={activity._id} className="button is-small is-success mr-2">See details</button>
+                    <Link to="/edit-activity"><button className="button is-small is-success is-outlined mr-2" value={activity._id} onClick={(event) => {this.props.editActivity(event.target.value)}}>Edit activity</button></Link>
+                    <button className="button is-light is-small" value={activity._id} onClick={this.removeFromFavorites}>Remove</button>
                     {/* {activity.isHighPriority ? <span> High priority</span> : <span> Low priority</span>}  */}
                     {activity._id === this.state.clickedActivity ? <div className="columns is-multiline is-mobile">
                       {this.printDetails(this.state.clickedActivity)}

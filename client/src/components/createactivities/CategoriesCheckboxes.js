@@ -9,13 +9,17 @@ const CategoriesCheckboxes = (props) => {
   //   return props.value.includes(name)
   // }
 
+ 
+
+
+
   return (
     <div className="columns is-multiline is-mobile">
       {/* <label>Choose categories:</label> */}
       {availableCategories.map(c => {
         return (
           <div className="column is-one-third-mobile is-one-quarter-tablet is-one-quarter-desktop is-one-quarter-widescreen is-one-quarter-fullhd has-text-centered">
-          <button id="categories" className="has-text-centered is-white button-checkboxes">
+          <button id="categories" className="has-text-centered button-checkboxes" type="checkbox">
           <figure className="image column is-vcentered is-centered">
               <img id="categories" className="image" name={c} style={{ maxWidth: "180px" }} src={"images/" + c + ".png"} onClick={props.onChange}/>
             </figure>

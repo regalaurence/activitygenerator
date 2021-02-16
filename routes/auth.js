@@ -36,6 +36,7 @@ router.post('/signup', (req, res) => {
 
 // // PUT route => to update a specific user
 router.put('/user/:id', (req, res) => {
+  console.log("Calling user update")
   console.log(req.body);
   User.findByIdAndUpdate(req.params.id, req.body).then((editedUser) => {
     res.json(editedUser);

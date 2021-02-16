@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import axios from 'axios'
 import './App.scss';
-import { Link, Redirect, Route, Switch, withRouter } from 'react-router-dom';
+import { Redirect, Route, Switch, withRouter } from 'react-router-dom';
 
 //Components
 import Navbar from './components/Navbar'
@@ -13,12 +13,12 @@ import MyActivities from './components/MyActivities';
 import StartGame from './components/StartGame'
 import MakeMeDo from './components/todolist/MakeMeDo';
 import Home from './components/Home'
-import Weather from './components/Weather'
 import Welcome from './components/homepage/Welcome'
 import Footer from './components/Footer'
 import UserProfile from './components/UserProfile'
 import RandomActivity from 'components/todolist/RandomActivity';
 import CreateToDoList from 'components/todolist/CreateTodoList';
+import EditActivity from 'components/createactivities/EditActivity';
 class App extends Component {
 
   state = {
@@ -171,7 +171,16 @@ class App extends Component {
                 addToFavorite={this.addToFavorite} />
               : <Redirect to='login' />
           )} />
-
+           <Route path="/edit-activity" render={(props) => (
+            this.state.currentUser
+              ? <EditActivity
+                {...props} user={this.state.currentUser}
+                currentFavorites={this.state.currentFavorites}
+                editActivity={this.editActivity}
+                activityToChangeID={this.state.activityToChangeID}
+                updateUser={this.updateCurrentUser}
+              />
+              : <Redirect to='/login' />)} />
           <Route path="/my-activities" render={(props) => (
             this.state.currentUser
               ? <MyActivities
@@ -193,3 +202,4 @@ class App extends Component {
 }
 
 export default withRouter(App);
+
