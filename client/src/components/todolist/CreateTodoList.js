@@ -222,29 +222,6 @@ class CreateToDoList extends Component {
     console.log("Here is the generated TodoList: ", generatedToDoList)
 
     return (
-<<<<<<< HEAD
-      <div>
-        <div>
-          Available time: {this.props.timeForTodoList} min
-        Selected Categories:
-          <ul>
-            {this.props.categoriesForTodoList.map(category => <li>{category}</li>)}
-          </ul>
-        </div>
-        <div>
-          {
-            (this.props.timeForTodoList === 0)
-              ? <div>This is not enough time to get something done...</div>
-              : <div> Here is your To Do List! </div>
-          }
-        </div>
-        <div>
-          {generatedToDoList ?
-            <div id="todolist"> {generatedToDoList.map(todo => <ToDoListItem onCheck={this.handleTodoCheck} todo={todo} />)} </div>
-            : null}
-        </div>
-=======
-
       <div className="hero-body">
           <div className="container">
           <div className="columns is-vcentered is-centered center">
@@ -260,10 +237,10 @@ class CreateToDoList extends Component {
                   <p>
                     <h3><strong>Here is your To Do List:</strong></h3>
                     <br></br>
-                    <strong>Available time:</strong> {this.props.availableTime} min <br></br>
+                    <strong>Available time:</strong> {this.props.timeForTodoList} min <br></br>
                     <strong>Selected Categories: </strong>
 
-                    {this.props.possibleCategories.map(category => <> {category} </>)}
+                    {this.props.categoriesForTodoList.map(category => <> {category} </>)}
 
                   </p>
                   {generatedToDoList ?
@@ -282,7 +259,6 @@ class CreateToDoList extends Component {
           </div>
         </div>
         </div>
->>>>>>> master
       </div>
 
     )
