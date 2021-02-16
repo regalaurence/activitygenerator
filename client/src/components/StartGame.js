@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import axios from 'axios';
 import { withRouter } from 'react-router-dom'
+import "bulma";
 
 class StartGame extends Component {
   constructor(props) {

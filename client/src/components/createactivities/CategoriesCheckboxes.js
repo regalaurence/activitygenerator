@@ -1,4 +1,5 @@
 import React from 'react';
+import "bulma";
 
 const CategoriesCheckboxes = (props) => {
   let availableCategories = ['Indoors', 'Outdoors', 'Sports', 'Adventures', 'Housework', 'Socializing', 'Relaxing', 'Online']

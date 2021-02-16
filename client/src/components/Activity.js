@@ -1,4 +1,6 @@
 import React, { Component } from 'react';
+import "bulma";
+
 class Activity extends Component {
 
   state = {

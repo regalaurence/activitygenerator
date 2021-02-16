@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import "bulma";
 
 class Footer extends Component {
   render() {

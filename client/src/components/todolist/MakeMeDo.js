@@ -3,6 +3,7 @@ import React, { Component } from 'react';
 import CreateToDoList from './CreateTodoList';
 import ToDoListForm from './ToDoListForm';
 import {Redirect, withRouter} from 'react-router-dom';
+import "bulma";
 
 class MakeMeDo extends Component {
 

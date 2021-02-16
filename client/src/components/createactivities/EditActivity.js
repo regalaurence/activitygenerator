@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 import SelectMonth from './SelectMonth'
 import CategoriesCheckboxes from './CategoriesCheckboxes';
 import { withRouter } from 'react-router-dom';
+import "bulma";
+
 class EditActivity extends Component {
   constructor(props) {
     super(props);

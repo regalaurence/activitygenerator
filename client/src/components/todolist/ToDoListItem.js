@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import "bulma";
 
 class ToDoListItem extends Component {
 

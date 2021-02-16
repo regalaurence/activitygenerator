@@ -1,9 +1,6 @@
 import React, { Component } from 'react';
-import { Link, Route } from 'react-router-dom';
-import AddActivity from './createactivities/NewActivityForm';
-import AllActivities from './AllActivities';
-import MyActivities from './MyActivities';
-import MakeMeDo from './todolist/MakeMeDo';
+import { Link } from 'react-router-dom';
+import "bulma";
 
 class Home extends Component {
 

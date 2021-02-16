@@ -3,6 +3,8 @@ import axios from 'axios';
 import Activity from './Activity.js'
 import { Link, withRouter } from 'react-router-dom';
 import FilterByCategory from './FilterByCategory'
+import "bulma";
+
 class AllActivities extends Component {
 
   state = {

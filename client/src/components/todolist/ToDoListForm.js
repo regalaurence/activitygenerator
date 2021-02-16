@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import CategoriesCheckboxes from '../createactivities/CategoriesCheckboxes';
 import { Link, withRouter } from 'react-router-dom';
+import "bulma";
 
 class ToDoListForm extends Component {
   constructor(props) {

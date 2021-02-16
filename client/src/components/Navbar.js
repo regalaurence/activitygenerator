@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import { withRouter, Redirect } from 'react-router-dom'
+import "bulma";
 
 
 class Navbar extends Component {

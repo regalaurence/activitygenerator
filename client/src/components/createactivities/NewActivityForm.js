@@ -3,6 +3,7 @@ import axios from 'axios';
 import SelectMonth from './SelectMonth'
 import CategoriesCheckboxes from './CategoriesCheckboxes';
 import { withRouter } from 'react-router-dom';
+import "bulma";
 
 const initialState = {
   name: "",

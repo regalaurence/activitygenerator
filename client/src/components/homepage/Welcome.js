@@ -1,5 +1,6 @@
 import React from 'react'
 import About from './About'
+import "bulma";
 
 class Welcome extends React.Component {
 
