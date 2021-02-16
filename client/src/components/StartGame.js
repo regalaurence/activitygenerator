@@ -20,11 +20,10 @@ class StartGame extends Component {
     const preferences = this.chosenPreferences;
     axios.put(`/api/user/${this.props.user._id}`, { preferences })
       .then((respond) => {
-        console.log("response", respond)
+        // console.log("response", respond)
         // this.setState({
         //   preferences: this.chosenPreferences, 
         //   preferences: [{ propositionOne: ["Indoor", "Indoors"], propositionTwo: ["Outdoor", "Outdoors"] }]
-
         // });
         let user = this.props.user
         user.preferences = this.chosenPreferences
@@ -64,7 +63,7 @@ class StartGame extends Component {
 
     if (this.chosenPreferences.length === 2) {
       this.setState({
-        preferences: [{ propositionOne: ["Gym", "Sports"], propositionTwo: ["Bathtube", "Relaxing"] }]
+        preferences: [{ propositionOne: ["Gym", "Sports"], propositionTwo: ["Bathtub", "Relaxing"] }]
       })
     }
 
@@ -76,7 +75,7 @@ class StartGame extends Component {
 
     if (this.chosenPreferences.length === 4) {
       this.setState({
-        preferences: [{ propositionOne: ["Cleaning master", "Housework"], propositionTwo: ["Dust doesn't hurt", "Adventures"] }]
+        preferences: [{ propositionOne: ["Cleaning master", "Housework"], propositionTwo: ["Dust doesn't bite", "Adventures"] }]
       })
     }
 
@@ -105,7 +104,7 @@ class StartGame extends Component {
         <div className="hero-body">
           <div className="container">
             <div className="columns is-vcentered is-centered">
-              <h1 className="subtitle has-text-centered pb-5">Choose one of the options to create your profile</h1>
+              <h1 className="subtitle has-text-centered pb-5">Choose one of the options to help us get to know you</h1>
             </div>
             <div className="columns is-vcentered is-centered">
               {this.creatingButtonsFunction()}
