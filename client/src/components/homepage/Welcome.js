@@ -14,7 +14,7 @@ class Welcome extends React.Component {
           
             
               <figure className="image mb-4">
-                <img style={{ maxWidth: "312px" }} src="/images/BlueCloudDarkSignup.png" />
+                <img style={{ maxWidth: "312px" }} src="images/BlueCloudDarkSignup.png" />
               </figure>
 </div>
             <div className="columns is-vcentered is-centered center">

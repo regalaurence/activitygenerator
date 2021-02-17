@@ -60,7 +60,7 @@ class Login extends Component {
             <div className="columns is-vcentered is-centered center">
             
               <figure className="image">
-                <img style={{ maxWidth: "512px" }} src="images/CloudFinalDarkText.png" />
+                <img style={{ maxWidth: "512px" }} src="images/CloudFinalDarktext.png" />
               </figure>
             </div>
             <div className="columns is-vcentered is-centered center">
