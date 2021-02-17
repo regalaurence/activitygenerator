@@ -31,6 +31,25 @@ class Navbar extends Component {
   }
 
 
+  checkRedirect = (event) =>{
+    
+    let target = event.target;
+    let name = target.name;
+    console.log(name);
+    console.log("happens two")
+    console.log(this.state.active)
+    if (this.state.active == "navbar-menu is-active") {
+      return this.setState({
+        active: "navbar-menu"
+      }, this.props.history.push(`/${name}`))
+    }
+    else {
+      return this.setState({
+        active: "navbar-menu"
+      })
+    }
+  }
+
 
 
   render() {
@@ -64,12 +83,12 @@ class Navbar extends Component {
 
         <div id="navbarBasicExample" className={this.state.active}>
           <div className="navbar-start">
-            <a className="navbar-item">
-              <Link to="/home" className="has-text-grey-dark" onClick={this.toggleClass}>Home</Link>
+            <a className="navbar-item" onClick={this.checkRedirect} name="home">
+              <Link to="/home" className="has-text-grey-dark">Home</Link>
             </a>
 
             <div className="navbar-start">
-              <a className="navbar-item">
+              <a className="navbar-item" onClick={this.checkRedirect} name="make-me-do">
                 <Link to="/make-me-do" className="has-text-grey-dark" onClick={this.toggleClass}>Do Something   </Link>
               </a>
             </div>
@@ -82,13 +101,13 @@ class Navbar extends Component {
                 Activities
             </a>
               <div className="navbar-dropdown is-right">
-                <a className="navbar-item">
+                <a className="navbar-item" onClick={this.checkRedirect} name="activities">
                   <Link to="/activities" className="has-text-grey-dark" onClick={this.toggleClass}>Browse Activities</Link>
                 </a>
-                <a className="navbar-item">
+                <a className="navbar-item" onClick={this.checkRedirect} name="my-activities">
                   <Link to="/my-activities" className="has-text-grey-dark" onClick={this.toggleClass}>My Activities</Link>
                 </a>
-                <a className="navbar-item">
+                <a className="navbar-item" onClick={this.checkRedirect} name="add-activity">
                   <Link to="/add-activity" className="has-text-grey-dark" onClick={this.toggleClass}>Create Activities</Link>
                 </a>
               </div>
