@@ -61,17 +61,35 @@ button:focus { outline-color: #cae7df; }
   border: 0.2px solid #edf7f4;
 }
 
-.center, .center-column, .top, .right, .bottom, .left {
+.center{
 	display: flex;
 	justify-content: center;
 	align-items: center;
 }
 
 
+// #nav-toggle-state {
+//   display: none;
+// }
+
+// #nav-toggle-state:checked ~ .navbar-menu {
+//   display: block;
+// }
+
+
+
 
 .random-activity{
   color: #ee7879;
 }
+
+
+
+  
+
+
+
+
 // Update Bulma's global variables
 // $family-sans-serif: "Nunito", sans-serif;
 // $grey-dark: $brown;
