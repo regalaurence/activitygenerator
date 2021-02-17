@@ -3,6 +3,7 @@ import axios from 'axios';
 import Activity from './Activity.js'
 import { Link, withRouter } from 'react-router-dom';
 import FilterByCategory from './FilterByCategory'
+
 class AllActivities extends Component {
 
   state = {
@@ -20,7 +21,6 @@ class AllActivities extends Component {
           activitiesFromDb: response.data, 
           isLoading: false 
         })
-        // console.log("Response from backend: ", response.data)
       })
     .catch((err => {
       this.setState({
