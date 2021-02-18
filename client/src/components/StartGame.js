@@ -8,7 +8,7 @@ class StartGame extends Component {
     this.chosenPreferences = [];
     this.state = {
       preferences: [
-        { propositionOne: ["Relax", "Relaxing"], propositionTwo: ["Sport", "Sports"] }
+        { propositionOne: ["A series and chill", "Relaxing"], propositionTwo: ["Jump around", "Sports"] }
       ]
     };
   }
@@ -46,41 +46,40 @@ class StartGame extends Component {
 
     let button = event.currentTarget
     this.chosenPreferences.push(button.value)
-    console.log(this.chosenPreferences)
 
     if (this.chosenPreferences.length === 1) {
       this.setState({
-        preferences: [{ propositionOne: ["Indoor", "Indoors"], propositionTwo: ["Outdoor", "Outdoors"] }]
+        preferences: [{ propositionOne: ["Home sweet home", "Indoors"], propositionTwo: ["Into the wild", "Outdoors"] }]
       })
     }
 
     if (this.chosenPreferences.length === 2) {
       this.setState({
-        preferences: [{ propositionOne: ["Gym", "Sports"], propositionTwo: ["Bathtube", "Relaxing"] }]
+        preferences: [{ propositionOne: ["Fifteen burpees", "Sports"], propositionTwo: ["A foamy bathtub", "Relaxing"] }]
       })
     }
 
     if (this.chosenPreferences.length === 3) {
       this.setState({
-        preferences: [{ propositionOne: ["Leave me alone", "Relaxing"], propositionTwo: ["Take me out", "Socializing"] }]
+        preferences: [{ propositionOne: ["Leave me alone", "Relaxing"], propositionTwo: ["Let's meet up", "Socializing"] }]
       })
     }
 
     if (this.chosenPreferences.length === 4) {
       this.setState({
-        preferences: [{ propositionOne: ["Cleaning master", "Housework"], propositionTwo: ["Dust doesn't hurt", "Adventures"] }]
+        preferences: [{ propositionOne: ["Cleaning master", "Housework"], propositionTwo: ["Dust doesn't bite", "Adventures"] }]
       })
     }
 
     if (this.chosenPreferences.length === 5) {
       this.setState({
-        preferences: [{ propositionOne: ["Online", "Online"], propositionTwo: ["Offline", "Outside"] }]
+        preferences: [{ propositionOne: ["WiFi code please", "Online"], propositionTwo: ["Disconnect me", "Outside"] }]
       })
     }
 
     if (this.chosenPreferences.length === 6) {
       this.setState({
-        preferences: [{ propositionOne: ["Tea", "Relaxing"], propositionTwo: ["Bungee jumping", "Adventures"] }]
+        preferences: [{ propositionOne: ["Cup of tea", "Relaxing"], propositionTwo: ["Bungee jumping", "Adventures"] }]
       })
     }
 
@@ -97,7 +96,7 @@ class StartGame extends Component {
       <div className="hero-body">
         <div className="container">
           <div className="columns is-vcentered is-centered center">
-              <h1 className="subtitle has-text-centered pb-5">Choose one of the options to create your profile</h1>
+              <h1 className="subtitle has-text-centered pb-5">Let's get to know each other! Tap the button that sounds the most like you.</h1>
             </div>
             <div className="column is-vcentered is-centered center">
               {this.creatingButtonsFunction()}
