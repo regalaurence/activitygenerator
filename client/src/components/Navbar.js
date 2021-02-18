@@ -4,11 +4,11 @@ import { withRouter } from 'react-router-dom'
 
 
 class Navbar extends Component {
-  
-    state = {
-      active: "navbar-menu"
-    }
-  
+
+  state = {
+    active: "navbar-menu"
+  }
+
 
   toggleClass = () => {
     console.log("happens")
@@ -32,19 +32,31 @@ class Navbar extends Component {
   }
 
 
-  checkRedirect = (event) =>{
-    
+  checkRedirect = (event) => {
+
+    console.log("Event: ", event.target)
+
     let target = event.target;
     let name = target.name;
-    if (this.state.active === "navbar-menu is-active") {
-      return this.setState({
-        active: "navbar-menu"
-      }, this.props.history.push(`/${name}`))
-    }
-    else {
-      return this.setState({
-        active: "navbar-menu"
-      })
+
+    console.log("Name: ", name)
+
+    if (window.innerWidth >= 1024) {
+      this.props.history.push(`/${name}`)
+
+    } else {
+
+      if (this.state.active == "navbar-menu is-active") {
+        return this.setState({
+          active: "navbar-menu"
+        }, this.props.history.push(`/${name}`))
+      }
+      else {
+        return this.setState({
+          active: "navbar-menu"
+        })
+      }
+
     }
   }
 
@@ -82,44 +94,60 @@ class Navbar extends Component {
         <div id="navbarBasicExample" className={this.state.active}>
           <div className="navbar-start">
             <a className="navbar-item" onClick={this.checkRedirect} name="home">
-              <Link to="/home" className="has-text-grey-dark">Home</Link>
+              {window.innnerWidth >= 1024
+                ? <Link to="/home" className="has-text-grey-dark">Home</Link>
+                : <Link name="home" to="/home" className="has-text-grey-dark">Home</Link>
+              }
             </a>
 
             <div className="navbar-start">
               <a className="navbar-item" onClick={this.checkRedirect} name="make-me-do">
-                <Link to="/make-me-do" className="has-text-grey-dark">Do Something</Link>
+                {window.innnerWidth >= 1024
+                  ? <Link to="/make-me-do" className="has-text-grey-dark">Do Something</Link>
+                  : <Link name="make-me-do" to="/make-me-do" className="has-text-grey-dark">Do Something</Link>
+                }
               </a>
             </div>
 
-      
-
-<nav class="navbar" role="navigation" aria-label="dropdown navigation">
-            <div className="navbar-item has-dropdown is-hoverable" >
-              <a className="navbar-link">
-                Activities
+            <nav class="navbar" role="navigation" aria-label="dropdown navigation">
+              <div className="navbar-item has-dropdown is-hoverable" >
+                <a className="navbar-link">
+                  Activities
             </a>
-              <div className="navbar-dropdown is-right">
-                <a className="navbar-item" onClick={this.checkRedirect} name="activities">
-                  <Link to="/activities" className="has-text-grey-dark">Browse Activities</Link>
-                </a>
-                <a className="navbar-item" onClick={this.checkRedirect} name="my-activities">
-                  <Link to="/my-activities" className="has-text-grey-dark">My Activities</Link>
-                </a>
-                <a className="navbar-item" onClick={this.checkRedirect} name="add-activity">
-                  <Link to="/add-activity" className="has-text-grey-dark">Create Activities</Link>
-                </a>
+                <div className="navbar-dropdown is-right">
+                  <a className="navbar-item" onClick={this.checkRedirect} name="activities">
+
+                    {window.innnerWidth >= 1024
+                      ? <Link to="/activities" className="has-text-grey-dark">Browse Activities</Link>
+                      : <Link name="activities" to="/activities" className="has-text-grey-dark">Browse Activities</Link>
+                    }
+                  </a>
+                  <a className="navbar-item" onClick={this.checkRedirect} name="my-activities">
+
+                    {window.innnerWidth >= 1024
+                      ? <Link to="/my-activities" className="has-text-grey-dark">My Activities</Link>
+                      : <Link name="my-activities" to="/my-activities" className="has-text-grey-dark">My Activities</Link>
+                    }
+
+                  </a>
+                  <a className="navbar-item" onClick={this.checkRedirect} name="add-activity">
+                    {window.innnerWidth >= 1024
+                      ? <Link to="/add-activity" className="has-text-grey-dark">Create Activities</Link>
+                      : <Link name="add-activity" to="/add-activity" className="has-text-grey-dark">Create Activities</Link>
+                    }
+                  </a>
+                </div>
               </div>
-            </div>
-</nav> 
+            </nav>
 
           </div>
 
           <div className="navbar-end">
-          <div className="navbar-item">
+            <div className="navbar-item">
               {/* ANITA CHENGE HERE FOR USER PROFILE */}
               {/* {this.props.currentUser ? <a className="navbar-item" onClick={this.checkRedirect} name="user-profile">Your profile</a> : null} */}
               {this.props.currentUser ? <a className="button is-primary" ><Link to="/user-profile" className="button-is-light" onClick={this.checkRedirect} name="user-profile">Your profile</Link></a> : null}
-{/* OLD ONE
+              {/* OLD ONE
               {this.props.currentUser ? <div to="/make-me-do" className="has-text-grey-dark"><Link to="/user-profile" className="button-is-light" onClick={this.toggleClass}>Your profile</Link></div> : null} */}
 
             </div>
