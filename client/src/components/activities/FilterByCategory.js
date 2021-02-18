@@ -10,8 +10,8 @@ class FilterByCategory extends React.Component {
       <div className="select">
       <select id="categoriesToFilterBy" name="categoriesToFilterBy" onChange={this.props.handleFilterChange} >
         <option value="">No filter</option>
-        <option value="Outdoor">Outdoor</option>
-        <option value="Indoor">Indoor</option>
+        <option value="Outdoors">Outdoors</option>
+        <option value="Indoors">Indoors</option>
         <option value="Alone">Alone</option>
         <option value="Sports">Sports</option>
         <option value="Adventures">Adventures</option>
