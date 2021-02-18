@@ -16,17 +16,17 @@ class AllActivities extends Component {
 
   componentDidMount() {
     axios.get("/api/activities")
-      .then(response => {
-        this.setState({ 
-          activitiesFromDb: response.data, 
-          isLoading: false 
-        })
+    .then((response) => {
+      this.setState({
+        activitiesFromDb : response.data.filter(a => a.creator === undefined || a.creator === this.props.user._id),
+        isLoading: false
       })
-    .catch((err => {
+    })
+    .catch((err) => {
       this.setState({
         isError: true
       })
-    }))
+    })
   }
 
   handleChange = (event) => {
@@ -35,7 +35,6 @@ class AllActivities extends Component {
     this.setState({
       search: value
     });
-    console.log('state here', this.state);
   };
 
   handleFilterChange = (event) => {
@@ -48,7 +47,8 @@ class AllActivities extends Component {
     let filteredByActivities = [...this.state.activitiesFromDb]
     if (this.state.filterBy.length !== 0) {
       filteredByActivities = [...this.state.activitiesFromDb]
-            .filter(activity => activity.categories.includes(this.state.filterBy))
+            .filter(activity => activity.categories.includes(this.state.filterBy) 
+                                || activity.creator === this.state.filterBy)
     }
 
     let filteredBySearchAndCatsActivities = [...filteredByActivities]
@@ -83,14 +83,15 @@ class AllActivities extends Component {
                   </div>
                   <FilterByCategory
                     handleFilterChange={this.handleFilterChange}
+                    user={this.props.user}
                   />
-                  
                 </div>
               </form>
             </div>
             <div>
-            {this.state.isLoading && <progress className="progress is-small is-primary" max="100">15%</progress>}
-              {filteredBySearchAndCatsActivities
+            {this.state.isLoading ? <progress className="progress is-small is-primary" max="100">15%</progress> :
+            this.state.isError ? <div>Something went wrong. Please try again.</div> :
+              filteredBySearchAndCatsActivities
                 .map(activity => <Activity
                   key={activity._id}
                   activity={activity}
