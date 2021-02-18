@@ -59,13 +59,13 @@ class Login extends Component {
           <div className="container">
             <div className="columns is-vcentered is-centered center">
             
-              <figure className="image">
+              <figure className="image mb-2">
                 <img style={{ maxWidth: "512px" }} src="images/CloudFinalDarktext.png" />
               </figure>
             </div>
             <div className="columns is-vcentered is-centered center">
               <form style={{ maxWidth: "512px" }} onSubmit={this.handleFormSubmit}>
-              <h2 className="title is-4">Log in</h2>
+              <h2 className="title is-4">Now just log in...</h2>
                 <div className="field">
                   <label className="label">Username</label>
                   <div className="control">

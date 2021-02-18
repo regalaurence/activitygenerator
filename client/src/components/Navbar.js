@@ -27,7 +27,8 @@ class Navbar extends Component {
 
 
   handleLogOut = () => {
-    this.props.logoutUser()
+    this.props.logoutUser();
+    this.toggleClass();
   }
 
 
