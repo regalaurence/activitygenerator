@@ -100,22 +100,25 @@ class StartGame extends Component {
 
   render() {
 
+
+
     return (
       <section className="hero is-fullheight">
-        <div className="hero-body">
-          <div className="container">
-            <div className="columns is-vcentered is-centered">
+      <div className="hero-body">
+        <div className="container">
+          <div className="columns is-vcentered is-centered center">
               <h1 className="subtitle has-text-centered pb-5">Choose one of the options to create your profile</h1>
             </div>
-            <div className="columns is-vcentered is-centered">
+            <div className="column is-vcentered is-centered center">
               {this.creatingButtonsFunction()}
-            </div>
-            <div className="columns is-vcentered is-centered">
-              <figure className="column is-full has-text-centered">
-                <img style={{ maxWidth: "512px" }} src="images/thinking_girl_with_plants.png" />
+              </div>
+              <div className="columns is-vcentered is-centered center">
+              <figure className="image">
+                <img style={{ maxWidth: "412px" }} src="images/thinking_girl_with_plants.png" />
               </figure>
-            </div>
+            
           </div>
+        </div>
         </div>
       </section>
     )
