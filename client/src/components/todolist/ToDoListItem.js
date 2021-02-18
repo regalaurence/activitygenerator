@@ -45,12 +45,14 @@ class ToDoListItem extends Component {
       todoName = todo.activity.name
       todoTime = todo.activity.minDuration
       todoId = todo.activity._id
+      todo.description ? todoDescription = todo.ativity.description : todoDescription = null
+      todoUrl ? todoUrl = todo.activity.url : todoUrl = null
     } else {
       todoName = todo.name
       todoTime = todo.minDuration
       todoId = todo._id
-      todoDescription = todo.activity.description
-      todoUrl = todo.activity.url
+      todo.description ? todoDescription = todo.description : todoDescription = null
+      todoUrl ? todoUrl = todo.url : todoUrl = null
     }
 
     return (

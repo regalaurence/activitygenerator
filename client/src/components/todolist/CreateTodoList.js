@@ -245,7 +245,7 @@ class CreateToDoList extends Component {
                   </p>
                   {generatedToDoList ?
                     <div id="todolist">
-                      {generatedToDoList.map(todo => <ToDoListItem todo={todo} />)}
+                      {generatedToDoList.map(todo => <ToDoListItem onCheck={this.handleTodoCheck} todo={todo} />)}
                     </div> : null}
      
                 </div>
