@@ -14,8 +14,7 @@ class UserProfile extends Component {
     console.log(user.username)
     this.setState({
       username: user.username,
-      preferences: user.preferences,
-
+      preferences: user.preferences
     })
   }
 
@@ -72,6 +71,9 @@ class UserProfile extends Component {
   }
 
   render() {
+
+let uniquePreferences = [...new Set(this.state.preferences)]; 
+
     return (
       <section className="hero is-fullheight">
         <div className="hero-body">
@@ -81,7 +83,7 @@ class UserProfile extends Component {
                 <div className="content has-text-centered">
                   <h2 className="is-small">Hello {this.state.username}!</h2></div>
                 <div className="content has-text-centered">
-                  <h5 className="is-small">Your preferences are: </h5> {this.state.preferences.map(pref => {
+                  <h5 className="is-small">Your preferences are: </h5> {uniquePreferences.map(pref => {
                     return <p> {pref} </p>
                   })}
                   <div className="content has-text-centered mt-4">
