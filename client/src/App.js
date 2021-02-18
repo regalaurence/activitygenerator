@@ -78,7 +78,7 @@ class App extends Component {
   checkPreferences = () => {
     if (this.state.currentUser.preferences.length === 0) {
       return <StartGame user={this.state.currentUser} updateUser={this.updateCurrentUser} />
-      
+
     }
   }
 
@@ -98,12 +98,12 @@ class App extends Component {
     return (
       <div className="App">
         <Navbar currentUser={this.state.currentUser} logoutUser={this.logoutUser} />
-        {this.state.currentUser && this.checkPreferences()}
-       
+
+
         <Route exact path="/">
-          {this.state.currentUser ?
-            <Home user={this.state.currentUser} /> :
-            <Welcome />
+          {this.state.currentUser
+            ? <Home user={this.state.currentUser} />
+            : <Welcome />
           }
         </Route>
         <Route path="/login">
@@ -117,9 +117,9 @@ class App extends Component {
         <Switch>
 
 
-        <Route path="/start-game">
-        <StartGame user={this.state.currentUser} updateUser={this.updateCurrentUser} />
-        </Route>
+          <Route path="/start-game">
+            {this.state.currentUser && this.checkPreferences()}
+          </Route>
 
           <Route path="/user-profile">
             <UserProfile user={this.state.currentUser} />
@@ -144,7 +144,10 @@ class App extends Component {
 
           <Route path="/home" render={() => (
             this.state.currentUser
-              ? <Home user={this.state.currentUser} />
+              ? (this.state.currentUser.preferences.length > 0
+                ? <Home user={this.state.currentUser} />
+                : <Redirect to='/start-game' />
+              )
               : <Redirect to='/login' />
           )} />
 
@@ -174,7 +177,7 @@ class App extends Component {
                 addToFavorite={this.addToFavorite} />
               : <Redirect to='login' />
           )} />
-           <Route path="/edit-activity" render={(props) => (
+          <Route path="/edit-activity" render={(props) => (
             this.state.currentUser
               ? <EditActivity
                 {...props} user={this.state.currentUser}

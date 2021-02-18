@@ -13,7 +13,7 @@ class Navbar extends Component {
   toggleClass = () => {
     console.log("happens")
     console.log(this.state.active)
-    if (this.state.active == "navbar-menu") {
+    if (this.state.active === "navbar-menu") {
       return this.setState({
         active: "navbar-menu is-active"
       })
@@ -96,24 +96,24 @@ class Navbar extends Component {
 
       
 
-<nav class="navbar" role="navigation" aria-label="dropdown navigation">
+
             <div className="navbar-item has-dropdown is-hoverable" >
               <a className="navbar-link">
                 Activities
             </a>
               <div className="navbar-dropdown is-right">
-                <a className="navbar-item" onClick={this.checkRedirect} name="activities">
-                  <Link to="/activities" className="has-text-grey-dark">Browse Activities</Link>
+                <a className="navbar-item" onClick={this.checkRedirect} name="activities">Browse Activities
+                  {/* <Link to="/activities" className="has-text-grey-dark">Browse Activities</Link> */}
                 </a>
-                <a className="navbar-item" onClick={this.checkRedirect} name="my-activities">
-                  <Link to="/my-activities" className="has-text-grey-dark">My Activities</Link>
+                <a className="navbar-item" onClick={this.checkRedirect} name="my-activities">My Activities
+                  {/* <Link to="/my-activities" className="has-text-grey-dark">My Activities</Link> */}
                 </a>
-                <a className="navbar-item" onClick={this.checkRedirect} name="add-activity">
-                  <Link to="/add-activity" className="has-text-grey-dark">Create Activities</Link>
+                <a className="navbar-item" onClick={this.checkRedirect} name="add-activity">Create Activities
+                  {/* <Link to="/add-activity" className="has-text-grey-dark">Create Activities</Link> */}
                 </a>
               </div>
             </div>
-</nav> 
+
 
           </div>
 
