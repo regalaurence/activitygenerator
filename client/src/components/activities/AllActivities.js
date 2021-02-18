@@ -67,7 +67,7 @@ class AllActivities extends Component {
                 <div className="field">
                   <div className="columns is-vcentered is-centered center">
                     <figure className="image center" style={{ maxWidth: "412px" }}>
-                      <img src="images/AllActivities.png" />
+                      <img src="images/AllActivities.png" alt="logo"/>
                     </figure>
                   </div>
                   <div className="control">

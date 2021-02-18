@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
-import { withRouter, Redirect } from 'react-router-dom'
+import { withRouter } from 'react-router-dom'
 
 
 class Navbar extends Component {
@@ -13,7 +13,7 @@ class Navbar extends Component {
   toggleClass = () => {
     console.log("happens")
     console.log(this.state.active)
-    if (this.state.active == "navbar-menu") {
+    if (this.state.active === "navbar-menu") {
       return this.setState({
         active: "navbar-menu is-active"
       })
@@ -36,7 +36,7 @@ class Navbar extends Component {
     
     let target = event.target;
     let name = target.name;
-    if (this.state.active == "navbar-menu is-active") {
+    if (this.state.active === "navbar-menu is-active") {
       return this.setState({
         active: "navbar-menu"
       }, this.props.history.push(`/${name}`))
@@ -59,9 +59,9 @@ class Navbar extends Component {
     return (
       <nav className="navbar" role="navigation" aria-label="main navigation">
         <div className="navbar-brand">
-          <a className="navbar-item">
+          <a className="navbar-item" as={Link} href="/home">
             <Link to="/home" className="has-text-grey-dark">
-              <img src="images/MakeMeDo_textOnly_black.png" width="112" height="28" />
+              <img src="images/MakeMeDo_textOnly_black.png" alt="logo" width="112" height="28" />
             </Link>
           </a>
 

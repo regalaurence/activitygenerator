@@ -60,7 +60,7 @@ class Login extends Component {
             <div className="columns is-vcentered is-centered center">
             
               <figure className="image mb-2">
-                <img style={{ maxWidth: "512px" }} src="images/CloudFinalDarktext.png" />
+                <img style={{ maxWidth: "512px" }} alt="logo" src="images/CloudFinalDarktext.png" />
               </figure>
             </div>
             <div className="columns is-vcentered is-centered center">
@@ -77,11 +77,7 @@ class Login extends Component {
                   <label className="label">Password</label>
                   <div className="control">
                     <p className="control">
-                    {/* <p className="control has-icons-left"> */}
                       <input className="input" type="password" placeholder="Password" name="password" value={this.state.password} onChange={e => this.handleChange(e)} />
-                      {/* <span className="icon is-small is-left">
-                        <i className="fas fa-lock"></i>
-                      </span> */}
                     </p>
                   </div>
                 </div>
@@ -89,11 +85,9 @@ class Login extends Component {
                   <button type="submit" className="button is-primary mb-3">Submit</button>
                 </div>
                 <div><p>First time here?
-{/* <Route path="/login" component={Login}></Route> */}
                   <Link to="/signup"> Sign up</Link> </p>
                 </div>
               </form>
-
             </div>
           </div>
         </div>
@@ -101,15 +95,5 @@ class Login extends Component {
     )
   }
 }
-
-{/* <form onSubmit={this.handleFormSubmit}>
-<label>Username:</label>
-<input type="text" name="username" value={this.state.username} onChange={e => this.handleChange(e)} />
-<label>Password:</label>
-<input type="password" name="password" value={this.state.password} onChange={e => this.handleChange(e)} />
-<input type="submit" value="Submit" />
-</form> */}
-
-
 
 export default withRouter(Login);

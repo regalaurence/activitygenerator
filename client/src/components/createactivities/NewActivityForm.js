@@ -60,7 +60,7 @@ class AddActivity extends Component {
   }
 
   handleChange = (event) => {
-    let { name, value, id, className } = event.target;
+    let { name, value, id } = event.target;
 
     if (id === "categories") {
       if (!this.state.categories.includes(name)) {

@@ -42,7 +42,7 @@ class RandomActivity extends Component {
   <article className="media pb-2">
     <div class="media-right">
       <figure class="image is-128x128 mr-4">
-        <img src="/images/Randomtodo.png" alt="Image" />
+        <img src="/images/Randomtodo.png" alt="logo" />
       </figure>
     </div>
     <div className="media-content">

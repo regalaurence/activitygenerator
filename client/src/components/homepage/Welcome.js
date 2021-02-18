@@ -10,7 +10,7 @@ class Welcome extends React.Component {
           <div className="container">
             <div className="columns is-vcentered is-centered center">
               <figure className="image mb-4">
-                <img style={{ maxWidth: "312px" }} src="images/BlueCloudDarkSignup.png" />
+                <img style={{ maxWidth: "312px" }} alt="logo" src="images/BlueCloudDarkSignup.png" />
               </figure>
             </div>
             <div className="columns is-vcentered is-centered center">

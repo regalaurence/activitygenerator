@@ -57,7 +57,7 @@ class MyActivities extends Component {
           <div className="container">
             <div className="columns is-vcentered is-centered center">
               <figure className="image is-vcentered is-centered has-text-centered mb-6">
-                <img style={{ maxWidth: "412px" }} src="images/Myactivities.png" />
+                <img style={{ maxWidth: "412px" }} alt="logo" src="images/Myactivities.png" />
               </figure>
             </div>
             <div className="columns is-multiline is-mobile center">

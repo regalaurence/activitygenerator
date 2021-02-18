@@ -1,10 +1,6 @@
 import React, { Component } from 'react';
 import axios from 'axios';
-// import 'bulma/css/bulma.css'
-// import 'react-bulma-components/dist/react-bulma-components.min.css';
-import { Link, Route, withRouter } from 'react-router-dom';
-import Login from './Login';
-
+import { Link, withRouter } from 'react-router-dom';
 
 
 class Signup extends Component {
@@ -38,7 +34,7 @@ class Signup extends Component {
             <div className="columns is-vcentered is-centered center">
 
               <figure className="image">
-                <img style={{ maxWidth: "512px" }} src="images/FinalLightPeach.png" />
+                <img style={{ maxWidth: "512px" }} alt="logo" src="images/FinalLightPeach.png" />
               </figure>
             </div>
             <div className="columns is-vcentered is-centered center">
@@ -84,11 +80,3 @@ class Signup extends Component {
 
 export default withRouter(Signup);
 
-
-{/* <form onSubmit={this.handleFormSubmit}>
-          <label>Username:</label>
-          <input type="text" name="username" value={this.state.username} onChange={e => this.handleChange(e)} />
-          <label>Password:</label>
-          <input type="password" name="password" value={this.state.password} onChange={e => this.handleChange(e)} />
-          <input type="submit" value="Submit" />
-        </form> */}

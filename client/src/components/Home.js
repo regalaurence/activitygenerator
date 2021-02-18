@@ -1,9 +1,5 @@
 import React, { Component } from 'react';
-import { Link, Route } from 'react-router-dom';
-import AddActivity from './createactivities/NewActivityForm';
-import AllActivities from './activities/AllActivities';
-import MyActivities from './activities/MyActivities';
-import MakeMeDo from './todolist/MakeMeDo';
+import { Link } from 'react-router-dom';
 
 class Home extends Component {
 
@@ -16,7 +12,7 @@ class Home extends Component {
                         <div className="columns is-vcentered is-centered center">
                             <figure className="image is-vcentered is-centered has-text-centered mb-6">
                                 {/* <img style={{ maxWidth: "512px" }} src="images/CloudFinalDarkText.png" /> */}
-                                <img style={{ maxWidth: "512px" }} src="images/CloudFinalDarktext.png" />
+                                <img style={{ maxWidth: "512px" }} alt="logo" src="images/CloudFinalDarktext.png" />
                             </figure>
                         </div>
                         <div className="is-vcentered is-centered">

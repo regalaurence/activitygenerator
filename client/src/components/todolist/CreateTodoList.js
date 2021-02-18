@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import axios from 'axios';
-import ToDoListInput from './ToDoListForm';
 import ToDoListItem from './ToDoListItem';
 import {withRouter} from 'react-router-dom'
 
@@ -252,7 +251,7 @@ class CreateToDoList extends Component {
               </div>
               <div className="media-right">
                 <figure className="image is-64x64 ml-4 mr-2">
-                  <img src="/images/Todo.png" alt="Image" />
+                  <img src="/images/Todo.png" alt="logo" />
                 </figure>
               </div>
             </article>

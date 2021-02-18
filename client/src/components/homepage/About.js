@@ -1,6 +1,4 @@
 import React from 'react'
-import Login from '../auth/Login'
-import Signup from '../auth/Signup'
 import {Link} from 'react-router-dom';
 
 class About extends React.Component {

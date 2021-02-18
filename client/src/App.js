@@ -23,6 +23,7 @@ class App extends Component {
 
   state = {
     currentUser: this.props.user.userDoc,
+    hasPreferences: false,
     currentFavorites: this.props.user.userDoc ? this.props.user.userDoc.bookmarkedActivities : [],
     timeForTodoList: 0,
     categoriesForTodoList: [],
@@ -42,6 +43,21 @@ class App extends Component {
         this.updateCurrentUser(null)
         this.props.history.push('/login');
       })
+  }
+
+  checkPreferences = () => {
+    if (this.state.currentUser) {
+      if (this.state.currentUser.preferences.length > 0) {
+        this.setState({
+          hasPreferences: true
+        })
+      }
+    }
+    else return
+  }
+
+  componentDidMount = () => {
+    this.checkPreferences()
   }
 
   componentDidUpdate = () => {
@@ -75,13 +91,6 @@ class App extends Component {
     })
   }
 
-  checkPreferences = () => {
-    if (this.state.currentUser.preferences.length === 0) {
-      return <StartGame user={this.state.currentUser} updateUser={this.updateCurrentUser} />
-      
-    }
-  }
-
   handleChildStateUpdate = (time, categories) => {
     this.setState({
       timeForTodoList: time,
@@ -91,21 +100,17 @@ class App extends Component {
 
   render() {
 
-    console.log("Rendering App...")
-    console.log(this.state.currentUser)
-    console.log(!this.state.currentUser)
-
     return (
       <div className="App">
         <Navbar currentUser={this.state.currentUser} logoutUser={this.logoutUser} />
-        {this.state.currentUser && this.checkPreferences()}
-       
+
         <Route exact path="/">
           {this.state.currentUser ?
             <Home user={this.state.currentUser} /> :
             <Welcome />
           }
         </Route>
+
         <Route path="/login">
           <Login updateCurrentUser={this.updateCurrentUser} />
         </Route>
@@ -116,13 +121,15 @@ class App extends Component {
 
         <Switch>
 
-
-        <Route path="/start-game">
-        <StartGame user={this.state.currentUser} updateUser={this.updateCurrentUser} />
-        </Route>
+          <Route path="/start-game">
+            <StartGame user={this.state.currentUser} updateUser={this.updateCurrentUser} />
+          </Route>
 
           <Route path="/user-profile">
+            {this.state.hasPreferences ? <StartGame user={this.state.currentUser} updateUser={this.updateCurrentUser} />
+            :
             <UserProfile user={this.state.currentUser} />
+            }
           </Route>
 
           <Route path="/make-me-do" render={() => (
@@ -144,7 +151,8 @@ class App extends Component {
 
           <Route path="/home" render={() => (
             this.state.currentUser
-              ? <Home user={this.state.currentUser} />
+              ? this.state.hasPreferences ? <Home user={this.state.currentUser} />
+              : <StartGame user={this.state.currentUser} updateUser={this.updateCurrentUser} />
               : <Redirect to='/login' />
           )} />
 
@@ -174,7 +182,7 @@ class App extends Component {
                 addToFavorite={this.addToFavorite} />
               : <Redirect to='login' />
           )} />
-           <Route path="/edit-activity" render={(props) => (
+          <Route path="/edit-activity" render={(props) => (
             this.state.currentUser
               ? <EditActivity
                 {...props} user={this.state.currentUser}

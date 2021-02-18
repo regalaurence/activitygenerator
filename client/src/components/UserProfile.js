@@ -103,9 +103,3 @@ class UserProfile extends Component {
 }
 
 export default UserProfile;
-
-
-
-{/* <div className="column is-multiline has-text-centered is-one-quarter-mobile is-one-quarter-tablet is-one-quarter-desktop is-one-quarter-widescreen is-one-quarter-fullhd">
-          <button className="button is-primary" key={pref} type="submit" onClick={this.pushToCategories} value={pref}>{pref}</button>
-        </div> */}

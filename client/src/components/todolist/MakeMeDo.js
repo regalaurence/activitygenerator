@@ -1,8 +1,6 @@
 import React, { Component } from 'react';
-//import axios from 'axios';
-import CreateToDoList from './CreateTodoList';
 import ToDoListForm from './ToDoListForm';
-import {Redirect, Route, withRouter} from 'react-router-dom';
+import {Redirect, withRouter} from 'react-router-dom';
 
 class MakeMeDo extends Component {
 

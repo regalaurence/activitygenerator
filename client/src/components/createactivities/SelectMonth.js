@@ -28,11 +28,3 @@ const SelectMonth = (props) => {
 }
 
 export default SelectMonth;
-
-
-{/* <div className="field">
-<label className="label">Possible roughly until:</label>
-<div className="control" style={{ maxWidth: "100px" }}>
-  <input className="input" type="number" name="endTime" value={this.state.endTime} onChange={this.handleChange} />
-</div>
-</div> */}
