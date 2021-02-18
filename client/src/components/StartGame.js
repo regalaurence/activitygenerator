@@ -14,19 +14,27 @@ class StartGame extends Component {
   }
 
 
-
   updatingUserPreferences = () => {
+
+    console.log("prevented default")
     const preferences = this.chosenPreferences;
     axios.put(`/api/user/${this.props.user._id}`, { preferences })
-      .then(() => {
+      .then((respond) => {
+        console.log("response", respond)
+        // this.setState({
+        //   preferences: this.chosenPreferences, 
+        //   preferences: [{ propositionOne: ["Indoor", "Indoors"], propositionTwo: ["Outdoor", "Outdoors"] }]
+
+        // });
         let user = this.props.user
         user.preferences = this.chosenPreferences
         this.props.updateUser(user)
+        this.props.history.push('/home');
       })
-      .then(() => this.props.history.push('/')
-      )
-      .catch(error => console.log("function <======================== problems here" + error))
+      .catch(error => console.log("function problems here" + error))
   }
+
+
 
   // creatingButtonsFunction needed
   creatingButtonsFunction = () => {
@@ -91,8 +99,10 @@ class StartGame extends Component {
   };
 
   render() {
+
+
+
     return (
-      
       <section className="hero is-fullheight">
       <div className="hero-body">
         <div className="container">
@@ -104,14 +114,13 @@ class StartGame extends Component {
               </div>
               <div className="columns is-vcentered is-centered center">
               <figure className="image">
-                <img style={{ maxWidth: "412px" }} alt="logo" src="images/thinking_girl_with_plants.png" />
+                <img style={{ maxWidth: "412px" }} src="images/thinking_girl_with_plants.png" />
               </figure>
             
           </div>
         </div>
         </div>
       </section>
-      
     )
   }
 }
