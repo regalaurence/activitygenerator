@@ -29,7 +29,7 @@ class StartGame extends Component {
         let user = this.props.user
         user.preferences = this.chosenPreferences
         this.props.updateUser(user)
-        //this.props.history.push('/home');
+        // this.props.history.push('/home');
       })
       .catch(error => console.log("function <======================== problems here" + error))
   }

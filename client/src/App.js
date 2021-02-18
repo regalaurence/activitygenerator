@@ -78,6 +78,7 @@ class App extends Component {
   checkPreferences = () => {
     if (this.state.currentUser.preferences.length === 0) {
       return <StartGame user={this.state.currentUser} updateUser={this.updateCurrentUser} />
+      
     }
   }
 
@@ -98,10 +99,7 @@ class App extends Component {
       <div className="App">
         <Navbar currentUser={this.state.currentUser} logoutUser={this.logoutUser} />
         {this.state.currentUser && this.checkPreferences()}
-        {/* !this.state.currentUser && <Redirect to="/login"></Redirect> */}
-
-        {/*  
-        {this.state.currentUser && <StartGame user={this.state.currentUser} />} */}
+       
         <Route exact path="/">
           {this.state.currentUser ?
             <Home user={this.state.currentUser} /> :
@@ -117,6 +115,11 @@ class App extends Component {
         </Route>
 
         <Switch>
+
+
+        <Route path="/start-game">
+        <StartGame user={this.state.currentUser} updateUser={this.updateCurrentUser} />
+        </Route>
 
           <Route path="/user-profile">
             <UserProfile user={this.state.currentUser} />

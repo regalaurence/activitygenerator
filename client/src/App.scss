@@ -37,6 +37,16 @@ img{
   border: none;
 }
 
+@media (max-width: 1024px) {
+	.desktop {
+		display: none;
+	}
+}
+
+.single-spaced, .single-spaced * {
+  line-height: 1;
+}
+
 // button.selected {
 //   background-color: red;
 // }
@@ -51,15 +61,35 @@ button:focus { outline-color: #cae7df; }
   border: 0.2px solid #edf7f4;
 }
 
-.center {
-  display: flex;
-  justify-content: center;
-  align-items: center;
+.center{
+	display: flex;
+	justify-content: center;
+	align-items: center;
 }
+
+
+// #nav-toggle-state {
+//   display: none;
+// }
+
+// #nav-toggle-state:checked ~ .navbar-menu {
+//   display: block;
+// }
+
+
+
 
 .random-activity{
   color: #ee7879;
 }
+
+
+
+  
+
+
+
+
 // Update Bulma's global variables
 // $family-sans-serif: "Nunito", sans-serif;
 // $grey-dark: $brown;
