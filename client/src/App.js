@@ -23,7 +23,6 @@ class App extends Component {
 
   state = {
     currentUser: this.props.user.userDoc,
-    hasPreferences: false,
     currentFavorites: this.props.user.userDoc ? this.props.user.userDoc.bookmarkedActivities : [],
     timeForTodoList: 0,
     categoriesForTodoList: [],
@@ -43,21 +42,6 @@ class App extends Component {
         this.updateCurrentUser(null)
         this.props.history.push('/login');
       })
-  }
-
-  checkPreferences = () => {
-    if (this.state.currentUser) {
-      if (this.state.currentUser.preferences.length > 0) {
-        this.setState({
-          hasPreferences: true
-        })
-      }
-    }
-    else return
-  }
-
-  componentDidMount = () => {
-    this.checkPreferences()
   }
 
   componentDidUpdate = () => {
@@ -151,8 +135,8 @@ class App extends Component {
 
           <Route path="/home" render={() => (
             this.state.currentUser
-              ? this.state.hasPreferences ? <Home user={this.state.currentUser} />
-              : <StartGame user={this.state.currentUser} updateUser={this.updateCurrentUser} />
+              ? this.state.currentUser.preferences.length > 0 ? <Home user={this.state.currentUser} />
+              : <Redirect to='/start-game' />
               : <Redirect to='/login' />
           )} />
 
