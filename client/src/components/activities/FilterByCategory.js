@@ -19,7 +19,7 @@ class FilterByCategory extends React.Component {
         <option value="Socializing">Socializing</option>
         <option value="Relaxing">Relaxing</option>
         <option value="Online">Online</option>
-        <option value={this.props.user._id}>My activities</option>
+        <option value={this.props.user._id}>Created by me</option>
       </select>
       </div>
       </div>

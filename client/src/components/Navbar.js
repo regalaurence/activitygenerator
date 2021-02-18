@@ -36,9 +36,6 @@ class Navbar extends Component {
     
     let target = event.target;
     let name = target.name;
-    console.log(name);
-    console.log("happens two")
-    console.log(this.state.active)
     if (this.state.active == "navbar-menu is-active") {
       return this.setState({
         active: "navbar-menu"

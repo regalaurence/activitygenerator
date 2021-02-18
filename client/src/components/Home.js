@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 import { Link, Route } from 'react-router-dom';
 import AddActivity from './createactivities/NewActivityForm';
-import AllActivities from './AllActivities';
-import MyActivities from './MyActivities';
+import AllActivities from './activities/AllActivities';
+import MyActivities from './activities/MyActivities';
 import MakeMeDo from './todolist/MakeMeDo';
 
 class Home extends Component {

@@ -8,8 +8,8 @@ import Navbar from './components/Navbar'
 import Signup from './components/auth/Signup';
 import Login from './components/auth/Login';
 import NewActivityForm from './components/createactivities/NewActivityForm';
-import AllActivities from './components/AllActivities';
-import MyActivities from './components/MyActivities';
+import AllActivities from './components/activities/AllActivities';
+import MyActivities from './components/activities/MyActivities';
 import StartGame from './components/StartGame'
 import MakeMeDo from './components/todolist/MakeMeDo';
 import Home from './components/Home'
