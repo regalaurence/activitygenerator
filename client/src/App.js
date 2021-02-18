@@ -77,7 +77,8 @@ class App extends Component {
 
   checkPreferences = () => {
     if (this.state.currentUser.preferences.length === 0) {
-      return  <StartGame user={this.state.currentUser} updateUser={this.updateCurrentUser} />
+      return <StartGame user={this.state.currentUser} updateUser={this.updateCurrentUser} />
+      
     }
   }
 

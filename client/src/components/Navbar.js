@@ -89,7 +89,7 @@ class Navbar extends Component {
 
             <div className="navbar-start">
               <a className="navbar-item" onClick={this.checkRedirect} name="make-me-do">
-                <Link to="/make-me-do" className="has-text-grey-dark" onClick={this.toggleClass}>Do Something   </Link>
+                <Link to="/make-me-do" className="has-text-grey-dark">Do Something</Link>
               </a>
             </div>
 
@@ -102,13 +102,13 @@ class Navbar extends Component {
             </a>
               <div className="navbar-dropdown is-right">
                 <a className="navbar-item" onClick={this.checkRedirect} name="activities">
-                  <Link to="/activities" className="has-text-grey-dark" onClick={this.toggleClass}>Browse Activities</Link>
+                  <Link to="/activities" className="has-text-grey-dark">Browse Activities</Link>
                 </a>
                 <a className="navbar-item" onClick={this.checkRedirect} name="my-activities">
-                  <Link to="/my-activities" className="has-text-grey-dark" onClick={this.toggleClass}>My Activities</Link>
+                  <Link to="/my-activities" className="has-text-grey-dark">My Activities</Link>
                 </a>
                 <a className="navbar-item" onClick={this.checkRedirect} name="add-activity">
-                  <Link to="/add-activity" className="has-text-grey-dark" onClick={this.toggleClass}>Create Activities</Link>
+                  <Link to="/add-activity" className="has-text-grey-dark">Create Activities</Link>
                 </a>
               </div>
             </div>
@@ -117,20 +117,24 @@ class Navbar extends Component {
           </div>
 
           <div className="navbar-end">
-            <a className="navbar-item">
+          <div className="navbar-item">
               {/* ANITA CHENGE HERE FOR USER PROFILE */}
-              {this.props.currentUser ? <div to="/make-me-do" className="has-text-grey-dark"><Link to="/user-profile" className="button-is-light" onClick={this.toggleClass}>Your profile</Link></div> : null}
-            </a>
+              {/* {this.props.currentUser ? <a className="navbar-item" onClick={this.checkRedirect} name="user-profile">Your profile</a> : null} */}
+              {this.props.currentUser ? <a className="button is-primary" ><Link to="/user-profile" className="button-is-light" onClick={this.checkRedirect} name="user-profile">Your profile</Link></a> : null}
+{/* OLD ONE
+              {this.props.currentUser ? <div to="/make-me-do" className="has-text-grey-dark"><Link to="/user-profile" className="button-is-light" onClick={this.toggleClass}>Your profile</Link></div> : null} */}
+
+            </div>
             <div className="navbar-item">
               <div className="buttons">
                 {!this.props.currentUser ?
-                  <a className="button is-primary">
-                    <Link to="/signup" className="has-text-grey-dark" onClick={this.toggleClass}>Sign up</Link>
+                  <a className="button is-primary" onClick={this.checkRedirect} name="signup">
+                    <Link to="/signup" className="has-text-grey-dark" onClick={this.checkRedirect} name="signup">Sign up</Link>
                   </a> : null}
 
                 {this.props.currentUser ? <a className="button is-light" onClick={this.handleLogOut}>
                   Log out</a> : <a className="button is-light">
-                    <Link to="/login" className="button-is-light">Log in</Link>
+                    <Link to="/login" className="button-is-light" onClick={this.checkRedirect} name="login">Log in</Link>
                   </a>}
               </div>
             </div>
@@ -143,3 +147,4 @@ class Navbar extends Component {
 }
 
 export default withRouter(Navbar);
+
