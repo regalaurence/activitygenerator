@@ -18,15 +18,14 @@ $primary: #cae7df;
 $link: darkgrey;
 $warning: #2a3166;
 $footer-background-color: white;
-.button-checkboxes{
-  background-color: white;
-  border-radius: 3px;
-  border: 0.2px solid #edf7f4;
-}
-#categories:hover{
-  background-color: #f3f9f7;
-
-}
+// .button-checkboxes{
+//   background-color: white;
+//   border-radius: 3px;
+//   border: 0.2px solid #edf7f4;
+// }
+// #categories:hover{
+//   background-color: #f3f9f7;
+// }
 .activity-name{
   font-size: x-large;
 }
@@ -47,14 +46,11 @@ img{
   line-height: 1;
 }
 
-// button.selected {
-//   background-color: red;
-// }
 
-#categories:active { outline-color: #cae7df;
-  outline-width: 1px;  }
+// #categories:active { outline-color: #cae7df;
+//   outline-width: 1px;  }
 
-button:focus { outline-color: #cae7df; }
+// button:focus { outline-color: #cae7df; }
 
 .has-border{
   border-radius: 3px;
@@ -67,6 +63,15 @@ button:focus { outline-color: #cae7df; }
 	align-items: center;
 }
 
+.btn-not-selected {
+  background-color: white;
+  border: none
+}
+
+.btn-selected {
+  background-color:  #cae7df; 
+  border: none
+}
 
 // #nav-toggle-state {
 //   display: none;
@@ -77,43 +82,10 @@ button:focus { outline-color: #cae7df; }
 // }
 
 
-
-
 .random-activity{
   color: #ee7879;
 }
 
 
-
-  
-
-
-
-
-// Update Bulma's global variables
-// $family-sans-serif: "Nunito", sans-serif;
-// $grey-dark: $brown;
-// $grey-light: $beige-light;
-// // $primary: $purple;
-// $link: $pink;
-// $widescreen-enabled: false;
-// $fullhd-enabled: false;
-
-// Update some of Bulma's component variables
-// $body-background-color: $beige-lighter;
-// $control-border-width: 2px;
-// $input-border-color: transparent;
-// $input-shadow: none;
-
 @import "bulma/bulma.sass";
 
-// // Import only what you need from Bulma
-// @import "../node_modules/bulma/sass/utilities/_all.sass";
-// @import "../node_modules/bulma/sass/base/_all.sass";
-// @import "../node_modules/bulma/sass/elements/button.sass";
-// @import "../node_modules/bulma/sass/elements/container.sass";
-// @import "../node_modules/bulma/sass/elements/title.sass";
-// @import "../node_modules/bulma/sass/form/_all.sass";
-// @import "../node_modules/bulma/sass/components/navbar.sass";
-// @import "../node_modules/bulma/sass/layout/hero.sass";
-// @import "../node_modules/bulma/sass/layout/section.sass";
