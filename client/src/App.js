@@ -44,16 +44,6 @@ class App extends Component {
       })
   }
 
-  componentDidUpdate = () => {
-    if (this.state.currentUser) {
-      axios.put(`/api/user/${this.state.currentUser._id}`,
-        { bookmarkedActivities: this.state.currentFavorites })
-        .then((response) => {
-          console.log(response)
-        })
-    }
-  }
-
   editActivity = (activityID) => {
     this.setState({
       activityToChangeID: activityID
@@ -63,18 +53,32 @@ class App extends Component {
   addToFavorite = (activityToAdd, priority) => {
     activityToAdd.isHighPriority = priority
     let newFavorites = [...this.state.currentFavorites, activityToAdd]
-    this.setState({
+    axios.put(`/api/user/${this.state.currentUser._id}`,
+        { bookmarkedActivities: newFavorites })
+    .then ((response) => {
+          console.log(response)
+        })
+    .then(() => {
+      this.setState({
       currentFavorites: newFavorites
     })
-  }
+  })
+}
 
   removeFromFavorite = (activityIDToRemove) => {
     console.log("Calling remove in app js", activityIDToRemove)
     let filteredDeletionFavorites = this.state.currentFavorites.filter(activity => activity._id !== activityIDToRemove)
-    this.setState({
+    axios.put(`/api/user/${this.state.currentUser._id}`,
+        { bookmarkedActivities: filteredDeletionFavorites })
+    .then ((response) => {
+          console.log(response)
+        })
+    .then(() => {
+      this.setState({
       currentFavorites: filteredDeletionFavorites
     })
-  }
+  })
+}
 
   handleChildStateUpdate = (time, categories) => {
     this.setState({

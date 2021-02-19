@@ -53,7 +53,6 @@ class UserProfile extends Component {
   }
 
 
-
   creatingButtonsFunction = () => {
     let possiblePreferences = ["Sports", "Relaxing", "Indoors", "Housework", "Socializing", "Adventures", "Outdoors", "Online",];
     return possiblePreferences.map(pref => {
