@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import axios from 'axios';
 import ToDoListItem from './ToDoListItem';
-import {withRouter} from 'react-router-dom'
+import { withRouter } from 'react-router-dom'
 
 class CreateToDoList extends Component {
   // CreateToDoList receives the available time, possibleCategories and user as props
@@ -16,21 +16,25 @@ class CreateToDoList extends Component {
 
   componentDidMount = () => {
     console.log("mounting")
-    console.log(this.props.user)
+    console.log("User in todolist", this.props.user)
     axios.get('/api/activities')
       .then(response => {
         console.log("Repsonse from backend: ", response.data)
         this.setState({
           allActivitiesFromDb: response.data,
-          userActivitiesFromDb: this.props.user.userDoc.bookmarkedActivities
+          userActivitiesFromDb: this.props.user.bookmarkedActivities
         })
       })
+      // .then(() => {
+      //   let generatedToDoList = this.generateToDoList(this.props.timeForTodoList, this.props.categoriesForTodoList)
+      //   console.log("Here is the generated TodoList: ", generatedToDoList)
+      // })
   }
 
   removeFromFavorites = (todoId) => {
     this.props.removeFromFavorite(todoId)
     this.setState({
-      userActivitiesFromDb: this.props.user.userDoc.bookmarkedActivities
+      userActivitiesFromDb: this.props.user.bookmarkedActivities
     })
   }
 
@@ -222,41 +226,41 @@ class CreateToDoList extends Component {
 
     return (
       <div className="hero-body">
-          <div className="container">
+        <div className="container">
           <div className="columns is-vcentered is-centered center">
-          <div className="box">
-            <article className="media pr-2">
-              {/* <div class="media-right">
+            <div className="box">
+              <article className="media pr-2">
+                {/* <div class="media-right">
                 <figure class="image is-64x64">
                   <img src="/images/Todo.png" alt="Image" />
                 </figure>
               </div> */}
-              <div className="media-content">
-                <div className="content">
-                  <p>
-                    <h3><strong>Here is your To Do List:</strong></h3>
-                    <br></br>
-                    <strong>Available time:</strong> {this.props.timeForTodoList} min <br></br>
-                    <strong>Selected Categories: </strong>
+                <div className="media-content">
+                  <div className="content">
+                    <p>
+                      <h3><strong>Here is your To Do List:</strong></h3>
+                      <br></br>
+                      <strong>Available time:</strong> {this.props.timeForTodoList} min <br></br>
+                      <strong>Selected Categories: </strong>
 
-                    {this.props.categoriesForTodoList.map(category => <> {category} </>)}
+                      {this.props.categoriesForTodoList.map(category => <> {category} </>)}
 
-                  </p>
-                  {generatedToDoList ?
-                    <div id="todolist">
-                      {generatedToDoList.map(todo => <ToDoListItem onCheck={this.handleTodoCheck} todo={todo} />)}
-                    </div> : null}
-     
+                    </p>
+                    {generatedToDoList ?
+                      <div id="todolist">
+                        {generatedToDoList.map(todo => <ToDoListItem onCheck={this.handleTodoCheck} todo={todo} />)}
+                      </div> : null}
+
+                  </div>
                 </div>
-              </div>
-              <div className="media-right">
-                <figure className="image is-64x64 ml-4 mr-2">
-                  <img src="/images/Todo.png" alt="logo" />
-                </figure>
-              </div>
-            </article>
+                <div className="media-right">
+                  <figure className="image is-64x64 ml-4 mr-2">
+                    <img src="/images/Todo.png" alt="logo" />
+                  </figure>
+                </div>
+              </article>
+            </div>
           </div>
-        </div>
         </div>
       </div>
 
@@ -264,4 +268,4 @@ class CreateToDoList extends Component {
   }
 }
 
-  export default withRouter(CreateToDoList);
+export default withRouter(CreateToDoList);
