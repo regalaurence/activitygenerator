@@ -14,7 +14,7 @@ class UserProfile extends Component {
     console.log(user.username)
     this.setState({
       username: user.username,
-      preferences: user.preferences
+      preferences: user.preferences,
     })
   }
 
@@ -58,8 +58,8 @@ class UserProfile extends Component {
     let possiblePreferences = ["Sports", "Relaxing", "Indoors", "Housework", "Socializing", "Adventures", "Outdoors", "Online",];
     return possiblePreferences.map(pref => {
       return (
-        <div className="column is-one-third-mobile is-one-quarter-tablet is-one-quarter-desktop is-one-quarter-widescreen is-one-quarter-fullhd has-text-centered">
-        <button id="categories" className="has-text-centered button-checkboxes" key={pref} type="submit" onClick={this.pushToCategories} value={pref}>
+        <div className="column is-one-third-mobile has-text-centered is-one-quarter-tablet is-one-quarter-desktop is-one-quarter-widescreen is-one-quarter-fullhd has-text-centered">
+        <button id="categories" className={this.state.preferences.includes(pref) ? "btn-selected" : "btn-not-selected"} key={pref} type="submit" onClick={this.pushToCategories} value={pref}>
         <figure className="image is-vcentered is-centered">
             <img id="categories" className="image" key={pref} name={pref} style={{ maxWidth: "180px" }} src={"images/" + pref + ".png"} />
           </figure>
@@ -87,7 +87,7 @@ let uniquePreferences = [...new Set(this.state.preferences)];
                     return <p> {pref} </p>
                   })}
                   <div className="content has-text-centered mt-4">
-                  <h5 className="is-small">To change your preferences select the images below</h5></div>
+                  <h5 className="is-small">To change your preferences, tap on the images below:</h5></div>
                 </div>
                 <div className="columns is-multiline is-mobile">
                   {this.creatingButtonsFunction()}
