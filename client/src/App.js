@@ -69,6 +69,7 @@ class App extends Component {
   }
 
   removeFromFavorite = (activityIDToRemove) => {
+    console.log("Calling remove in app js", activityIDToRemove)
     let filteredDeletionFavorites = this.state.currentFavorites.filter(activity => activity._id !== activityIDToRemove)
     this.setState({
       currentFavorites: filteredDeletionFavorites
@@ -123,7 +124,7 @@ class App extends Component {
           )} />
 
           <Route path="/your-todo-list">
-            <CreateToDoList user={this.props.user} timeForTodoList={this.state.timeForTodoList} categoriesForTodoList={this.state.categoriesForTodoList} removeFromFavorite={this.removeFromFavorite}></CreateToDoList>
+            <CreateToDoList user={this.state.currentUser} timeForTodoList={this.state.timeForTodoList} categoriesForTodoList={this.state.categoriesForTodoList} removeFromFavorite={this.removeFromFavorite}></CreateToDoList>
           </Route>
 
 
