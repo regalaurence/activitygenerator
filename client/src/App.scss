@@ -69,9 +69,12 @@ img{
 }
 
 .btn-selected {
-  background-color:  #cae7df; 
+  background-color:  #edf7f4; 
   border: none
 }
+
+button:focus { outline-color: #edf7f4; }
+
 
 // #nav-toggle-state {
 //   display: none;
