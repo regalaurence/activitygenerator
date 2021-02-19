@@ -6,7 +6,7 @@ class ToDoListForm extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      availableTime: 0,
+      availableTime: 5,
       possibleCategories: [],
     };
   }
