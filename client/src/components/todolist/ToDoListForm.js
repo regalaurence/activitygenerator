@@ -6,13 +6,18 @@ class ToDoListForm extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      availableTime: 0,
+      availableTime: 5,
       possibleCategories: [],
     };
   }
   submitHandler = (event) => {
     event.preventDefault();
-    this.props.onFormSubmit(this.state.availableTime, this.state.possibleCategories)
+    if (this.state.availableTime < 5 || this.state.possibleCategories.length === 0) {
+      return alert("You need 5 min at least and to choose some preferred categories, cowboy!")
+    }
+    else {
+      this.props.onFormSubmit(this.state.availableTime, this.state.possibleCategories)
+    }
   }
 
   handleChange = (event) => {
@@ -37,6 +42,7 @@ class ToDoListForm extends Component {
       })
     }
   }
+
   render() {
     return (
         <section className="hero">
@@ -50,7 +56,14 @@ class ToDoListForm extends Component {
                   <p className="mb-2">or set the details:</p>
                   <div className="field control">
                     <label className="label">{`How much time do you have? (in min) `}
-                      <input style={{ maxWidth: "100px" }} className="input is-small" type="number" name="availableTime" value={this.state.availableTime} onChange={this.handleChange} />
+                      <input style={{ maxWidth: "100px" }} 
+                      className="input is-small" 
+                      type="number" 
+                      min="5"
+                      max="800"
+                      name="availableTime" 
+                      value={this.state.availableTime} 
+                      onChange={this.handleChange} />
                     </label>
                   </div>
                   <CategoriesCheckboxes
