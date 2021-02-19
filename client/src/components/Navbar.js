@@ -76,22 +76,14 @@ class Navbar extends Component {
               <img src="images/MakeMeDo_textOnly_black.png" alt="logo" width="112" height="28" />
             </Link>
           </a>
-
           <a role="button" onClick={this.toggleClass} className="navbar-burger" aria-label="menu" aria-expanded="false" data-target="navbarBasicExample">
-
-
             <span aria-hidden="true"></span>
             <span aria-hidden="true"></span>
             <span aria-hidden="true"></span>
           </a>
-
         </div>
-
-
-        {/* <input type="checkbox" id="nav-toggle-state" /> */}
-
-
         <div id="navbarBasicExample" className={this.state.active}>
+        {this.props.currentUser &&
           <div className="navbar-start">
             <a className="navbar-item" onClick={this.checkRedirect} name="home">
               {window.innnerWidth >= 1024
@@ -99,7 +91,6 @@ class Navbar extends Component {
                 : <Link name="home" to="/home" className="has-text-grey-dark">Home</Link>
               }
             </a>
-
             <div className="navbar-start">
               <a className="navbar-item" onClick={this.checkRedirect} name="make-me-do">
                 {window.innnerWidth >= 1024
@@ -108,7 +99,6 @@ class Navbar extends Component {
                 }
               </a>
             </div>
-
             <nav class="navbar" role="navigation" aria-label="dropdown navigation">
               <div className="navbar-item has-dropdown is-hoverable" >
                 <a className="navbar-link">
@@ -116,19 +106,16 @@ class Navbar extends Component {
             </a>
                 <div className="navbar-dropdown is-right">
                   <a className="navbar-item" onClick={this.checkRedirect} name="activities">
-
                     {window.innnerWidth >= 1024
                       ? <Link to="/activities" className="has-text-grey-dark">Browse Activities</Link>
                       : <Link name="activities" to="/activities" className="has-text-grey-dark">Browse Activities</Link>
                     }
                   </a>
                   <a className="navbar-item" onClick={this.checkRedirect} name="my-activities">
-
                     {window.innnerWidth >= 1024
                       ? <Link to="/my-activities" className="has-text-grey-dark">My Activities</Link>
                       : <Link name="my-activities" to="/my-activities" className="has-text-grey-dark">My Activities</Link>
                     }
-
                   </a>
                   <a className="navbar-item" onClick={this.checkRedirect} name="add-activity">
                     {window.innnerWidth >= 1024
@@ -139,9 +126,8 @@ class Navbar extends Component {
                 </div>
               </div>
             </nav>
-
           </div>
-
+        }
           <div className="navbar-end">
             <div className="navbar-item">
               {/* ANITA CHENGE HERE FOR USER PROFILE */}
