@@ -14,7 +14,7 @@ class UserProfile extends Component {
     console.log(user.username)
     this.setState({
       username: user.username,
-      preferences: user.preferences,
+      preferences: user.preferences
     })
   }
 
@@ -26,9 +26,10 @@ class UserProfile extends Component {
         this.setState({
           preferences: newPreferences
         });
-        let user = this.props.user
-        user.preferences = this.newChosenPreferences
-        this.props.updateUser(user)
+        let user = this.props.user;
+        user.preferences = this.newChosenPreferences;
+        this.props.updateUser(user);
+        console.log("testing here");
         //this.props.history.push('/home');
       })
       .catch(error => console.log(error))

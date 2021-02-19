@@ -95,7 +95,7 @@ class App extends Component {
 
         <Route exact path="/">
           {this.state.currentUser ?
-            <Home user={this.state.currentUser} /> :
+            <Home user={this.state.currentUser}/> :
             <Welcome />
           }
         </Route>
@@ -117,7 +117,7 @@ class App extends Component {
           <Route path="/user-profile">
             {this.state.hasPreferences ? <StartGame user={this.state.currentUser} updateUser={this.updateCurrentUser} />
             :
-            <UserProfile user={this.state.currentUser} />
+            <UserProfile user={this.state.currentUser} updateUser={this.updateCurrentUser} />
             }
           </Route>
 
@@ -140,7 +140,7 @@ class App extends Component {
 
           <Route path="/home" render={() => (
             this.state.currentUser
-              ? this.state.currentUser.preferences.length > 0 ? <Home user={this.state.currentUser} />
+              ? this.state.currentUser.preferences.length > 0 ? <Home user={this.state.currentUser} updateUser={this.updateCurrentUser}/>
               : <Redirect to='/start-game' />
               : <Redirect to='/login' />
           )} />
