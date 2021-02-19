@@ -52,13 +52,7 @@ class RandomActivity extends Component {
           <br></br>
           <strong>Duration:</strong> {randomActivity.minDuration} min <br></br>
           <strong>Description:</strong> {randomActivity.description}<br></br>
-          {/* <strong>Categories: </strong>
-
-          {randomActivity.categories.map(category => <> {category} </>)} */}
-
         </p>
-       
-
       </div>
     </div>   
   </article>

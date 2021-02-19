@@ -57,7 +57,8 @@ class ToDoListItem extends Component {
 
     return (
       
-      <div className="mb-4"><article>
+      <div className="mb-4">
+      <article>
         <input type="checkbox" checked={this.state.isChecked} id="todo-item" name={todoName} onChange={this.checkBoxHandler} />
         <strong> {todoName}</strong>
         <br></br><strong>Description:</strong> {todoDescription}

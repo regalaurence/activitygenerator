@@ -7,8 +7,6 @@ class MakeMeDo extends Component {
   state = {
     time: null,
     possibleCategories: [],
-    // userActivitiesFromDb: this.props.user.bookmarkedActivities,
-    // allActivitiesFromDb: []
   }
 
   handleFormSubmit = (userInputTime, userInputCategories) => {
@@ -27,17 +25,6 @@ class MakeMeDo extends Component {
 
     return (
       <Redirect to="/your-todo-list"></Redirect>
-      // <section className="hero">
-      //   <div className="hero-body">
-      //     <div className="container">
-      //       <div className="columns is-vcentered is-centered">
-      //         <form style={{ maxWidth: "612px" }}>
-      //           <CreateToDoList user={this.props.user} availableTime={this.state.time} possibleCategories={this.state.possibleCategories}></CreateToDoList>
-      //         </form>
-      //       </div>
-      //     </div>
-      //   </div>
-      // </section>
     )
   }
 }
