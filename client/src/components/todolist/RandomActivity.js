@@ -4,7 +4,7 @@ import axios from 'axios';
 class RandomActivity extends Component {
   state = {
     activitiesFromDb: [],
-    loading : true
+    loading: true
   }
 
   componentDidMount() {
@@ -36,30 +36,32 @@ class RandomActivity extends Component {
     let randomActivity = this.generateRandomActivity()
     return (
       <div className="hero-body">
-<div className="container">
-<div className="columns is-vcentered is-centered center">
-<div className="box">
-  <article className="media pb-2">
-    <div class="media-right">
-      <figure class="image is-128x128 mr-4">
-        <img src="/images/Randomtodo.png" alt="logo" />
-      </figure>
-    </div>
-    <div className="media-content">
-      <div className="content">
-        <p>
-          <h3>Your Random Activity is... <br></br></h3><h3><strong>{randomActivity.name}!</strong></h3>
-          <br></br>
-          <strong>Duration:</strong> {randomActivity.minDuration} min <br></br>
-          <strong>Description:</strong> {randomActivity.description}<br></br>
-        </p>
+        <div className="container">
+          <div className="columns is-vcentered is-centered center">
+            <div className="box">
+              <article className="media pb-2">
+                <div class="media-right">
+                  <figure class="image is-128x128 mr-4">
+                    <img src="/images/Randomtodo.png" alt="logo" />
+                  </figure>
+                </div>
+                <div className="media-content">
+                  <div className="content">
+                    <p>
+                      <h3>Your Random Activity is... <br></br></h3><h3><strong>{randomActivity.name}!</strong></h3>
+                      <br></br>
+                      <strong>Duration:</strong> {randomActivity.minDuration} min <br></br>
+                      {randomActivity.description.length > 0 ? 
+                        <><strong>Description:</strong>{randomActivity.description}<br></br></>
+                      : null}
+                    </p>
+                  </div>
+                </div>
+              </article>
+            </div>
+          </div>
+        </div>
       </div>
-    </div>   
-  </article>
-</div>
-</div>
-</div>
-</div>
     )
   }
 }
