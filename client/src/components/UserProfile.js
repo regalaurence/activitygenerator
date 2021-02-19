@@ -5,7 +5,6 @@ class UserProfile extends Component {
   //newChosenPreferences = [];
   state = {
     username: "",
-    // password: "",
     preferences: [],
   }
 
