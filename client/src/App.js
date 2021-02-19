@@ -69,6 +69,7 @@ class App extends Component {
   }
 
   removeFromFavorite = (activityIDToRemove) => {
+    console.log("Calling remove in app js", activityIDToRemove)
     let filteredDeletionFavorites = this.state.currentFavorites.filter(activity => activity._id !== activityIDToRemove)
     this.setState({
       currentFavorites: filteredDeletionFavorites

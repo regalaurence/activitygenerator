@@ -28,12 +28,14 @@ class ToDoListItem extends Component {
         isChecked: false
       })
     }
+    console.log("Calling on check", event.target.todoid)
     this.props.onCheck(event.target.id, event.target.checked)
   }
 
   render() {
 
     let todo = this.props.todo
+    console.log("Todo", todo)
     let todoName = ""
     let todoTime = 0
     let todoId = ""
@@ -55,10 +57,12 @@ class ToDoListItem extends Component {
       todoUrl ? todoUrl = todo.url : todoUrl = null
     }
 
+    console.log(todoId)
+
     return (
       
       <div className="mb-4"><article>
-        <input type="checkbox" checked={this.state.isChecked} id="todo-item" name={todoName} onChange={this.checkBoxHandler} />
+        <input type="checkbox" checked={this.state.isChecked} id={todoId} name={todoName} onChange={this.checkBoxHandler} />
         <strong> {todoName}</strong>
         <br></br><strong>Description:</strong> {todoDescription}
         <br></br><strong> Duration: </strong>{todoTime} mins

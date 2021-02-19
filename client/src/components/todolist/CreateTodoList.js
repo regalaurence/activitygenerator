@@ -25,24 +25,23 @@ class CreateToDoList extends Component {
           userActivitiesFromDb: this.props.user.bookmarkedActivities
         })
       })
-      // .then(() => {
-      //   let generatedToDoList = this.generateToDoList(this.props.timeForTodoList, this.props.categoriesForTodoList)
-      //   console.log("Here is the generated TodoList: ", generatedToDoList)
-      // })
+     
   }
 
-  removeFromFavorites = (todoId) => {
-    this.props.removeFromFavorite(todoId)
-    this.setState({
-      userActivitiesFromDb: this.props.user.bookmarkedActivities
-    })
-  }
+  // removeFromFavorites = (todoId) => {
+  //   this.props.removeFromFavorite(todoId)
+  //   this.setState({
+  //     userActivitiesFromDb: this.props.user.bookmarkedActivities
+  //   })
+  // }
 
   handleTodoCheck = (todoId, isTodoChecked) => {
+    console.log("Calling handle todo check", todoId)
     this.setState({
       [todoId]: isTodoChecked
     })
-    this.removeFromFavorites(todoId)
+    console.log("Calling removefavorites")
+    this.props.removeFromFavorite(todoId)
   }
 
   // Functions that generate todo list as Class Methods for CreateToDoList
