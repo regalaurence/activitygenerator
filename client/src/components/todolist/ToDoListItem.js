@@ -64,7 +64,7 @@ class ToDoListItem extends Component {
       <div className="mb-4"><article>
         <input type="checkbox" checked={this.state.isChecked} id={todoId} name={todoName} onChange={this.checkBoxHandler} />
         <strong> {todoName}</strong>
-        <br></br><strong>Description:</strong> {todoDescription}
+         <br></br><strong>Description:</strong> {todoDescription ? todoDescription : <>You haven't provided one. Go to My Activities to edit.</> }
         <br></br><strong> Duration: </strong>{todoTime} mins
         </article>
       </div>

@@ -66,7 +66,7 @@ class ToDoListForm extends Component {
                   />
                   <label className="label"><input type="checkbox" name="cost" value={!this.state.cost} onChange={this.handleChange} />{` Include only free activities (not done)`}</label>
                   <div className="control">
-                    <button onClick={this.submitHandler} className="button is-primary mt-5">Ok, make me do!!</button>
+                    <button onClick={this.submitHandler} className="button is-primary mt-5">Ok, Make Me Do!</button>
                   </div>
                 </form>
               </div>
