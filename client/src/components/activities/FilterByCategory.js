@@ -12,7 +12,6 @@ class FilterByCategory extends React.Component {
         <option value="">No filter</option>
         <option value="Outdoors">Outdoors</option>
         <option value="Indoors">Indoors</option>
-        <option value="Alone">Alone</option>
         <option value="Sports">Sports</option>
         <option value="Adventures">Adventures</option>
         <option value="Housework">Housework</option>
