@@ -28,13 +28,6 @@ class CreateToDoList extends Component {
      
   }
 
-  // removeFromFavorites = (todoId) => {
-  //   this.props.removeFromFavorite(todoId)
-  //   this.setState({
-  //     userActivitiesFromDb: this.props.user.bookmarkedActivities
-  //   })
-  // }
-
   handleTodoCheck = (todoId, isTodoChecked) => {
     console.log("Calling handle todo check", todoId)
     this.setState({
@@ -86,58 +79,41 @@ class CreateToDoList extends Component {
 
     // Step 1b: Assess how many can be added to the todolist
     let highPriorityForToDoList = this.selectActivitiesForToDoList(highPriorityToDos, timeLeft)
-    //console.log("High Prio for Todo List: ", highPriorityForToDoList)
     highPriorityForToDoList.forEach(todo => toDoList.push(todo))
 
     // Update timeLeft
-    //console.log("Duration", sumActivityDuration(toDoList))
     timeLeft = time - this.sumActivityDuration(toDoList)
 
     // Step 2a: Check for activities that meet certain criteria (on user list matching to possible categories)
     let savedActivities = this.checkForSavedActivities(this.state.userActivitiesFromDb, categories) // returns highprio todos
-    //console.log("Saved", savedActivities)
 
     // Step 2b: Assess how many can be added to the todolist
     let savedActivitiesForToDoList = this.selectActivitiesForToDoList(savedActivities, timeLeft)
     savedActivitiesForToDoList.forEach(todo => toDoList.push(todo))
 
     // Update timeLeft
-    //console.log("Duration", this.sumActivityDuration(toDoList))
     timeLeft = time - this.sumActivityDuration(toDoList)
 
     // Step 3a: Check for activities that meet criteria in all activities
     let suggestedActivities = this.checkForAllActivities(this.state.allActivitiesFromDb, categories, toDoList)
-    //console.log("suggested", suggestedActivities)
 
     //Step 3b: Assess how many can be added to the todolist
     let suggestedActivitiesForToDoList = this.selectSuggestedActivitiesForToDoList(suggestedActivities, timeLeft)
     suggestedActivitiesForToDoList.forEach(todo => toDoList.push(todo))
 
     // Update timeLeft
-    //console.log("Duration", this.sumActivityDuration(toDoList))
     timeLeft = time - this.sumActivityDuration(toDoList)
-
-    //console.log("TimeLeft: ", timeLeft)
-    //console.log("Todo List in function: ", toDoList)
-
     return toDoList
 
   }
 
   checkForHighPriorityToDos = (userActivities) => {
-    //console.log("checking for HighPrioTodos...")
-    //console.log("Activities I received to check for prio:", userActivities)
     return userActivities.filter(activity => activity.isHighPriority === true)
   }
 
   checkForSavedActivities = (userActivities, categories) => {
-    //console.log("Checking for saved activities");
-    //console.log("Activities I received to check for saved:", userActivities)
-
     let savedActivities = userActivities.filter(activity => {
-      //console.log("Activity in savedActivities", activity)
       return categories.some(category => {
-        //console.log("Category in savedActivities", category)
         return activity.categories.includes(category)
       })
     }).filter(activity => activity.isHighPriority !== true)
@@ -145,7 +121,6 @@ class CreateToDoList extends Component {
   }
 
   checkForAllActivities = (allActivities, categories, todolist) => {
-    //console.log("Checking for all activities");
     console.log("Todolist: ", todolist)
     let filteredActivities = allActivities
       .filter(activity => {
@@ -168,11 +143,9 @@ class CreateToDoList extends Component {
   }
 
   sumActivityDuration = (activities) => {
-    //console.log("Sum, activtities passed in: ", activities)
     if (activities.length > 0) {
       let sum = 0
       activities.forEach(activity => {
-        //console.log("each activity ", activity)
         if (activity?.activity?.minDuration) {
           sum = sum + activity.activity.minDuration
         } else {
@@ -185,11 +158,7 @@ class CreateToDoList extends Component {
   }
 
   selectSuggestedActivitiesForToDoList = (activities, timeLeft) => {
-    //console.log("Activities in Select for toddo list", activities)
-    //console.log("Timeleft in select: ", timeLeft)
     let activityDuration = this.sumActivityDuration(activities)
-    //console.log("Duration in Function", activityDuration)
-
     if (activityDuration <= timeLeft) {
       return activities
     } else {
@@ -202,11 +171,7 @@ class CreateToDoList extends Component {
   }
 
   selectActivitiesForToDoList = (activities, timeLeft) => {
-    //console.log("Activities in Select for toddo list", activities)
-    //console.log("Timeleft in select: ", timeLeft)
     let activityDuration = this.sumActivityDuration(activities)
-    //console.log("Duration in Function", activityDuration)
-
     if (activityDuration <= timeLeft) {
       return activities
     } else {
@@ -229,25 +194,19 @@ class CreateToDoList extends Component {
           <div className="columns is-vcentered is-centered center">
             <div className="box">
               <article className="media pr-2">
-                {/* <div class="media-right">
-                <figure class="image is-64x64">
-                  <img src="/images/Todo.png" alt="Image" />
-                </figure>
-              </div> */}
                 <div className="media-content">
                   <div className="content">
                     <p>
-                      <h3><strong>Here is your To Do List:</strong></h3>
+                      <h3><strong>It is time to do things! Here is your list:</strong></h3>
                       <br></br>
                       <strong>Available time:</strong> {this.props.timeForTodoList} min <br></br>
                       <strong>Selected Categories: </strong>
-                      {this.props.categoriesForTodoList.map(category => <> {category} </>)}
+                      {this.props.categoriesForTodoList.map(category => <span className="tag"> {category} </span>)}
                     </p>
-                    {generatedToDoList ?
+                    {generatedToDoList.length > 0 ?
                       <div id="todolist">
                         {generatedToDoList.map(todo => <ToDoListItem onCheck={this.handleTodoCheck} todo={todo} />)}
-                      </div> : null}
-
+                      </div> : <p>Oops. Looks like we couldn't find anything. Try adding time or categories.</p>}
                   </div>
                 </div>
                 <div className="media-right">
