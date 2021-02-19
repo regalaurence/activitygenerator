@@ -27,7 +27,7 @@ class UserProfile extends Component {
           preferences: newPreferences
         });
         let user = this.props.user;
-        user.preferences = this.newChosenPreferences;
+        user.preferences = newPreferences;
         this.props.updateUser(user);
         console.log("testing here");
         //this.props.history.push('/home');
