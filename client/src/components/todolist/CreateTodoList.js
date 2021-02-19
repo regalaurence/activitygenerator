@@ -197,7 +197,7 @@ class CreateToDoList extends Component {
                 <div className="media-content">
                   <div className="content">
                     <p>
-                      <h3><strong>Here is your To Do List:</strong></h3>
+                      <h3><strong>It is time to do things! Here is your list:</strong></h3>
                       <br></br>
                       <strong>Available time:</strong> {this.props.timeForTodoList} min <br></br>
                       <strong>Selected Categories: </strong>
