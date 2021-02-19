@@ -212,11 +212,8 @@ class AddActivity extends Component {
                       {` Is it a high priority?`}</label>
                   </div>
                 </div>
-
-
-                <div className="field">
+            <div className="field">
                   <label className="label">I'd rather do this
-
                   <SelectMonth label={"between"} agenda={"seasonStart"} onSelect={this.handleChange} />
                     <SelectMonth label={"and"} agenda={"seasonEnd"} value="11" onSelect={this.handleChange} />
                   </label>
