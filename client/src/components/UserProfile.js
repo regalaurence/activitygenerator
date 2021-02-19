@@ -83,7 +83,7 @@ let uniquePreferences = [...new Set(this.state.preferences)];
                 <div className="content has-text-centered">
                   <h2 className="is-small">Hello {this.state.username}!</h2></div>
                 <div className="content has-text-centered">
-                  <h5 className="is-small">Your preferences are: </h5> <p>| {this.state.uniquePreferences.map(pref => {
+                  <h5 className="is-small">Your preferences are: </h5> <p>| {uniquePreferences.map(pref => {
                     return pref + " | "
                   })}</p>
                   <div className="content has-text-centered mt-4">
