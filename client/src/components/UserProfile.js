@@ -80,11 +80,11 @@ class UserProfile extends Component {
                 <div className="content has-text-centered">
                   <h2 className="is-small">Hello {this.state.username}!</h2></div>
                 <div className="content has-text-centered">
-                  <h5 className="is-small">Your preferences are: </h5> {this.state.preferences.map(pref => {
-                    return <p> {pref} </p>
-                  })}
+                  <h5 className="is-small">Your preferences are: </h5> <p>| {this.state.preferences.map(pref => {
+                    return pref + " | "
+                  })}</p>
                   <div className="content has-text-centered mt-4">
-                  <h5 className="is-small">To change your preferences, tap on the images below:</h5></div>
+                  <h5 className="is-small">Tap on the images below to updated your preferences:</h5></div>
                 </div>
                 <div className="columns is-multiline is-mobile">
                   {this.creatingButtonsFunction()}
