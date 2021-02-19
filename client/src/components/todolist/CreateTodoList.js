@@ -50,7 +50,7 @@ class CreateToDoList extends Component {
 
     console.log("State: ", this.state.userActivitiesFromDb)
 
-    if (this.state.userActivitiesFromDb.length === 0 || this.state.allActivitiesFromDb.length === 0) {
+    if (this.state.userActivitiesFromDb.length === 0 && this.state.allActivitiesFromDb.length === 0) {
       return [];
     }
 
@@ -241,9 +241,7 @@ class CreateToDoList extends Component {
                       <br></br>
                       <strong>Available time:</strong> {this.props.timeForTodoList} min <br></br>
                       <strong>Selected Categories: </strong>
-
                       {this.props.categoriesForTodoList.map(category => <> {category} </>)}
-
                     </p>
                     {generatedToDoList ?
                       <div id="todolist">
