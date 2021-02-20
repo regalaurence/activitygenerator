@@ -42,7 +42,7 @@ class SavedActivity extends React.Component {
     return (
       <div className="column is-full has-text-centered">
         <h1 className="activity-name"><strong>{this.props.name}</strong></h1>
-        <button onClick={this.showActivityDetails} key={this.props.id} value={this.props.id} className="button is-small is-success mr-2">See details</button>
+        <button onClick={this.showActivityDetails} key={this.props.id} value={this.props.id} className="button is-small is-success mr-2">{this.state.activityDetailsShown ? "Hide details" : "Show details"}</button>
         <Link to="/edit-activity"><button className="button is-small is-success is-outlined mr-2" value={this.props.id} onClick={(event) => { this.props.editActivity(event.target.value) }}>Edit activity</button></Link>
         <button className="button is-light is-small" value={this.props.id} onClick={this.removeFromFavorites}>Remove</button>
         {/* {activity.isHighPriority ? <span> High priority</span> : <span> Low priority</span>}  */}
