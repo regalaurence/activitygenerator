@@ -6,7 +6,7 @@ class ToDoListForm extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      availableTime: 5,
+      availableTime: 30,
       possibleCategories: [],
     };
   }
@@ -64,7 +64,7 @@ class ToDoListForm extends Component {
                     value={this.state.possibleCategories}
                     onChange={this.handleChange}
                   />
-                  <label className="label"><input type="checkbox" name="cost" value={!this.state.cost} onChange={this.handleChange} />{` Include only free activities (not done)`}</label>
+                  <label className="label"><input type="checkbox" name="cost" value={!this.state.cost} onChange={this.handleChange} />{`Include only free activities`}</label>
                   <div className="control">
                     <button onClick={this.submitHandler} className="button is-primary mt-5">Ok, Make Me Do!</button>
                   </div>
