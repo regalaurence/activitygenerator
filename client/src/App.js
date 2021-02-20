@@ -44,12 +44,6 @@ class App extends Component {
       })
   }
 
-  editActivity = (activityID) => {
-    this.setState({
-      activityToChangeID: activityID
-    })
-  }
-
   componentDidUpdate = () => {
     if (this.state.currentUser) {
       axios.put(`/api/user/${this.state.currentUser._id}`,
@@ -60,12 +54,19 @@ class App extends Component {
     }
   }
 
+  editActivity = (activityID) => {
+    this.setState({
+      activityToChangeID: activityID
+    })
+  }
+
   addToFavorite = (activityToAdd, priority) => {
     activityToAdd.isHighPriority = priority
     let newFavorites = [...this.state.currentFavorites, activityToAdd]
     this.setState({
       currentFavorites: newFavorites
     })
+    
   }
 
   removeFromFavorite = (activityIDToRemove) => {
@@ -90,7 +91,7 @@ class App extends Component {
 
         <Route exact path="/">
           {this.state.currentUser ?
-            <Home user={this.state.currentUser}/> :
+            <Home user={this.state.currentUser} /> :
             <Welcome />
           }
         </Route>
@@ -112,7 +113,7 @@ class App extends Component {
           <Route path="/user-profile">
             {this.state.hasPreferences ? <StartGame user={this.state.currentUser} updateUser={this.updateCurrentUser} />
             :
-            <UserProfile user={this.state.currentUser} updateUser={this.updateCurrentUser} />
+            <UserProfile user={this.state.currentUser} />
             }
           </Route>
 
@@ -123,7 +124,7 @@ class App extends Component {
           )} />
 
           <Route path="/your-todo-list">
-          <CreateToDoList user={this.state.currentUser} timeForTodoList={this.state.timeForTodoList} categoriesForTodoList={this.state.categoriesForTodoList} removeFromFavorite={this.removeFromFavorite}></CreateToDoList>
+            <CreateToDoList user={this.props.user} timeForTodoList={this.state.timeForTodoList} categoriesForTodoList={this.state.categoriesForTodoList} removeFromFavorite={this.removeFromFavorite}></CreateToDoList>
           </Route>
 
 
@@ -135,7 +136,7 @@ class App extends Component {
 
           <Route path="/home" render={() => (
             this.state.currentUser
-              ? this.state.currentUser.preferences.length > 0 ? <Home user={this.state.currentUser} updateUser={this.updateCurrentUser}/>
+              ? this.state.currentUser.preferences.length > 0 ? <Home user={this.state.currentUser} />
               : <Redirect to='/start-game' />
               : <Redirect to='/login' />
           )} />
