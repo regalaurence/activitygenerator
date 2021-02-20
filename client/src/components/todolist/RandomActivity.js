@@ -50,7 +50,7 @@ class RandomActivity extends Component {
                     <p>
                       <h3>Your Random Activity is... <br></br></h3><h3><strong>{randomActivity.name}!</strong></h3>
                       <br></br>
-                      <strong>Duration:</strong> {randomActivity.minDuration} min <br></br>
+                      <strong>Duration: </strong> {randomActivity.minDuration} min <br></br>
                       {randomActivity.description.length > 0 ? 
                         <><strong>Description:</strong>{randomActivity.description}<br></br></>
                       : null}
