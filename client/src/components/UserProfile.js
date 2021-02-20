@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 import axios from 'axios';
+import { Link } from 'react-router-dom';
 
 class UserProfile extends Component {
-  //newChosenPreferences = [];
   state = {
     username: "",
     preferences: [],
@@ -18,8 +18,6 @@ class UserProfile extends Component {
   }
 
   updatingUserPreferences = (newPreferences) => {
-    //const newPreferences = this.newChosenPreferences;
-    // const newPreferences = [...this.state.preferences, this.newChosenPreferences];
     axios.put(`/api/user/${this.props.user._id}`, { preferences: newPreferences })
       .then(() => {
         this.setState({
@@ -28,8 +26,6 @@ class UserProfile extends Component {
         let user = this.props.user;
         user.preferences = newPreferences;
         this.props.updateUser(user);
-        console.log("testing here");
-        //this.props.history.push('/home');
       })
       .catch(error => console.log(error))
   }
@@ -40,7 +36,6 @@ class UserProfile extends Component {
     let chosenActivity = event.currentTarget.value
     if (!newChosenPreferences.includes(chosenActivity)) {
       newChosenPreferences.push(chosenActivity)
-      // console.log(this.newChosenPreferences)
     }
     else {
      let filteredPreferences = newChosenPreferences.filter(activity => activity !== chosenActivity)
@@ -80,11 +75,13 @@ let uniquePreferences = [...new Set(this.state.preferences)];
             <div className="columns is-vcentered is-centered center">
               <div className="is-vcentered is-centered">
                 <div className="content has-text-centered">
-                  <h2 className="is-small">Hello {this.state.username}!</h2></div>
+                  <h2 className="is-small">Hello {this.state.username}!</h2>
+                  <Link to="/my-activities"> <button className="button is-warning is-small">My Activities</button></Link>
+                  </div>
                 <div className="content has-text-centered">
-                  <h5 className="is-small">Your preferences are: </h5> <p>| {uniquePreferences.map(pref => {
-                    return pref + " | "
-                  })}</p>
+                  <h5 className="is-small">Your preferences are: </h5> <div className="tags is-centered">{uniquePreferences.map(pref => {
+                    return <span className="tag is-white">{pref}</span> 
+                  })}</div>
                   <div className="content has-text-centered mt-4">
                   <h5 className="is-small">Tap on the images below to updated your preferences:</h5></div>
                 </div>

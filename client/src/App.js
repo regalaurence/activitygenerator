@@ -126,13 +126,6 @@ class App extends Component {
             <CreateToDoList user={this.state.currentUser} timeForTodoList={this.state.timeForTodoList} categoriesForTodoList={this.state.categoriesForTodoList} removeFromFavorite={this.removeFromFavorite}></CreateToDoList>
           </Route>
 
-
-          {/* <Route path="/your-todo-list" render={() => (
-            this.state.currentUser
-              ? <CreateToDoList user={this.props.user} timeForTodoList={this.state.timeForTodoList} categoriesForTodoList={this.state.categoriesForTodoList}></CreateToDoList>
-              : <Redirect to='/login' />
-          )} /> */}
-
           <Route path="/home" render={() => (
             this.state.currentUser
               ? this.state.currentUser.preferences.length > 0 ? <Home user={this.state.currentUser} />
